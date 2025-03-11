@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BaseCoverImage = styled.img`
+export const CoverImage = styled.img`
     display: block;
     max-width: 100%;
     max-height: 100%;

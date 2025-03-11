@@ -1,6 +1,4 @@
-import NavbarItem from "./NavbarItem";
-import home from '../../assets/icons/home.png';
-import library from '../../assets/icons/folder.png';
+import NavMenu from "./NavMenu";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
 
@@ -10,23 +8,22 @@ const AppNavbar = () => {
 
     return (
         <aside>
-            <Navbar className="navbar" openedNavbar={openedNavbar}>
-                <NavbarItem name='Home' iconSrc={home} iconAlt='home' showFull={openedNavbar}/>
-                <NavbarItem name='Library' iconSrc={library} iconAlt='library' showFull={openedNavbar}/>
+            <Navbar openedNavbar={openedNavbar}>
+                <NavMenu openedNavbar={openedNavbar}/>
             </Navbar>
         </aside>
     )
 }
 
 const Navbar = styled.nav`
-    padding: 40px 10px 0 5px;
-    height: 100vh;
-    width: ${({openedNavbar}) => (openedNavbar ? '20%' : '10%')};
+    padding: 10px;
+    min-height: 100%;
+    width: ${({openedNavbar}) => openedNavbar ? 25 : 7}vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
-    transition: width 0.3s ease-in-out;
+    align-items: center;
+    transition: all 0.2s;
 `
 
 export default AppNavbar

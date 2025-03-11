@@ -15,3 +15,52 @@ html {
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
+
+body {
+}
+
+a:visited {color:#0000;}
+
+:root {
+  --gray-darkest: #000000;
+  --gray-dark: #939bb4;
+  --gray: #d9dde8;
+  --gray-light: #edeff4;
+  --gray-lighter: #f6f7fb;
+  --gray-lightest: #fff;
+
+  --sky-darkest: #3366cc;
+  --sky-darker: #5a8ae6;
+  --sky-dark: #7aa7f2;
+  --sky: #9dc2fb;
+  --sky-light: #c0dbff;
+  --sky-lighter: #d9eaff;
+  --sky-lightest: #edf5ff;
+
+  --lavanda-darkest: #7327b8;
+  --lavanda-darker: #9643d4;
+  --lavanda-dark: #b16bef;
+  --lavanda: #cd94f9;
+  --lavanda-light: #e1b8fc;
+  --lavanda-lighter: #f0d8fe;
+  --lavanda-lightest: #faedff;
+
+  --sky-lavanda-gradient-transparent-lightest: linear-gradient(90deg, rgba(157,194,251,0.1) 37%, rgba(205,148,249,0.1) 76%);
+  --sky-lavanda-gradient-transparent-light: linear-gradient(90deg, rgba(157,194,251,0.2) 37%, rgba(205,148,249,0.2) 76%);
+  --sky-lavanda-gradient-transparent-halflight: linear-gradient(90deg, rgba(157,194,251,0.5) 37%, rgba(205,148,249,0.5) 76%);
+  --sky-lavanda-gradient-transparent-quarter: linear-gradient(90deg, rgba(157,194,251,0.8) 37%, rgba(205,148,249,0.8) 76%);
+  --sky-lavanda-gradient-transparent-full: linear-gradient(90deg, rgba(157,194,251,1) 37%, rgba(205,148,249,1) 76%);
+
+  --main-color: #9dc2fb;
+  --second-color: #cd94f9;
+
+  --error-color: #b00020;
+
+  --ref-radius-small: 5px;
+  --ref-radius-medium: 8px;
+  --ref-radius-large: 12px;
+  --ref-radius-xLarge: 17px;
+  --ref-radius-full: 100%;
+
+  --base-item-border-radius: var(--ref-radius-medium)
+}

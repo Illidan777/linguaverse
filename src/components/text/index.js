@@ -6,17 +6,17 @@ const FONT_WEIGHTS = {
     MEDIUM: { basic: 500, mobile: 100 },
     REGULAR: { basic: 400, mobile: 100 },
     LIGHT: { basic: 300, mobile: 100 },
-    THIN: { basic: 300, mobile: 100 },
+    THIN: { basic: 200, mobile: 100 },
 };
 
 const FONT_SIZES = {
-    SIMPLE_BIG: { basic: "28px", mobile: "24px" },
-    SIMPLE_MEDIUM: { basic: "23px", mobile: "20px" },
-    SIMPLE_SMALL: { basic: "18px", mobile: "20px" },
+    SIMPLE_BIG: { basic: "25px", mobile: "24px" },
+    SIMPLE_MEDIUM: { basic: "20px", mobile: "20px" },
+    SIMPLE_SMALL: { basic: "16px", mobile: "20px" },
     TITLE_MAIN: { basic: "118px", mobile: "20px" },
-    TITLE_BIG: { basic: "55px", mobile: "28px" },
-    TITLE_MEDIUM: { basic: "38px", mobile: "28px" },
-    TITLE_SMALL: { basic: "22px", mobile: "20px" },
+    TITLE_BIG: { basic: "35px", mobile: "28px" },
+    TITLE_MEDIUM: { basic: "30px", mobile: "28px" },
+    TITLE_SMALL: { basic: "25px", mobile: "20px" },
 };
 
 const LINE_HEIGHTS = {
@@ -48,7 +48,7 @@ export const StyledText = ({
                                children
                            }) => {
     const Component = createStyledComponent(as, weight, size, color, lineHeight);
-    return <Component>{children}</Component>;
+    return <Component key={Math.floor(Math.random() * 100)}>{children}</Component>;
 };
 
 export {FONT_WEIGHTS, FONT_SIZES, LINE_HEIGHTS};
