@@ -1,26 +1,43 @@
 import styled, {css} from "styled-components";
 
-export const PrimaryStyledInput = styled.input`
+export const StyledInput = styled.input`
     padding: 10px;
-    background-color: var(--gray-light);
     width: 100%;
     border: .125rem solid #0000;
-    outline: none;
     transition: 0.3s;
+    outline: none;
     border-radius: var(--base-item-border-radius);
+`
+
+export const StyledTextArea = styled.textarea`
+    padding: 10px;
+    width: 100%;
+    border: .125rem solid #0000;
+    transition: 0.3s;
+    outline: none;
+    border-radius: var(--base-item-border-radius);
+    resize: none;
+    border-bottom: 2px solid black;
 
     &:focus {
-        border-color: var(--lavanda);
-        background-color: white;
+        border-bottom-color: var(--sky-darkest);
     }
 `
 
-export const SecondaryStyledInput = styled(PrimaryStyledInput)`
-    background-color: white;
-    transition: unset;
+export const PrimaryInput = styled(StyledInput)`
+    background-color: var(--gray-light);
 
     &:focus {
-        border-color: #0000 #0000 black #0000;
+        border-color: var(--lavanda);
+        background-color: transparent;
+    }
+`
+
+export const SecondaryInput = styled(StyledInput)`
+    background-color: white;
+
+    &:focus {
+        border-bottom-color: black;
     }
 `
 

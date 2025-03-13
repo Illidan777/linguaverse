@@ -1,6 +1,6 @@
 import styled, {css} from "styled-components";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../components/text";
-import {PaddingStyledButton, RoutingLink} from "../../components/button/style";
+import {PaddingStyledButton, RoutingLink, TransparentPrimaryButton} from "../../components/button/style";
 import {LibraryIcon, HomeIcon, NotificationIcon} from "../../components/icon";
 import useCSSVariables from "../../hook/useCSSVariables";
 import withPathBasedSelectableChild from "../../components/hoc/withPathBasedSelectableChild";
@@ -106,7 +106,7 @@ const Menu = styled.ul`
     flex-direction: column;
 `
 
-const MenuItem = styled(PaddingStyledButton)`
+const MenuItem = styled(TransparentPrimaryButton)`
     min-width: 100%;
     gap: 20px;
     justify-content: flex-start;

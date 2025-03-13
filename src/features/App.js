@@ -2,15 +2,16 @@ import {BrowserRouter, Navigate, Route, Routes} from "react-router";
 import AppNavbar from "./navbar/AppNavbar";
 import AppHeader from "./header/AppHeader";
 import HomePage from "./pages/HomePage";
-import LibraryPage from "./pages/library/LibraryPage";
-import ModulesPage from "./pages/library/ModulesPage";
-import FoldersPage from "./pages/library/FoldersPage";
+import LibraryPage from "./pages/LibraryPage";
+import ModulesPage from "./pages/module/ModulesPage";
+import FoldersPage from "./pages/folder/FoldersPage";
 import {FlexRow} from "../components/layout/style";
 
 import styled from "styled-components";
 import AppFooter from "./footer/AppFooter";
-import FolderItemPage from "./pages/library/FolderItemPage";
-import ModuleItemPage from "./pages/library/ModuleItemPage";
+import FolderItemPage from "./pages/folder/FolderItemPage";
+import ModuleItemPage from "./pages/module/ModuleItemPage";
+import ModuleEditPage from "./pages/module/ModuleEditPage";
 
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
                         {/*todo resolve problem with outlet to move it to library as sub route*/}
                         <Route path="library/folders/:id" element={<FolderItemPage />} />
                         <Route path="library/modules/:id" element={<ModuleItemPage />} />
+                        <Route path=":id/edit" element={<ModuleEditPage/>}>
+
+                        </Route>
                     </Routes>
                 </Main>
             </Site>

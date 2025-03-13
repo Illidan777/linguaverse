@@ -1,6 +1,12 @@
 import styled from "styled-components";
-import {OutlinedButton, PrimaryButton, SecondaryButton, StyledButton} from "../../components/button/style";
-import {PrimaryStyledInput} from "../../components/input/style";
+import {
+    OutlinedButton,
+    PaddingStyledButton,
+    PrimaryButton,
+    SecondaryButton,
+    StyledButton, TransparentPrimaryButton
+} from "../../components/button/style";
+import {PrimaryInput} from "../../components/input/style";
 import ContextMenu from "../../components/menu";
 
 const HomePage = () => {
@@ -18,7 +24,9 @@ const HomePage = () => {
             <SecondaryButton>
                 Secondary
             </SecondaryButton>
-            <PrimaryStyledInput placeholder="Enter what you want to search"/>
+            <PaddingStyledButton>Styled</PaddingStyledButton>
+            <TransparentPrimaryButton disabled>Trans[parent</TransparentPrimaryButton>
+            <PrimaryInput placeholder="Enter what you want to search"/>
             <ContextMenu/>
 
         </HomePageWrapper>

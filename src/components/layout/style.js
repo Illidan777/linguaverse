@@ -31,6 +31,7 @@ export const DashboardPage = styled(FlexCol)`
 `
 
 export const DashboardPageHeader = styled(FlexCol)`
+    width: 100%;
     gap: 100px;
     justify-content: space-between;
 `

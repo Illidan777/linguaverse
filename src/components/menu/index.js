@@ -5,9 +5,9 @@ import {createPortal} from "react-dom";
 
 const CONTEXT_MENU_WIDTH = 200;
 
-const ContextMenu = ({trigger, children}) => {
+const ContextMenu = ({ trigger, children, alignRight = false }) => {
     const [opened, setOpened] = useState(false);
-    const [containerPosition, setContainerPosition] = useState({top: 0, left: 0});
+    const [containerPosition, setContainerPosition] = useState({ top: 0, left: 0 });
     const containerRef = useRef(null);
     const triggerRef = useRef(null);
 
@@ -31,7 +31,7 @@ const ContextMenu = ({trigger, children}) => {
             const rect = event.currentTarget.getBoundingClientRect();
             setContainerPosition({
                 top: rect.bottom + 4,
-                left: rect.right - CONTEXT_MENU_WIDTH
+                left: alignRight ? rect.left : rect.right - CONTEXT_MENU_WIDTH
             });
         }
     };
@@ -45,8 +45,9 @@ const ContextMenu = ({trigger, children}) => {
             {opened &&
                 createPortal(
                     <Container
+                        onClick={() => setOpened(false)}
                         ref={containerRef}
-                        style={{top: `${containerPosition.top}px`, left: `${containerPosition.left}px`}}
+                        style={{ top: `${containerPosition.top}px`, left: `${containerPosition.left}px` }}
                     >
                         {children}
                     </Container>,
@@ -57,7 +58,7 @@ const ContextMenu = ({trigger, children}) => {
 };
 
 // todo follow the further using of context menu, Implement this comp if there will be a lot of duplicating
-// const ContextMenuItemm = ({title, icon, color, disabled, onClick}) => {
+// const ContextMenuItem = ({title, icon, color, disabled, onClick}) => {
 //
 // }
 

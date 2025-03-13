@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React from "react";
 
 import {FlexCol, FlexRow} from "../../components/layout/style";
-import {InputWithIconContainer, SecondaryStyledInput} from "../../components/input/style";
+import {InputWithIconContainer, SecondaryInput} from "../../components/input/style";
 import {
     LibraryItem,
     LibraryItemContent,
@@ -48,7 +48,7 @@ const LibraryEntity = ({entityItems, onSearch, groupBy}) => {
         <FlexCol>
             <SearchPanel>
                 <InputWithIconContainer iconRightPosition>
-                    <SecondaryStyledInput placeholder="Find items" onChange={onSearch}/>
+                    <SecondaryInput placeholder="Find items" onChange={onSearch}/>
                     <SearchIcon/>
                 </InputWithIconContainer>
             </SearchPanel>

@@ -5,18 +5,13 @@ import styled from "styled-components";
 import {useDispatch} from "react-redux";
 import {toggleNavbar} from "../navbar/navbarSlice";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../components/text";
-import {
-    PrimaryButton,
-    RoutingLink,
-    SquarePrimaryButton,
-    SquareStyledButton,
-    StyledButton
-} from "../../components/button/style";
-import {InputWithIconContainer, PrimaryStyledInput} from "../../components/input/style";
-import {FlexColCenter, FlexRow, FlexRowCenter} from "../../components/layout/style";
-import {AddIcon, DeleteIcon, FolderIcon, ModuleIcon, MoreIcon, SearchIcon} from "../../components/icon";
-import React from "react";
+import {RoutingLink, SquarePrimaryButton, StyledButton} from "../../components/button/style";
+import {InputWithIconContainer, PrimaryInput} from "../../components/input/style";
+import {FlexRow} from "../../components/layout/style";
+import {AddIcon, FolderIcon, ModuleIcon, SearchIcon} from "../../components/icon";
+import React, {useState} from "react";
 import ContextMenu, {ContextMenuItem} from "../../components/menu";
+import CreateFolderModal from "../../components/modal/CreateFolderModal";
 
 const AppHeader = () => {
 
@@ -41,42 +36,59 @@ const AppHeader = () => {
             </HeaderLeftSideContent>
             <HeaderSearchPanel>
                 <InputWithIconContainer>
-                    <PrimaryStyledInput placeholder="Find modules"/>
+                    <PrimaryInput placeholder="Find modules"/>
                     <SearchIcon/>
                 </InputWithIconContainer>
-
             </HeaderSearchPanel>
             <HeaderRightSideContent>
-                <ContextMenu
-                    trigger={
-                        <SquarePrimaryButton>
-                            <AddIcon color="white"/>
-                        </SquarePrimaryButton>
-                    }
-                >
-                    <ContextMenuItem>
-                        <FolderIcon />
-                        <StyledText
-                            as="span"
-                            size={FONT_SIZES.SIMPLE_SMALL}
-                            weight={FONT_WEIGHTS.SEMI_BOLD}
-                        >
-                            Folder
-                        </StyledText>
-                    </ContextMenuItem>
-                    <ContextMenuItem>
-                        <ModuleIcon />
-                        <StyledText
-                            as="span"
-                            size={FONT_SIZES.SIMPLE_SMALL}
-                            weight={FONT_WEIGHTS.SEMI_BOLD}
-                        >
-                            Module
-                        </StyledText>
-                    </ContextMenuItem>
-                </ContextMenu>
+                <HeaderContextMenu/>
             </HeaderRightSideContent>
         </Header>
+    )
+}
+
+const HeaderContextMenu = () => {
+
+    const [openedCreateFolderModal, setOpenedCreateFolderModal] = useState(false);
+
+    const onCloseCreateFolderModal = () => {
+        setOpenedCreateFolderModal(false);
+    }
+
+    return (
+        <>
+            <ContextMenu
+                trigger={
+                    <SquarePrimaryButton>
+                        <AddIcon color="white"/>
+                    </SquarePrimaryButton>
+                }
+            >
+                <ContextMenuItem onClick={() => setOpenedCreateFolderModal(true)}>
+                    <FolderIcon/>
+                    <StyledText
+                        as="span"
+                        size={FONT_SIZES.SIMPLE_SMALL}
+                        weight={FONT_WEIGHTS.SEMI_BOLD}
+                    >
+                        Folder
+                    </StyledText>
+                </ContextMenuItem>
+                <ContextMenuItem>
+                    <ModuleIcon/>
+                    <StyledText
+                        as="span"
+                        size={FONT_SIZES.SIMPLE_SMALL}
+                        weight={FONT_WEIGHTS.SEMI_BOLD}
+                    >
+                        Module
+                    </StyledText>
+                </ContextMenuItem>
+            </ContextMenu>
+            <CreateFolderModal
+                opened={openedCreateFolderModal} onClose={onCloseCreateFolderModal}
+            />
+        </>
     )
 }
 
