@@ -1,7 +1,7 @@
 import Modal, {ModalFooter} from "../index";
 import {PrimaryButton} from "../../button/style";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../text";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {FlexCol} from "../../layout/style";
 import styled from "styled-components";
 import Dropdown, {DropDownItem} from "../../dropdown";
@@ -9,113 +9,92 @@ import Dropdown, {DropDownItem} from "../../dropdown";
 const ONLY_ME_ACCESS_MODE = 'ONLY_ME_ACCESS_MODE';
 const EVERYONE_ACCESS_MODE = 'EVERYONE_ACCESS_MODE';
 
+const ACCESS_MODES = {
+    READ: [
+        {value: ONLY_ME_ACCESS_MODE, label: "Only me", description: "Only you have access to read this module"},
+        {value: EVERYONE_ACCESS_MODE, label: "Everyone", description: "Everyone has access to read this module"}
+    ],
+    WRITE: [
+        {value: ONLY_ME_ACCESS_MODE, label: "Only me", description: "Only you have access to edit this module"}
+    ]
+};
+
+const getAccessDescription = (mode, type) => {
+    const foundMode = ACCESS_MODES[type]?.find(({value}) => value === mode);
+    return foundMode ? foundMode.description : "Selected unknown access mode!";
+};
+
 const ModuleSettingsModal = (props) => {
 
-    const [readAccessDescription, setReadAccessDescription] = useState("");
-    const [writeAccessDescription, setWriteAccessDescription] = useState("");
+    const onSave = () => props.onClose();
 
-    const onSelectReadAccessMode = (item) => {
-        const {value} = item;
-
-        switch (value) {
-            case ONLY_ME_ACCESS_MODE: {
-                setReadAccessDescription('Only you have access to read this module')
-                break;
-            }
-            case EVERYONE_ACCESS_MODE: {
-                setReadAccessDescription('Everyone has access to read this module')
-                break;
-            }
-            default: {
-                setReadAccessDescription('Selected unknown access mode!')
-            }
-        }
-    }
-
-    const onSelectWriteAccessMode = (item) => {
-        const {value} = item;
-
-        switch (value) {
-            case ONLY_ME_ACCESS_MODE: {
-                setWriteAccessDescription('Only you have access to edit this module')
-                break;
-            }
-            default: {
-                setWriteAccessDescription('Selected unknown access mode!')
-            }
-        }
-    }
-
-    const onSave = () => {
-        props.onClose()
-    }
+    // selected mode can be taken from API
     return (
-        <Modal {...props} title="Settings (temporarly not supported)">
+        <Modal {...props} title="Settings (temporarily not supported)">
             <Wrapper>
-                <FlexCol gap="20px">
-                    <StyledText
-                        as="h3"
-                        size={FONT_SIZES.TITLE_SMALL}
-                        weight={FONT_WEIGHTS.SEMI_BOLD}
-                    >
-                        Read
-                    </StyledText>
-                    <Dropdown
-                        onSelect={onSelectReadAccessMode}
-                    >
-                        <DropDownItem value={EVERYONE_ACCESS_MODE} label="Everyone">
-                            Everyone
-                        </DropDownItem>
-                        <DropDownItem value={ONLY_ME_ACCESS_MODE} label="Only me">
-                            Only me
-                        </DropDownItem>
-                    </Dropdown>
-                    <StyledText
-                        as="span"
-                        size={FONT_SIZES.SIMPLE_SMALL}
-                        weight={FONT_WEIGHTS.REGULAR}
-                    >
-                        {readAccessDescription}
-                    </StyledText>
-                </FlexCol>
-                <FlexCol gap="20px">
-                    <StyledText
-                        as="h3"
-                        size={FONT_SIZES.TITLE_SMALL}
-                        weight={FONT_WEIGHTS.SEMI_BOLD}
-                    >
-                        Write
-                    </StyledText>
-                    <Dropdown
-                        onSelect={onSelectWriteAccessMode}
-                    >
-                        <DropDownItem value={ONLY_ME_ACCESS_MODE} label="Only me">
-                            Only me
-                        </DropDownItem>
-                    </Dropdown>
-                    <StyledText
-                        as="span"
-                        size={FONT_SIZES.SIMPLE_SMALL}
-                        weight={FONT_WEIGHTS.REGULAR}
-                    >
-                        {writeAccessDescription}
-                    </StyledText>
-                </FlexCol>
+                <AccessControlSection type="READ" label="Read" selectedMode={EVERYONE_ACCESS_MODE}/>
+                <AccessControlSection type="WRITE" label="Write" selectedMode={ONLY_ME_ACCESS_MODE}/>
             </Wrapper>
             <ModalFooter>
-                <PrimaryButton
-                    onClick={onSave}
-                >
-                    <StyledText
-                        as="span"
-                        size={FONT_SIZES.SIMPLE_SMALL}
-                        weight={FONT_WEIGHTS.SEMI_BOLD}
-                    >
+                <PrimaryButton onClick={onSave}>
+                    <StyledText as="span" size={FONT_SIZES.SIMPLE_SMALL} weight={FONT_WEIGHTS.SEMI_BOLD}>
                         Save
                     </StyledText>
                 </PrimaryButton>
             </ModalFooter>
         </Modal>
+    );
+};
+
+const AccessControlSection = ({type, label, selectedMode}) => {
+    const [accessDescriptions, setAccessDescriptions] = useState({
+        read: "",
+        write: ""
+    });
+
+    console.log('render')
+
+    //todo  this hook produces one more extra render
+    useEffect(() => {
+        if(selectedMode) {
+            setAccessDescriptions((prev) => ({
+                ...prev,
+                [type]: getAccessDescription(selectedMode, type)
+            }));
+        }
+    }, []);
+
+    const onSelectAccessMode = (mode, type) => {
+        setAccessDescriptions((prev) => ({
+            ...prev,
+            [type]: getAccessDescription(mode, type)
+        }));
+    };
+
+    return (
+
+        <FlexCol gap="20px">
+            <StyledText as="h3" size={FONT_SIZES.TITLE_SMALL} weight={FONT_WEIGHTS.SEMI_BOLD}>
+                {label}
+            </StyledText>
+            <Dropdown
+                onSelect={(item) => onSelectAccessMode(item.value, type)}>
+                {ACCESS_MODES[type].map(({value, label}) => (
+                    <DropDownItem
+                        key={value}
+                        value={value}
+                        label={label}
+                        selected={value === selectedMode}
+                    >
+                        {label}
+                    </DropDownItem>
+                ))}
+            </Dropdown>
+            <StyledText as="span" size={FONT_SIZES.SIMPLE_SMALL} weight={FONT_WEIGHTS.REGULAR}>
+                {accessDescriptions[type]}
+            </StyledText>
+        </FlexCol>
+
     )
 };
 
