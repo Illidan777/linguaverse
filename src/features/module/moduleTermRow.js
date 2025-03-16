@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {FlexCol, FlexRow} from "../../../components/layout/style";
-import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
-import {BaseButtonBar, CircleStyledButton} from "../../../components/button/style";
-import {AddIcon, DeleteIcon, DownArrowIcon, UpArrowIcon} from "../../../components/icon";
-import TextAreaWithCounter from "../../../components/input";
+import {FlexCol, FlexRow} from "../../components/layout/wrapper/position/style";
+import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../components/text";
+import {BaseButtonBar, CircleStyledButton} from "../../components/button/style";
+import {AddIcon, DeleteIcon, DownArrowIcon, UpArrowIcon} from "../../components/icon";
+import TextAreaWithCounter from "../../components/input/textArea";
 import styled from "styled-components";
 
 const TermRow = ({ term: initialTerm, definition: initialDefinition, orderNumber }) => {
@@ -89,7 +89,7 @@ const TermRow = ({ term: initialTerm, definition: initialDefinition, orderNumber
 
 const TermRowWrapper = styled(FlexCol)`
     width: 100%;
-    background-color: white;
+    background-color: var(--main-background-color);
     border-radius: var(--base-item-border-radius);
 `
 

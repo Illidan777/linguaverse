@@ -1,17 +1,17 @@
-import logo from '../../assets/icons/logo.png';
-import burger from '../../assets/icons/burger.png';
-import {CoverImage} from "../../components/image/style";
+import logo from '../../../../assets/icons/logo.png';
+import burger from '../../../../assets/icons/burger.png';
+import {CoverImage} from "../../../image/style";
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
 import {toggleNavbar} from "../navbar/navbarSlice";
-import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../components/text";
-import {RoutingLink, SquarePrimaryButton, StyledButton} from "../../components/button/style";
-import {InputWithIconContainer, PrimaryInput} from "../../components/input/style";
-import {FlexRow} from "../../components/layout/style";
-import {AddIcon, FolderIcon, ModuleIcon, SearchIcon} from "../../components/icon";
+import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../text";
+import {RoutingLink, SquarePrimaryButton, StyledButton} from "../../../button/style";
+import {InputWithIconContainer, PrimaryInput} from "../../../input/style";
+import {FlexRow} from "../../wrapper/position/style";
+import {AddIcon, FolderIcon, ModuleIcon, SearchIcon} from "../../../icon";
 import React, {useState} from "react";
-import ContextMenu, {ContextMenuItem} from "../../components/menu";
-import CreateFolderModal from "../../components/modal/CreateFolderModal";
+import ContextMenu, {ContextMenuItem} from "../../../menu";
+import CreateFolderModal from "../../../../features/folder/modal/createFolderModal";
 
 const AppHeader = () => {
 

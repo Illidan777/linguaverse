@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {FlexCol, FlexRow, FlexRowCenter} from "../layout/style";
+import {FlexCol, FlexRow, FlexRowCenter} from "../layout/wrapper/position/style";
 import {CloseIcon} from "../icon";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../text";
 import React from "react";
@@ -67,7 +67,7 @@ const ModalDialog = styled(FlexCol)`
     height: fit-content;
     overflow: auto;
     border-radius: var(--base-item-border-radius);
-    background-color: white;
+    background-color: var(--main-background-color);
     gap: 20px
 `
 

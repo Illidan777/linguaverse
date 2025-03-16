@@ -34,7 +34,7 @@ export const PrimaryInput = styled(StyledInput)`
 `
 
 export const SecondaryInput = styled(StyledInput)`
-    background-color: white;
+    background-color: var(--main-background-color);
 
     &:focus {
         border-bottom-color: black;

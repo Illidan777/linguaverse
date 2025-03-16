@@ -21,26 +21,4 @@ export const FlexStretch = styled(Flex).attrs({ align: "stretch" })``;
 export const FlexWrap = styled(Flex).attrs({ wrap: "wrap" })``;
 export const FlexWrapReverse = styled(Flex).attrs({ wrap: "wrap-reverse" })``;
 
-export const DashboardPageContainer = styled.div`
-    margin: 0 auto;
-    padding: 50px 300px;
-    background-color: ${({grayBackground}) => grayBackground ? `var(--gray-lighter)` : `white`};
-`
-
-export const DashboardPage = styled(FlexCol)`
-`
-
-export const DashboardPageHeader = styled(FlexCol)`
-    width: 100%;
-    gap: 100px;
-    justify-content: space-between;
-`
-
-export const DashboardPagePrimaryContent = styled.div`
-`
-
-export const DashboardPageMain = styled.div`
-    padding: 50px 0;
-`
-
 export default Flex;

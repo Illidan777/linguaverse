@@ -1,14 +1,14 @@
 import {useParams} from "react-router";
-import DashboardPageLayout from "../../../components/layout";
+import DashboardPageLayout from "../../../components/layout/page";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
-import {FlexCol, FlexRow} from "../../../components/layout/style";
+import {FlexCol, FlexRow} from "../../../components/layout/wrapper/position/style";
 import {BaseButtonBar, SquareSecondaryButton, SquareStyledButton} from "../../../components/button/style";
 import React, {useState} from "react";
 import {AddIcon, DeleteIcon, MoreIcon, PublishIcon, TimeIcon} from "../../../components/icon";
 import ContextMenu, {ContextMenuItem} from "../../../components/menu";
 import useCSSVariables from "../../../hook/useCSSVariables";
-import ModuleListItem from "../../module/ModuleListItem";
-import AddModuleToFolderModal from "../../../components/modal/AddModuleToFolderModal";
+import ModuleListItem from "../../module/moduleListItem";
+import AddModuleToFolderModal from "../../folder/modal/addModuleToFolderModal";
 
 
 const FolderItemPage = () => {

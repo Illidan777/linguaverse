@@ -1,22 +1,9 @@
 import styled from "styled-components";
-import {FlexCol, FlexRow} from "../../components/layout/style";
-
-export const LibraryItemWrapper = styled.div`
-    box-shadow: 0 .125rem .25rem #00000014;
-    transition: all .12s cubic-bezier(.47,0,.745,.715);
-    border-bottom: .25rem solid #fff0;
-    border-radius: var(--base-item-border-radius);
-    cursor: pointer;
-    position: relative;
-    
-    &:hover {
-        border-bottom-color: var(--lavanda-lighter);
-    }
-`
+import {FlexCol, FlexRow} from "../../components/layout/wrapper/position/style";
 
 export const LibraryItem = styled(FlexCol)`
     padding: 12px 20px;
-    background-color: white;
+    background-color: var(--main-background-color);
     border-radius: var(--base-item-border-radius);
     gap: 10px;
 `

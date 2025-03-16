@@ -1,6 +1,6 @@
-import DashboardPageLayout from "../../../components/layout";
+import DashboardPageLayout from "../../../components/layout/page";
 import React, {useState} from "react";
-import {FlexCenter, FlexCol, FlexRow} from "../../../components/layout/style";
+import {FlexCenter, FlexCol, FlexRow} from "../../../components/layout/wrapper/position/style";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
 import {AddIcon, AIAssistIcon, ReverseIcon, SettingsIcon} from "../../../components/icon";
 import {
@@ -13,8 +13,8 @@ import {
 } from "../../../components/button/style";
 import {SecondaryInput} from "../../../components/input/style";
 import styled from "styled-components";
-import ModuleSettingsModal from "../../../components/modal/ModuleSettingsModal";
-import TermRow from "../../module/ModuleTermRow";
+import ModuleSettingsModal from "../../module/modal/moduleSettingsModal";
+import TermRow from "../../module/moduleTermRow";
 
 const ModuleEditPage = () => {
     return (
@@ -166,10 +166,10 @@ const AddNewTermButton = styled(StyledButton)`
     cursor: pointer;
     padding: 50px;
     width: 100%;
-    background-color: white;
+    background-color: var(--main-background-color);
 
     &:hover {
-        background-color: white;
+        background-color: var(--main-background-color);
 
         span {
             color: var(--lavanda-dark);

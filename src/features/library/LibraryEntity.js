@@ -1,20 +1,20 @@
 import styled from "styled-components";
 import React from "react";
 
-import {FlexCol, FlexRow} from "../../components/layout/style";
+import {FlexCol, FlexRow} from "../../components/layout/wrapper/position/style";
 import {InputWithIconContainer, SecondaryInput} from "../../components/input/style";
 import {
     LibraryItem,
     LibraryItemContent,
     LibraryItemGroupHeader,
     LibraryItemGroupWrapper,
-    LibraryItemHeader,
-    LibraryItemWrapper
+    LibraryItemHeader
 } from "./style";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../components/text";
 import {SearchIcon} from "../../components/icon";
 import {RoutingLink} from "../../components/button/style";
 import {useLocation} from "react-router";
+import {BottomBorderWrapper} from "../../components/layout/wrapper/hover/style";
 
 const LibraryEntity = ({entityItems, onSearch, groupBy}) => {
 
@@ -79,7 +79,7 @@ const LibraryEntityItemGroup = ({name, items}) => {
 
 const LibraryEntityItem = ({header, content}) => {
     return (
-        <LibraryItemWrapper>
+        <BottomBorderWrapper>
             <LibraryItem>
                 <LibraryItemHeader>
                     {header}
@@ -88,7 +88,7 @@ const LibraryEntityItem = ({header, content}) => {
                     {content}
                 </LibraryItemContent>
             </LibraryItem>
-        </LibraryItemWrapper>
+        </BottomBorderWrapper>
     )
 }
 

@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import {FlexCol} from "../../components/layout/style";
+import {FlexCol} from "../../components/layout/wrapper/position/style";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../components/text";
 import {Outlet} from "react-router";
 import {RoutingLink} from "../../components/button/style";
 import withPathBasedSelectableChild from "../../components/hoc/withPathBasedSelectableChild";
 import {AssemblyTab, AssemblyTabs} from "../../components/tab/style";
-import DashboardPageLayout from "../../components/layout";
+import DashboardPageLayout from "../../components/layout/page";
 
 // Menu item dictionary: navigation path, option label name and svg icon React Component
 const LIBRARY_TAB_ITEMS = [

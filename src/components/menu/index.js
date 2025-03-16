@@ -70,15 +70,15 @@ const Container = styled.div`
     overflow-y: auto;
     box-shadow: 0 .25rem 1rem 0 var(--gray-light);
     border: .0625rem solid var(--gray-light);
-    background: white;
+    background: var(--main-background-color);
     z-index: 9999;
 `;
 
 export const ContextMenuItem = styled(StyledButton)`
-    padding: 5px;
+    padding: 5px 10px;
     width: 100%;
     gap: 20px;
-    justify-content: center;
+    justify-content: ${(props) => props.justify || "center"};
     border-radius: unset;
 
     &:hover {

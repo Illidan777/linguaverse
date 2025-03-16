@@ -1,5 +1,5 @@
 import {combineReducers} from "@reduxjs/toolkit";
-import navbarSlice from "../features/navbar/navbarSlice";
+import navbarSlice from "../components/layout/page/navbar/navbarSlice";
 
 const rootReducer = combineReducers({
     navbar: navbarSlice,

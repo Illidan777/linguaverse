@@ -34,7 +34,7 @@ const HomePage = () => {
 }
 const HomePageWrapper = styled.div`
     padding: 50px;
-    background-color: var(--gray-lighter);
+    background-color: var(--second-background-color);
     width: 700px;
     height: 100%;
 `

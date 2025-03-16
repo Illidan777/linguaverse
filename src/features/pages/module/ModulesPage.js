@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {FlexCol, FlexRow, FlexRowCenter} from "../../../components/layout/style";
+import {FlexCol, FlexRow, FlexRowCenter} from "../../../components/layout/wrapper/position/style";
 import avatar from "../../../assets/img/avatar.jpg";
 import React from "react";
 import LibraryEntity from "../../library/LibraryEntity";

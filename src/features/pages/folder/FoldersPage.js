@@ -1,7 +1,7 @@
 import LibraryEntity from "../../library/LibraryEntity";
 import React from "react";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
-import {FlexRow, FlexRowCenter} from "../../../components/layout/style";
+import {FlexRow, FlexRowCenter} from "../../../components/layout/wrapper/position/style";
 import {FolderIcon, LibraryIcon} from "../../../components/icon";
 
 const FOLDERS = [

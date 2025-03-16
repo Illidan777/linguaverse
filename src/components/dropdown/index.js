@@ -5,7 +5,7 @@ import React, {useEffect, useMemo, useState} from "react";
 import useCSSVariables from "../../hook/useCSSVariables";
 import styled from "styled-components";
 import {DownArrowIcon} from "../icon";
-import {FlexRow} from "../layout/style";
+import {FlexRow} from "../layout/wrapper/position/style";
 
 const Dropdown = ({children, onSelect}) => {
     const [buttonColor] = useCSSVariables(["--lavanda-dark"]);

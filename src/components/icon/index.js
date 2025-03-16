@@ -115,7 +115,7 @@ export const AddIcon2 = ({color = "black"}) => {
 
 export const MoreIcon = () => {
     return (
-        <svg width="40px" height="40px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <svg width="22px" height="22px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none">
             <path fill="#000000" fill-rule="evenodd"
                   d="M3 8a2 2 0 100 4 2 2 0 000-4zm5 2a2 2 0 114 0 2 2 0 01-4 0zm7 0a2 2 0 114 0 2 2 0 01-4 0z"/>
         </svg>
@@ -152,20 +152,9 @@ export const DeleteIcon = ({size = "22px"}) => {
 
 export const PublishIcon = () => {
     return (
-        <svg fill="#000000" width="22px" height="22px" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
-
-            <title/>
-
-            <g>
-
-                <path
-                    d="M90,60a5.9966,5.9966,0,0,0-6,6V84H12V12H30A6,6,0,0,0,30,0H6A5.9966,5.9966,0,0,0,0,6V90a5.9966,5.9966,0,0,0,6,6H90a5.9966,5.9966,0,0,0,6-6V66A5.9966,5.9966,0,0,0,90,60Z"/>
-
-                <path
-                    d="M90,0H66a6,6,0,0,0,0,12h9.5156L37.7578,49.7578a5.9994,5.9994,0,1,0,8.4844,8.4844L84,20.4844V30a6,6,0,0,0,12,0V6A5.9966,5.9966,0,0,0,90,0Z"/>
-
-            </g>
-
+        <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 13V17.5C20 20.5577 16 20.5 12 20.5C8 20.5 4 20.5577 4 17.5V13M12 3L12 15M12 3L16 7M12 3L8 7"
+                  stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     )
 }
@@ -291,4 +280,206 @@ export const DownArrowIcon = ({color = "black", size = "22px"}) => {
         </svg>
     )
 }
+
+export const SaveIcon = ({color = "black", size = "22px"}) => {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M6.75 6L7.5 5.25H16.5L17.25 6V19.3162L12 16.2051L6.75 19.3162V6ZM8.25 6.75V16.6838L12 14.4615L15.75 16.6838V6.75H8.25Z"
+                  fill={color}/>
+        </svg>
+    )
+}
+
+export const EditIcon = ({color = "black", size = "22px"}) => {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M8.56078 20.2501L20.5608 8.25011L15.7501 3.43945L3.75012 15.4395V20.2501H8.56078ZM15.7501 5.56077L18.4395 8.25011L16.5001 10.1895L13.8108 7.50013L15.7501 5.56077ZM12.7501 8.56079L15.4395 11.2501L7.93946 18.7501H5.25012L5.25012 16.0608L12.7501 8.56079Z"
+                  fill={color}/>
+        </svg>
+    )
+}
+
+export const CardsIcon = ({color = "black", size = "22px"}) => {
+    return (
+        <svg fill={color} width={size} height={size} viewBox="0 0 256 256" id="Flat"
+             xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M184.00781,76h-144a12.01343,12.01343,0,0,0-12,12V200a12.01343,12.01343,0,0,0,12,12h144a12.01343,12.01343,0,0,0,12-12V88A12.01343,12.01343,0,0,0,184.00781,76Zm4,124a4.00458,4.00458,0,0,1-4,4h-144a4.00458,4.00458,0,0,1-4-4V88a4.00458,4.00458,0,0,1,4-4h144a4.00458,4.00458,0,0,1,4,4Zm40-144V176a4,4,0,0,1-8,0V56a4.00458,4.00458,0,0,0-4-4h-152a4,4,0,0,1,0-8h152A12.01343,12.01343,0,0,1,228.00781,56Z"/>
+        </svg>
+    )
+}
+
+export const CycleIcon = ({color = "black", size = "22px"}) => {
+    return (
+        <svg
+            width={size}
+            height={size}
+            viewBox="0 0 52.642 52.642"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+        >
+            <g>
+                <g>
+                    <path
+                        fill={color}
+                        d="M42.379,14.451c-0.645,0.521-0.746,1.465-0.226,2.109c2.942,3.647,4.497,8.058,4.496,12.754
+                        c0,11.209-9.119,20.328-20.329,20.328S5.991,40.523,5.991,29.314c0-7.799,4.537-14.767,11.219-18.149
+                        c2.463-1.247,4.161,0.491,3.503,3.173l-1.262,5.14c-0.198,0.804,0.294,1.616,1.099,1.814c0.12,0.029,0.241,0.043,0.359,0.043
+                        c0.675,0,1.288-0.458,1.456-1.143l3.316-13.497c0.185-0.752-0.234-1.522-0.967-1.775L10.72,0.083
+                        c-0.392-0.135-0.801-0.1-1.146,0.068c-0.585,0.285-0.977,1.42-0.693,2.006C9.049,2.503,9.349,2.784,9.74,2.919l6.18,2.136
+                        c2.61,0.901,2.517,2.134,0.047,3.369c-7.725,3.865-12.975,11.9-12.975,20.89c0,12.863,10.465,23.328,23.329,23.328
+                        c12.863,0,23.329-10.465,23.329-23.328c0-5.312-1.833-10.51-5.161-14.637C43.968,14.032,43.025,13.931,42.379,14.451z"
+                    />
+                </g>
+            </g>
+        </svg>
+    );
+};
+
+
+export const ExamIcon = ({color = "black", size = "22px"}) => {
+    return (
+        <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M8 42H32C33.1046 42 34 41.1046 34 40V8C34 6.89543 33.1046 6 32 6H8C6.89543 6 6 6.89543 6 8V40C6 41.1046 6.89543 42 8 42ZM32 44H8C5.79086 44 4 42.2091 4 40V8C4 5.79086 5.79086 4 8 4H32C34.2091 4 36 5.79086 36 8V40C36 42.2091 34.2091 44 32 44Z"
+                  fill={color}/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M18 13C18 12.4477 18.4477 12 19 12H31C31.5523 12 32 12.4477 32 13C32 13.5523 31.5523 14 31 14H19C18.4477 14 18 13.5523 18 13Z"
+                  fill={color}/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M18 17C18 16.4477 18.4477 16 19 16H31C31.5523 16 32 16.4477 32 17C32 17.5523 31.5523 18 31 18H19C18.4477 18 18 17.5523 18 17Z"
+                  fill={color}/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M18 25C18 24.4477 18.4477 24 19 24H31C31.5523 24 32 24.4477 32 25C32 25.5523 31.5523 26 31 26H19C18.4477 26 18 25.5523 18 25Z"
+                  fill={color}/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M18 29C18 28.4477 18.4477 28 19 28H31C31.5523 28 32 28.4477 32 29C32 29.5523 31.5523 30 31 30H19C18.4477 30 18 29.5523 18 29Z"
+                  fill={color}/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M10 26V29H13V26H10ZM9 24H14C14.5523 24 15 24.4477 15 25V30C15 30.5523 14.5523 31 14 31H9C8.44772 31 8 30.5523 8 30V25C8 24.4477 8.44772 24 9 24Z"
+                  fill={color}/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M15.7071 12.2929C16.0976 12.6834 16.0976 13.3166 15.7071 13.7071L11 18.4142L8.29289 15.7071C7.90237 15.3166 7.90237 14.6834 8.29289 14.2929C8.68342 13.9024 9.31658 13.9024 9.70711 14.2929L11 15.5858L14.2929 12.2929C14.6834 11.9024 15.3166 11.9024 15.7071 12.2929Z"
+                  fill={color}/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M42 24H40V39.3333L41 40.6667L42 39.3333V24ZM44 40L41 44L38 40V22H44V40Z"
+                  fill={color}/>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M42 17H40V19H42V17ZM40 15H42C43.1046 15 44 15.8954 44 17V21H38V17C38 15.8954 38.8954 15 40 15Z"
+                  fill={color}/>
+        </svg>
+    )
+}
+
+export const TetrisIcon = ({color = "black", size = "22px"}) => {
+    return (
+        <svg width={size} height={size} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="4.5" y="24" width="13" height="13" transform="translate(-19.5 41.5) rotate(-90)"
+                  fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <rect x="17.5" y="24" width="13" height="13" transform="translate(-6.5 54.5) rotate(-90)"
+                  fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <rect x="17.5" y="11" width="13" height="13" transform="translate(6.5 41.5) rotate(-90)"
+                  fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <rect x="30.5" y="24" width="13" height="13" transform="translate(6.5 67.5) rotate(-90)"
+                  fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    );
+};
+
+export const RocketIcon = ({color = "black", size = "22px"}) => {
+    return (
+        <svg
+            width={size}
+            height={size}
+            viewBox="0 0 64 64"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+        >
+            <g>
+                <path
+                    fill={color}
+                    d="M63.029,42.285l-15.054-9.032c0,0.004,0,0.009-0.001,0.013C47.984,32.844,48,32.427,48,32
+                    c0-16.026-7.692-26.865-14.891-31.664C32.773,0.112,32.387,0,32,0s-0.773,0.112-1.109,0.336C23.692,5.135,16,15.974,16,32
+                    c0,0.427,0.016,0.844,0.025,1.266c-0.001-0.004-0.001-0.009-0.001-0.013L0.971,42.285C0.368,42.646,0,43.297,0,44v6
+                    c0,1.104,0.896,2,2,2h17.188c0.516,1.627,0.904,2.617,0.954,2.742C20.447,55.502,21.183,56,22,56h5c0,4.785,2.585,8,5,8
+                    c2.396,0,4.961-3.166,5-7.891c0.002-0.036,0.003-0.072,0.003-0.109H42c0.817,0,1.553-0.498,1.857-1.258
+                    c0.05-0.125,0.438-1.115,0.954-2.742H62c1.104,0,2-0.896,2-2v-6C64,43.297,63.632,42.646,63.029,42.285z M32,2c6,4,14,14,14,30
+                    c0,4.401-0.539,8.531-1.221,12H19.221C18.539,40.531,18,36.401,18,32C18,16,26,6,32,2z M2,44l14.117-8.471
+                    c0.234,3.901,0.814,7.484,1.472,10.471H2V44z M2,50v-2h16.059c0.182,0.728,0.362,1.396,0.54,2.022
+                    c-0.003-0.008-0.005-0.015-0.007-0.022H2z M32,62c-1,0-3-2-3-6h6C35,60,33,62,32,62z M42,54H22c0,0-1.254-3.136-2.357-8h24.715
+                    C43.254,50.864,42,54,42,54z M62,50H45.408c-0.002,0.008-0.004,0.015-0.007,0.022c0.178-0.626,0.358-1.295,0.54-2.022H62V50z
+                    M62,46H46.411c0.657-2.986,1.237-6.569,1.472-10.471L62,44V46z"
+                />
+                <path
+                    fill={color}
+                    d="M32,30c3.313,0,6-2.687,6-6s-2.687-6-6-6s-6,2.687-6,6S28.687,30,32,30z M32,20c2.209,0,4,1.791,4,4
+                    s-1.791,4-4,4s-4-1.791-4-4S29.791,20,32,20z"
+                />
+            </g>
+        </svg>
+    );
+};
+
+export const SelectionIcon = ({color = "black", size = "22px"}) => {
+    return (
+        <svg fill={color} width={size} height={size} viewBox="0 0 256 256" id="Flat"
+             xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M60,216a4.0002,4.0002,0,0,1-4,4H48a12.01343,12.01343,0,0,1-12-12v-8a4,4,0,0,1,8,0v8a4.00427,4.00427,0,0,0,4,4h8A4.0002,4.0002,0,0,1,60,216Zm52-4H96a4,4,0,0,0,0,8h16a4,4,0,0,0,0-8ZM40,164a4.0002,4.0002,0,0,0,4-4V144a4,4,0,0,0-8,0v16A4.0002,4.0002,0,0,0,40,164Zm128,32a4.0002,4.0002,0,0,0-4,4v8a4.00427,4.00427,0,0,1-4,4h-8a4,4,0,0,0,0,8h8a12.01343,12.01343,0,0,0,12-12v-8A4.0002,4.0002,0,0,0,168,196Zm0-88a4.0002,4.0002,0,0,0,4-4V96a12.01343,12.01343,0,0,0-12-12h-8a4,4,0,0,0,0,8h8a4.00427,4.00427,0,0,1,4,4v8A4.0002,4.0002,0,0,0,168,108ZM56,84H48A12.01343,12.01343,0,0,0,36,96v8a4,4,0,0,0,8,0V96a4.00427,4.00427,0,0,1,4-4h8a4,4,0,0,0,0-8ZM207.999,35.99414h-112a12.01343,12.01343,0,0,0-12,12V88a4.0002,4.0002,0,0,0,4,4H112a4,4,0,0,0,0-8H91.999V47.99414a4.00428,4.00428,0,0,1,4-4h112a4.00427,4.00427,0,0,1,4,4v112a4.00426,4.00426,0,0,1-4,4H172V144a4,4,0,0,0-8,0v24a4.0002,4.0002,0,0,0,4,4c.02,0,.03833-.00562.05811-.00586H207.999a12.01343,12.01343,0,0,0,12-12v-112A12.01343,12.01343,0,0,0,207.999,35.99414Z"/>
+        </svg>
+    )
+}
+
+export const LeftArrowIcon = ({color = "black", size = "22px"}) => {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke={color} stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+        </svg>
+    )
+}
+
+export const RightArrowIcon = ({color = "black", size = "22px"}) => {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke={color} stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+        </svg>
+    )
+}
+
+export const FullScreenIcon = ({color = "black", size = "22px"}) => {
+    return (
+        <svg width={size} height={size} viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+            <path fill={color}
+                  d="m160 96.064 192 .192a32 32 0 0 1 0 64l-192-.192V352a32 32 0 0 1-64 0V96h64v.064zm0 831.872V928H96V672a32 32 0 1 1 64 0v191.936l192-.192a32 32 0 1 1 0 64l-192 .192zM864 96.064V96h64v256a32 32 0 1 1-64 0V160.064l-192 .192a32 32 0 1 1 0-64l192-.192zm0 831.872-192-.192a32 32 0 0 1 0-64l192 .192V672a32 32 0 1 1 64 0v256h-64v-.064z"/>
+        </svg>
+    )
+}
+
+export const ShuffleIcon = ({color = "black", size = "22px"}) => {
+    return (
+        <svg width={size} height={size} viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        >
+            <g id="icomoon-ignore">
+            </g>
+            <path
+                d="M23.812 18.906l3.494 3.496h-6.296l-13.012-13.861h-5.345v1.066h4.884l13.012 13.861h6.758l-3.485 3.486 0.754 0.754 4.772-4.774-4.781-4.782z"
+                fill={color}>
+
+            </path>
+            <path d="M7.537 22.402h-4.884v1.066h5.345l5.163-5.5-0.778-0.73z" fill={color}>
+
+            </path>
+            <path
+                d="M21.011 9.607h6.295l-3.485 3.486 0.754 0.754 4.772-4.774-4.781-4.782-0.754 0.754 3.494 3.496h-6.758l-5.185 5.545 0.779 0.728z"
+                fill={color}>
+
+            </path>
+        </svg>
+    )
+}
+
 

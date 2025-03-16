@@ -1,8 +1,8 @@
-import Modal, {ModalFooter} from "../index";
-import {PrimaryInput} from "../../input/style";
-import {PrimaryButton} from "../../button/style";
+import Modal, {ModalFooter} from "../../../components/modal";
+import {PrimaryInput} from "../../../components/input/style";
+import {PrimaryButton} from "../../../components/button/style";
 import React, {useState} from "react";
-import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../text";
+import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
 
 export default function CreateFolderModal(props) {
 

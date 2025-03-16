@@ -1,9 +1,9 @@
 import styled, {css} from "styled-components";
-import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../components/text";
-import {PaddingStyledButton, RoutingLink, TransparentPrimaryButton} from "../../components/button/style";
-import {LibraryIcon, HomeIcon, NotificationIcon} from "../../components/icon";
-import useCSSVariables from "../../hook/useCSSVariables";
-import withPathBasedSelectableChild from "../../components/hoc/withPathBasedSelectableChild";
+import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../text";
+import {PaddingStyledButton, RoutingLink, TransparentPrimaryButton} from "../../../button/style";
+import {LibraryIcon, HomeIcon, NotificationIcon} from "../../../icon";
+import useCSSVariables from "../../../../hook/useCSSVariables";
+import withPathBasedSelectableChild from "../../../hoc/withPathBasedSelectableChild";
 
 // Menu item dictionary: navigation path, option label name and svg icon React Component
 const MENU_ITEMS = [
@@ -71,7 +71,7 @@ const NavMenuItem = ({
                          showFull,
                          selected
                      }) => {
-    const selectedItemsColors = useCSSVariables(["--lavanda-darkest", "--lavanda-lighter"])
+    const selectedItemsColors = useCSSVariables(["--colored-text-main", "--lavanda-lighter"])
     const [text, background] = selected
         ? selectedItemsColors
         : [null, null];

@@ -1,10 +1,10 @@
-import Modal, {ModalFooter} from "../index";
-import {PrimaryButton, SquareStyledButton, TransparentPrimaryButton} from "../../button/style";
-import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../text";
+import Modal, {ModalFooter} from "../../../components/modal";
+import {PrimaryButton, SquareStyledButton, TransparentPrimaryButton} from "../../../components/button/style";
+import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
 import React, {useState} from "react";
-import {FlexCol, FlexRow} from "../../layout/style";
-import ModuleListItem from "../../../features/module/ModuleListItem";
-import {AddIcon, AddIcon2, CompletedIcon} from "../../icon";
+import {FlexCol, FlexRow} from "../../../components/layout/wrapper/position/style";
+import ModuleListItem from "../../module/moduleListItem";
+import {AddIcon, AddIcon2, CompletedIcon} from "../../../components/icon";
 import useCSSVariables from "../../../hook/useCSSVariables";
 
 export default function AddModuleToFolderModal(props) {

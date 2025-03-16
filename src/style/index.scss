@@ -22,6 +22,9 @@ body {
 a:visited {color:#0000;}
 
 :root {
+  --white: #ffffff;
+  --black: #000000;
+
   --gray-darkest: #000000;
   --gray-dark: #939bb4;
   --gray: #d9dde8;
@@ -55,6 +58,7 @@ a:visited {color:#0000;}
   --second-color: #cd94f9;
 
   --error-color: #b00020;
+  --success-color: #59E8B5;
 
   --ref-radius-small: 5px;
   --ref-radius-medium: 8px;
@@ -62,5 +66,10 @@ a:visited {color:#0000;}
   --ref-radius-xLarge: 17px;
   --ref-radius-full: 100%;
 
-  --base-item-border-radius: var(--ref-radius-medium)
+  --base-item-border-radius: var(--ref-radius-medium);
+
+  --second-background-color: var(--gray-lighter);
+  --main-background-color: var(--white);
+
+  --colored-text-main: var(--lavanda-darkest);
 }

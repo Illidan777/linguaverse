@@ -1,14 +1,14 @@
 import {BrowserRouter, Navigate, Route, Routes} from "react-router";
-import AppNavbar from "./navbar/AppNavbar";
-import AppHeader from "./header/AppHeader";
+import AppNavbar from "../components/layout/page/navbar/AppNavbar";
+import AppHeader from "../components/layout/page/header/AppHeader";
 import HomePage from "./pages/HomePage";
 import LibraryPage from "./pages/LibraryPage";
 import ModulesPage from "./pages/module/ModulesPage";
 import FoldersPage from "./pages/folder/FoldersPage";
-import {FlexRow} from "../components/layout/style";
+import {FlexRow} from "../components/layout/wrapper/position/style";
 
 import styled from "styled-components";
-import AppFooter from "./footer/AppFooter";
+import AppFooter from "../components/layout/page/footer/AppFooter";
 import FolderItemPage from "./pages/folder/FolderItemPage";
 import ModuleItemPage from "./pages/module/ModuleItemPage";
 import ModuleEditPage from "./pages/module/ModuleEditPage";

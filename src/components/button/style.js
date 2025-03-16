@@ -1,12 +1,44 @@
 import styled, {css} from "styled-components";
 import {Link} from "react-router";
-import {FlexRow} from "../layout/style";
+import {FlexRow} from "../layout/wrapper/position/style";
 
 export const BASE_HOVER = css`
     &:hover {
         background-color: var(--gray-light);
     }
 `
+
+export const StyledLink = styled.a`
+    padding: 2px;
+    display: flex;
+    width: fit-content;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
+    background: linear-gradient(
+            to right,
+            rgba(157, 194, 251, 0.5) 37%,
+            rgba(205, 148, 249, 0.5) 76%
+           
+    ),
+    linear-gradient(
+            to right,
+            rgba(157, 194, 251, 1) 37%,
+            rgba(205, 148, 249, 1) 76%
+    );
+
+    background-size: 0 2px, 0 2px;
+    background-position: 100% 100%, 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 400ms;
+
+    &:hover {
+        background-size: 0 2px, 100% 2px;
+    }
+`;
+
 
 export const RoutingLink = styled(Link)`
     text-decoration: none;
@@ -47,7 +79,7 @@ export const PrimaryButton = styled(PaddingStyledButton)`
     background-color: var(--lavanda-light);
     
     span {
-        color: white;
+        color: var(--white);
     }
     
     &:hover {
@@ -71,7 +103,7 @@ export const TransparentPrimaryButton = styled(PaddingStyledButton)`
 `
 
 export const SecondaryButton = styled(OutlinedButton)`
-    background-color: white;
+    background-color: var(--main-background-color);
 `
 
 const SquareButton = styled.button`
@@ -94,5 +126,6 @@ export const CircleStyledButton = styled(CircleButton).attrs({ as: StyledButton 
 
 export const BaseButtonBar = styled(FlexRow)`
     gap: 10px;
+    align-items: center;
 `
 
