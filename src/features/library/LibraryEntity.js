@@ -1,8 +1,16 @@
-import styled from "styled-components";
 import React from "react";
+import {useLocation} from "react-router";
+import styled from "styled-components";
 
 import {FlexCol, FlexRow} from "../../components/layout/wrapper/position/style";
+import {BottomBorderWrapper} from "../../components/layout/wrapper/hover/style";
+import LoadingBoundary from "../../components/layout/wrapper/boundary/loadingBoundary";
+import EmptyContentBoundary from "../../components/layout/wrapper/boundary/emptyContentBoundary";
+
 import {InputWithIconContainer, SecondaryInput} from "../../components/input/style";
+import {RoutingLink} from "../../components/button/style";
+import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../components/text";
+import {SearchIcon} from "../../components/icon";
 import {
     LibraryItem,
     LibraryItemContent,
@@ -10,13 +18,8 @@ import {
     LibraryItemGroupWrapper,
     LibraryItemHeader
 } from "./style";
-import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../components/text";
-import {SearchIcon} from "../../components/icon";
-import {RoutingLink} from "../../components/button/style";
-import {useLocation} from "react-router";
-import {BottomBorderWrapper} from "../../components/layout/wrapper/hover/style";
 
-const LibraryEntity = ({entityItems, onSearch, groupBy}) => {
+const LibraryEntity = ({isLoadingItems, entityItems, onSearch, groupBy}) => {
 
     const {pathname} = useLocation();
 
@@ -48,13 +51,19 @@ const LibraryEntity = ({entityItems, onSearch, groupBy}) => {
         <FlexCol>
             <SearchPanel>
                 <InputWithIconContainer iconRightPosition>
-                    <SecondaryInput placeholder="Find items" onChange={onSearch}/>
+                    <SecondaryInput placeholder="Find items" onChange={(e) => onSearch(e.target.value)}/>
                     <SearchIcon/>
                 </InputWithIconContainer>
             </SearchPanel>
+
             <Items gap={itemsGap}>
-                {renderItems}
+                <LoadingBoundary isLoading={isLoadingItems}>
+                    <EmptyContentBoundary isEmpty={() => renderItems.length === 0}>
+                        {renderItems}
+                    </EmptyContentBoundary>
+                </LoadingBoundary>
             </Items>
+
         </FlexCol>
     )
 }

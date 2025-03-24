@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import {FlexCol, FlexRow, FlexRowCenter} from "../layout/wrapper/position/style";
+import {FlexCenter, FlexCol, FlexRow} from "../layout/wrapper/position/style";
 import {CloseIcon} from "../icon";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../text";
 import React from "react";
 import {createPortal} from "react-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 
 const Modal = ({ title, opened, onClose, children }) => {
     return createPortal(
@@ -60,18 +60,18 @@ const ModalOverlay = styled.div`
 `
 
 const ModalDialog = styled(FlexCol)`
-    margin-top: 100px;
+    margin: 100px 0 ;
     padding: 20px;
     position: relative;
     width: 50%;
-    height: fit-content;
+    //height: fit-content;
     overflow: auto;
     border-radius: var(--base-item-border-radius);
     background-color: var(--main-background-color);
     gap: 20px
 `
 
-const ModalClose = styled(FlexRowCenter)`
+const ModalClose = styled(FlexCenter)`
     height: 32px;
     width: 32px;
     position: absolute;
@@ -83,7 +83,9 @@ const ModalClose = styled(FlexRowCenter)`
 
 const ModalHeader = styled(FlexRow)``
 
-const ModalContent = styled(FlexCol)``
+const ModalContent = styled(FlexCol)`
+    overflow-y: auto;
+`
 
 export const ModalFooter = styled(FlexRow)`
     margin-top: 20px;

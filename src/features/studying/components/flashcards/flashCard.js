@@ -1,8 +1,8 @@
-import {BaseButtonBar, CircleStyledButton} from "../../../components/button/style";
-import {EditIcon} from "../../../components/icon";
-import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
+import {BaseButtonBar, CircleStyledButton} from "../../../../components/button/style";
+import {EditIcon} from "../../../../components/icon";
+import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../../components/text";
 import React, {useState} from "react";
-import {FlexCol, FlexColCenter, FlexRow} from "../../../components/layout/wrapper/position/style";
+import {FlexCol, FlexColCenter, FlexRow} from "../../../../components/layout/wrapper/position/style";
 import styled from "styled-components";
 
 const FlashCard = ({id, term, definition}) => {

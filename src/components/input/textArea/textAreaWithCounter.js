@@ -1,6 +1,6 @@
-import {FlexCol} from "../layout/wrapper/position/style";
-import {StyledTextArea} from "./style";
-import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../text";
+import {FlexCol} from "../../layout/wrapper/position/style";
+import {StyledTextArea} from "../style";
+import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../text";
 import React from "react";
 import styled from "styled-components";
 

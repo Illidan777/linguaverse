@@ -1,4 +1,5 @@
 import {useLocation} from "react-router";
+import {paths} from "../../app/routes";
 
 /**
  * Higher-Order Component (HOC) that enhances a component with route-based selection.
@@ -16,8 +17,8 @@ export default function withPathBasedSelectableChild(SelectableItemComponent, pa
         const {pathname} = useLocation();
 
         // Determines if the current item matches the current route
-        const selected = path === "/"
-            ? pathname === "/"
+        const selected = path === paths.index.getHref()
+            ? pathname === paths.index.getHref()
             : pathname.startsWith(path);
 
         return <SelectableItemComponent

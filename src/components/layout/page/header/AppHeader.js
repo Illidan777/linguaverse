@@ -1,17 +1,30 @@
+import styled from "styled-components";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router";
+
 import logo from '../../../../assets/icons/logo.png';
 import burger from '../../../../assets/icons/burger.png';
+
+import {FlexRow} from "../../wrapper/position/style";
+
 import {CoverImage} from "../../../image/style";
-import styled from "styled-components";
-import {useDispatch} from "react-redux";
-import {toggleNavbar} from "../navbar/navbarSlice";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../text";
 import {RoutingLink, SquarePrimaryButton, StyledButton} from "../../../button/style";
-import {InputWithIconContainer, PrimaryInput} from "../../../input/style";
-import {FlexRow} from "../../wrapper/position/style";
-import {AddIcon, FolderIcon, ModuleIcon, SearchIcon} from "../../../icon";
-import React, {useState} from "react";
 import ContextMenu, {ContextMenuItem} from "../../../menu";
-import CreateFolderModal from "../../../../features/folder/modal/createFolderModal";
+import {AddIcon, FolderIcon, ModuleIcon, SearchIcon} from "../../../icon";
+import {InputWithIconContainer, PrimaryInput} from "../../../input/style";
+
+import {toggleNavbar} from "../navbar/state/navbarSlice";
+
+import {paths} from "../../../../app/routes";
+
+import useApiMutationResponse from "../../../../hook/api/useApiMutationResponse";
+import {useCreateModuleMutation} from "../../../../features/module/api";
+
+import CreateFolderModal from "../../../../features/folder/components/modal/createFolderModal";
+import {openModal} from "../../../modal/modalSlice";
+import {MODALS} from "../../../modal/modalManager";
 
 const AppHeader = () => {
 
@@ -25,7 +38,7 @@ const AppHeader = () => {
                         <CoverImage src={burger} alt="menu"/>
                     </HeaderLeftSideContentItemWrapper>
                 </StyledButton>
-                <RoutingLink to="/">
+                <RoutingLink to={paths.index.getHref()}>
                     <HeaderLeftSideContentItemWrapper size="55">
                         <CoverImage src={logo} alt="logo"/>
                         <StyledText as="h1" size={FONT_SIZES.TITLE_SMALL} weight={FONT_WEIGHTS.REGULAR}>
@@ -49,10 +62,30 @@ const AppHeader = () => {
 
 const HeaderContextMenu = () => {
 
-    const [openedCreateFolderModal, setOpenedCreateFolderModal] = useState(false);
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
-    const onCloseCreateFolderModal = () => {
-        setOpenedCreateFolderModal(false);
+    const [createModule] = useApiMutationResponse(useCreateModuleMutation(), {
+        showSuccessToast: true,
+        successMessage: "Module draft has been successfully created. Fill and activate it to use!",
+    });
+
+    const handleOpenAddModuleModal = () => {
+        dispatch(openModal({
+            modalName: MODALS.createFolder.tag,
+        }));
+    };
+
+    const onCreateModule = async () => {
+        try {
+            const data = await createModule();
+            console.log(data)
+            const {id} = !data ? {} : data;
+
+            navigate(paths.module.edit.getHref(id));
+        } catch (error) {
+            console.error("Module creating error!", error);
+        }
     }
 
     return (
@@ -64,7 +97,7 @@ const HeaderContextMenu = () => {
                     </SquarePrimaryButton>
                 }
             >
-                <ContextMenuItem onClick={() => setOpenedCreateFolderModal(true)}>
+                <ContextMenuItem onClick={handleOpenAddModuleModal}>
                     <FolderIcon/>
                     <StyledText
                         as="span"
@@ -74,7 +107,7 @@ const HeaderContextMenu = () => {
                         Folder
                     </StyledText>
                 </ContextMenuItem>
-                <ContextMenuItem>
+                <ContextMenuItem onClick={onCreateModule}>
                     <ModuleIcon/>
                     <StyledText
                         as="span"
@@ -85,9 +118,6 @@ const HeaderContextMenu = () => {
                     </StyledText>
                 </ContextMenuItem>
             </ContextMenu>
-            <CreateFolderModal
-                opened={openedCreateFolderModal} onClose={onCloseCreateFolderModal}
-            />
         </>
     )
 }

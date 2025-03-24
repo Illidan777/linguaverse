@@ -1,16 +1,27 @@
-import Modal, {ModalFooter} from "../../../components/modal";
-import {PrimaryInput} from "../../../components/input/style";
-import {PrimaryButton} from "../../../components/button/style";
+import Modal, {ModalFooter} from "../../../../components/modal";
+import {PrimaryInput} from "../../../../components/input/style";
+import {PrimaryButton} from "../../../../components/button/style";
 import React, {useState} from "react";
-import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
+import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../../components/text";
+import useApiMutationResponse from "../../../../hook/api/useApiMutationResponse";
+import {useCreateFolderMutation} from "../../api";
+
 
 export default function CreateFolderModal(props) {
 
     const [folderName, setFolderName] = useState("");
+    const [createFolder] = useApiMutationResponse(useCreateFolderMutation(), {
+        showSuccessToast: true,
+        successMessage: "Folder has been successfully created!",
+    });
 
-    const onCreateFolder = () => {
-        props.onClose()
-        setFolderName("")
+    const onCreateFolder = async () => {
+        try {
+            await createFolder(folderName);
+            props.onClose()
+        } catch (error) {
+            console.error("Folder creating error!", error);
+        }
     }
 
     return (

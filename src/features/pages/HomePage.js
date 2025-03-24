@@ -4,12 +4,24 @@ import {
     PaddingStyledButton,
     PrimaryButton,
     SecondaryButton,
-    StyledButton, TransparentPrimaryButton
+    StyledButton,
+    TransparentPrimaryButton
 } from "../../components/button/style";
 import {PrimaryInput} from "../../components/input/style";
 import ContextMenu from "../../components/menu";
+import {useGetAllFoldersQuery} from "../folder/api";
 
 const HomePage = () => {
+
+
+    const {
+        data,
+        isLoading,
+        isError
+    } = useGetAllFoldersQuery();
+
+
+    console.log('home render')
     return (
         <HomePageWrapper>
             <StyledButton>

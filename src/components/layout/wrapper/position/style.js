@@ -10,15 +10,11 @@ const Flex = styled.div`
 `;
 
 export const FlexRow = styled(Flex).attrs({ direction: "row" })``;
-export const FlexCol = styled(Flex).attrs({ direction: "column" })``;
 export const FlexCenter = styled(Flex).attrs({ justify: "center", align: "center" })``;
-export const FlexBetween = styled(Flex).attrs({ justify: "space-between" })``;
-export const FlexAround = styled(Flex).attrs({ justify: "space-around" })``;
-export const FlexEvenly = styled(Flex).attrs({ justify: "space-evenly" })``;
-export const FlexRowCenter = styled(Flex).attrs({ direction: "row", justify: "center", align: "center" })``;
+export const FlexRowSpaceBetween = styled(Flex).attrs({ justify: "space-between" , align: "center"})``;
+
+export const FlexCol = styled(Flex).attrs({ direction: "column" })``;
 export const FlexColCenter = styled(Flex).attrs({ direction: "column", justify: "center", align: "center" })``;
-export const FlexStretch = styled(Flex).attrs({ align: "stretch" })``;
-export const FlexWrap = styled(Flex).attrs({ wrap: "wrap" })``;
-export const FlexWrapReverse = styled(Flex).attrs({ wrap: "wrap-reverse" })``;
+export const FlexColSpaceBetween = styled(Flex).attrs({ direction: "column", justify: "space-between" })``;
 
 export default Flex;

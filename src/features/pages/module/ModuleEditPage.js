@@ -1,32 +1,58 @@
+import React, {useEffect} from "react";
+import {useParams} from "react-router";
+
 import DashboardPageLayout from "../../../components/layout/page";
-import React, {useState} from "react";
-import {FlexCenter, FlexCol, FlexRow} from "../../../components/layout/wrapper/position/style";
+import {FlexCol, FlexRow} from "../../../components/layout/wrapper/position/style";
+
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
-import {AddIcon, AIAssistIcon, ReverseIcon, SettingsIcon} from "../../../components/icon";
-import {
-    BaseButtonBar,
-    CirclePrimaryButton,
-    CircleSecondaryButton,
-    PrimaryButton,
-    SecondaryButton,
-    StyledButton,
-} from "../../../components/button/style";
+import {PrimaryButton,} from "../../../components/button/style";
 import {SecondaryInput} from "../../../components/input/style";
-import styled from "styled-components";
-import ModuleSettingsModal from "../../module/modal/moduleSettingsModal";
-import TermRow from "../../module/moduleTermRow";
+
+import useApiQueryResponse from "../../../hook/api/useApiQueryResponse";
+import useApiMutationResponse from "../../../hook/api/useApiMutationResponse";
+import useFormData from "../../../hook/form/useFormData";
+import {useGetModuleByIdQuery, useUpdateModuleMutation} from "../../module/api";
+
+import TermsContainer from "../../module/components/edit/termsContainer";
+import Toolbar from "../../module/components/edit/moduleToolBar";
 
 const ModuleEditPage = () => {
+    const {id} = useParams();
+
+    const [updateModule] = useApiMutationResponse(useUpdateModuleMutation(), {
+        successMessage: "The module was saved successfully and can be accessed for use!",
+    });
+    const queryResult = useGetModuleByIdQuery(id);
+    const {data, isError, isFetching} = useApiQueryResponse(queryResult);
+    const {formData, setFormData, handleChangeFormData} = useFormData({data});
+
+    useEffect(() => {
+        setFormData(!data ? {} : data)
+    }, [data])
+
+    const onSaveModule = async () => {
+        try {
+            await updateModule({
+                id,
+                request: formData
+            });
+        } catch (error) {
+            console.error("Error deleting term:", error);
+        }
+    }
+
     return (
         <DashboardPageLayout
+            isLoading={isFetching}
+            isError={isError}
             grayBackground
-            header={<Header/>}
-            content={<Content/>}
+            header={<Header onSave={onSaveModule}/>}
+            content={<Content formData={formData} handleChangeFormData={handleChangeFormData}/>}
         />
     )
 }
 
-const Header = () => {
+const Header = ({onSave}) => {
     return (
         <FlexRow justify="space-between" align="flex-start">
             <StyledText
@@ -34,153 +60,50 @@ const Header = () => {
                 size={FONT_SIZES.TITLE_MEDIUM}
                 weight={FONT_WEIGHTS.SUPER_BOLD}
             >
-                Create new module
+                Edit module
             </StyledText>
             <FlexRow gap="10px">
-                <PrimaryButton onClick={() => console.log("Create module!")}>
+                <PrimaryButton onClick={onSave}>
                     <StyledText
                         as="span"
                         size={FONT_SIZES.SIMPLE_SMALL}
                         weight={FONT_WEIGHTS.SEMI_BOLD}
                     >
-                        Create
+                        Save
                     </StyledText>
                 </PrimaryButton>
             </FlexRow>
         </FlexRow>
-    )
-}
+    );
+};
 
-const Content = () => {
+const Content = ({
+                     formData: {
+                         id,
+                         name,
+                         description,
+                         terms
+                     },
+                     handleChangeFormData
+                 }) => {
+
     return (
         <FlexCol gap="20px">
-            <SecondaryInput placeholder="Name"/>
-            <SecondaryInput placeholder="Description"/>
-            <Toolbar/>
-            <TermsContainer/>
-        </FlexCol>
-    )
-}
-
-const Toolbar = () => {
-    const [openedSettingsModal, setSettingsModal] = useState(false);
-
-    const onCloseSettingsModal = () => {
-        setSettingsModal(false);
-    }
-    return (
-        <FlexRow justify="space-between">
-            <BaseButtonBar>
-                <SecondaryButton disabled>
-                    <AddIcon size="20px"/>
-                    <StyledText
-                        as="span"
-                        size={FONT_SIZES.SIMPLE_SMALL}
-                        weight={FONT_WEIGHTS.SEMI_BOLD}
-                    >
-                        Import
-                    </StyledText>
-                </SecondaryButton>
-                <SecondaryButton disabled>
-                    <AddIcon size="20px"/>
-                    <StyledText
-                        as="span"
-                        size={FONT_SIZES.SIMPLE_SMALL}
-                        weight={FONT_WEIGHTS.SEMI_BOLD}
-                    >
-                        Add diagram
-                    </StyledText>
-                </SecondaryButton>
-                <SecondaryButton disabled>
-                    <AIAssistIcon/>
-                    <StyledText
-                        as="span"
-                        size={FONT_SIZES.SIMPLE_SMALL}
-                        weight={FONT_WEIGHTS.SEMI_BOLD}
-                    >
-                        Create from notes
-                    </StyledText>
-                </SecondaryButton>
-            </BaseButtonBar>
-            <BaseButtonBar>
-                <CircleSecondaryButton onClick={() => setSettingsModal(true)}>
-                    <SettingsIcon/>
-                </CircleSecondaryButton>
-                <CircleSecondaryButton>
-                    <ReverseIcon/>
-                </CircleSecondaryButton>
-            </BaseButtonBar>
-            <ModuleSettingsModal
-                opened={openedSettingsModal} onClose={onCloseSettingsModal}
+            <SecondaryInput
+                placeholder="Name"
+                value={name}
+                onChange={(e) => handleChangeFormData('name')(e.target.value)}
             />
-        </FlexRow>
-    )
-}
-
-const TermsContainer = () => {
-    return (
-        <FlexCol>
-            <TermRow/>
-            <TermRowDivider>
-                <ImpliedAddNewCardButton>
-                    <AddIcon/>
-                </ImpliedAddNewCardButton>
-            </TermRowDivider>
-            <TermRow/>
-            <TermRowDivider>
-            </TermRowDivider>
-
-            <AddNewTermButton>
-                <StyledText
-                    as="div"
-                    size={FONT_SIZES.SIMPLE_BIG}
-                    weight={FONT_WEIGHTS.REGULAR}
-                >
-                    <AddNewTermButtonTitle>
-                        Add card
-                    </AddNewTermButtonTitle>
-                </StyledText>
-            </AddNewTermButton>
+            <SecondaryInput
+                placeholder="Description"
+                value={description}
+                onChange={(e) => handleChangeFormData('description')(e.target.value)}
+            />
+            <Toolbar moduleId={id}/>
+            <TermsContainer moduleId={id} terms={terms}/>
         </FlexCol>
-    )
-}
+    );
+};
 
-const TermRowDivider = styled(FlexCenter)`
-    cursor: pointer;
-    height: 20px;
-
-    &:hover {
-        button {
-            transform: scale(1);
-        }
-    }
-`
-
-const ImpliedAddNewCardButton = styled(CirclePrimaryButton)`
-    position: absolute;
-    z-index: 100;
-    transform: scale(0);
-`
-
-const AddNewTermButton = styled(StyledButton)`
-    cursor: pointer;
-    padding: 50px;
-    width: 100%;
-    background-color: var(--main-background-color);
-
-    &:hover {
-        background-color: var(--main-background-color);
-
-        span {
-            color: var(--lavanda-dark);
-            border-bottom-color: var(--lavanda-dark);
-        }
-    }
-`
-
-const AddNewTermButtonTitle = styled.span`
-    padding: 10px;
-    border-bottom: 5px solid var(--sky-darkest);
-`
 
 export default ModuleEditPage;

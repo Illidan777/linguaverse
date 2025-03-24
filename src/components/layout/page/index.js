@@ -1,17 +1,25 @@
 import styled from "styled-components";
 import {FlexCol} from "../wrapper/position/style";
+import LoadingBoundary from "../wrapper/boundary/loadingBoundary";
+import ControllableErrorBoundary from "../wrapper/boundary/controllableErrorBoundary";
+import {BaseFallbackComponent} from "../wrapper/boundary/fallback/base";
 
-const DashboardPageLayout = ({ grayBackground, header, content }) => {
+const DashboardPageLayout = ({isLoading, isError, grayBackground, header, content}) => {
+
     return (
-        <DashboardPageContainer grayBackground={grayBackground}>
-            <DashboardPage>
-                <DashboardPageHeader>{header}</DashboardPageHeader>
-                <DashboardPagePrimaryContent>
-                    <DashboardPageMain>{content}</DashboardPageMain>
-                </DashboardPagePrimaryContent>
-            </DashboardPage>
-        </DashboardPageContainer>
-    );
+        <LoadingBoundary isLoading={isLoading}>
+            <ControllableErrorBoundary hasError={isError} fallback={<BaseFallbackComponent/>}>
+                <DashboardPageContainer grayBackground={grayBackground}>
+                    <DashboardPage>
+                        <DashboardPageHeader>{header}</DashboardPageHeader>
+                        <DashboardPagePrimaryContent>
+                            <DashboardPageMain>{content}</DashboardPageMain>
+                        </DashboardPagePrimaryContent>
+                    </DashboardPage>
+                </DashboardPageContainer>
+            </ControllableErrorBoundary>
+        </LoadingBoundary>
+    )
 };
 
 export const DashboardPageContainer = styled.div`

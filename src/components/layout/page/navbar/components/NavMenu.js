@@ -1,24 +1,25 @@
 import styled, {css} from "styled-components";
-import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../text";
-import {PaddingStyledButton, RoutingLink, TransparentPrimaryButton} from "../../../button/style";
-import {LibraryIcon, HomeIcon, NotificationIcon} from "../../../icon";
-import useCSSVariables from "../../../../hook/useCSSVariables";
-import withPathBasedSelectableChild from "../../../hoc/withPathBasedSelectableChild";
+import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../../text";
+import {PaddingStyledButton, RoutingLink, TransparentPrimaryButton} from "../../../../button/style";
+import {LibraryIcon, HomeIcon, NotificationIcon} from "../../../../icon";
+import useCSSVariables from "../../../../../hook/useCSSVariables";
+import withPathBasedSelectableChild from "../../../../hoc/withPathBasedSelectableChild";
+import {paths} from "../../../../../app/routes";
 
 // Menu item dictionary: navigation path, option label name and svg icon React Component
 const MENU_ITEMS = [
     {
-        path: "/",
+        path: paths.index.getHref(),
         name: "Home",
         icon: HomeIcon,
     },
     {
-        path: "/library",
+        path: paths.library.index.getHref(),
         name: "Library",
         icon: LibraryIcon,
     },
     {
-        path: "/notification",
+        path: paths.notifications.index.getHref(),
         name: "Notifications",
         icon: NotificationIcon,
     }

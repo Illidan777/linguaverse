@@ -1,51 +1,36 @@
+import React, {useCallback, useState} from "react";
 import styled from "styled-components";
-import {FlexCol, FlexRow, FlexRowCenter} from "../../../components/layout/wrapper/position/style";
+
 import avatar from "../../../assets/img/avatar.jpg";
-import React from "react";
-import LibraryEntity from "../../library/LibraryEntity";
+
+import {FlexCenter, FlexRow} from "../../../components/layout/wrapper/position/style";
+import ControllableErrorBoundary from "../../../components/layout/wrapper/boundary/controllableErrorBoundary";
+import {BaseFallbackComponent} from "../../../components/layout/wrapper/boundary/fallback/base";
+
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
 import {CoverImage} from "../../../components/image/style";
 
-const MODULES = [
-    {
-        id: 1,
-        name: "Some module1",
-        termsCount: 10,
-        ownerAvatar: avatar,
-        ownerName: "Illidan",
-        groupBy: "Today"
-    },
-    {
-        id: 2,
-        name: "Some module2",
-        termsCount: 10,
-        ownerAvatar: avatar,
-        ownerName: "Illidan",
-        groupBy: "Today"
-    },
-    {
-        id: 3,
-        name: "Some modul3",
-        termsCount: 10,
-        ownerAvatar: avatar,
-        ownerName: "Illidan",
-        groupBy: "Tomorrow"
-    },
-    {
-        id: 4,
-        name: "Some modul4",
-        termsCount: 10,
-        ownerAvatar: avatar,
-        ownerName: "Illidan",
-        groupBy: "Tomorrow"
-    }
-]
+import {useGetAllModulesQuery} from "../../module/api";
+import useApiQueryResponse from "../../../hook/api/useApiQueryResponse";
+
+import LibraryEntity from "../../library/LibraryEntity";
+
+import {classifyDate} from "../../../utils/dateUtils";
+import {MODULE_DRAFT_STATUS} from "../../../constants/module";
 
 const ModulesPage = () => {
 
+    const [searchText, setSearchText] = useState("");
+
+    const queryResult = useGetAllModulesQuery(searchText);
+    const {data, isError, isFetching} = useApiQueryResponse(queryResult);
+
+    const onSearch = useCallback((name) => setSearchText(name), [searchText]);
+
     const groupBy = (items) => {
         return items.reduce((acc, item) => {
-            const {groupBy} = item;
+            const {createdAt} = item;
+            const groupBy = classifyDate(createdAt)
             if (!acc[groupBy]) {
                 acc[groupBy] = [];
             }
@@ -54,37 +39,47 @@ const ModulesPage = () => {
         }, {});
     }
 
-    const onSearch = () => {
-        console.log('Search!!');
-    }
-
-    const items = MODULES.map((item) => {
-        const {id, name, termsCount, ownerAvatar, ownerName, groupBy} = item;
+    const items = data ? data.map((item) => {
+        const {
+            id,
+            name,
+            status,
+            termsCount,
+            ownerAvatar = avatar, //not implemented yet
+            ownerName = 'you', //not implemented yet
+            createdAt
+        } = item;
         const header = <ModuleItemHeader
             termsCount={termsCount}
             username={ownerName}
             userAvatarSrc={ownerAvatar}
         />;
-        const content = <ModuleItemContent name={name}/>
+        const content = <ModuleItemContent name={name} status={status}/>
 
-        return {id, header, content, groupBy};
-    })
+        return {id, header, content, createdAt};
+    }) : [];
 
-    return  <LibraryEntity
-        entityItems={items}
-        onSearch={onSearch}
-        groupBy={groupBy}
-    />
+    return (
+        <ControllableErrorBoundary hasError={isError} fallback={<BaseFallbackComponent/>}>
+            <LibraryEntity
+                isLoadingItems={isFetching}
+                entityItems={items}
+                onSearch={onSearch}
+                groupBy={groupBy}
+            />
+        </ControllableErrorBoundary>
+    )
 }
 
-const ModuleItemContent = ({name}) => {
+const ModuleItemContent = ({name, status}) => {
+    const draftMarker = status === MODULE_DRAFT_STATUS ? '(Draft)' : null
     return (
         <StyledText
             as="span"
             size={FONT_SIZES.SIMPLE_BIG}
             weight={FONT_WEIGHTS.SUPER_BOLD}
         >
-            {name}
+            {draftMarker} {name}
         </StyledText>
     )
 }
@@ -122,7 +117,7 @@ const ModuleOwnerWrapper = styled(FlexRow)`
     gap: 10px;
 `
 
-const OwnerAvatarWrapper = styled(FlexRowCenter)`
+const OwnerAvatarWrapper = styled(FlexCenter)`
     width: 16px;
     height: 16px;
 

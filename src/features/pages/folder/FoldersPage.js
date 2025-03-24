@@ -1,54 +1,46 @@
-import LibraryEntity from "../../library/LibraryEntity";
-import React from "react";
-import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
-import {FlexRow, FlexRowCenter} from "../../../components/layout/wrapper/position/style";
-import {FolderIcon, LibraryIcon} from "../../../components/icon";
+import React, {useCallback, useState} from "react";
 
-const FOLDERS = [
-    {
-        id: 1,
-        name: "Folder 1",
-        objectsCount: 5,
-    },
-    {
-        id: 2,
-        name: "Folder 2",
-        objectsCount: 10,
-    },
-    {
-        id: 3,
-        name: "Folder 3",
-        objectsCount: 0,
-    },
-    {
-        id: 4,
-        name: "Folder 4",
-        objectsCount: 7,
-    },
-]
+import LibraryEntity from "../../library/LibraryEntity";
+
+import {useGetAllFoldersQuery} from "../../folder/api";
+
+import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
+import {FolderIcon} from "../../../components/icon";
+import {FlexCenter} from "../../../components/layout/wrapper/position/style";
+import {BaseFallbackComponent} from "../../../components/layout/wrapper/boundary/fallback/base";
+import ControllableErrorBoundary from "../../../components/layout/wrapper/boundary/controllableErrorBoundary";
+
+import useApiQueryResponse from "../../../hook/api/useApiQueryResponse";
 
 const FoldersPage = () => {
-    const onSearch = () => {
-        console.log('Search!!');
-    }
+    const [searchText, setSearchText] = useState("");
 
-    const items = FOLDERS.map((item) => {
-        const {name, objectsCount, id} = item;
-        const header = <FolderItemHeader objectsCount={objectsCount}/>;
-        const content = <FolderItemContent name={name}/>
+    const queryResult = useGetAllFoldersQuery(searchText);
+    const {data, isError, isFetching} = useApiQueryResponse(queryResult);
 
-        return {id, header, content};
-    })
+    const onSearch = useCallback((name) => setSearchText(name), [searchText]);
 
-    return <LibraryEntity
-        entityItems={items}
-        onSearch={onSearch}
-    />
-}
+    const items = data
+        ? data.map((item) => {
+            const {name, modulesCount, id} = item;
+            return {
+                id,
+                header: <FolderItemHeader modulesCount={modulesCount}/>,
+                content: <FolderItemContent name={name}/>,
+            };
+        })
+        : [];
+
+    return (
+        <ControllableErrorBoundary hasError={isError} fallback={<BaseFallbackComponent/>}>
+            <LibraryEntity isLoadingItems={isFetching} entityItems={items} onSearch={onSearch}/>
+        </ControllableErrorBoundary>
+    );
+};
 
 const FolderItemContent = ({name}) => {
     return (
-        <FlexRowCenter gap="10px">
+        <FlexCenter gap="10px">
             <FolderIcon/>
             <StyledText
                 as="span"
@@ -57,12 +49,12 @@ const FolderItemContent = ({name}) => {
             >
                 {name}
             </StyledText>
-        </FlexRowCenter>
+        </FlexCenter>
 
     )
 }
 
-const FolderItemHeader = ({objectsCount}) => {
+const FolderItemHeader = ({modulesCount}) => {
     return (
         <>
             <StyledText
@@ -70,7 +62,7 @@ const FolderItemHeader = ({objectsCount}) => {
                 size={FONT_SIZES.SIMPLE_SMALL}
                 weight={FONT_WEIGHTS.SEMI_BOLD}
             >
-                {objectsCount} objects
+                {modulesCount} objects
             </StyledText>
         </>
     )

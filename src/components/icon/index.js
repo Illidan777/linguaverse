@@ -78,8 +78,8 @@ export const SearchIcon = () => {
             <circle cx="11" cy="11" r="6" stroke="#222222"/>
             <path
                 d="M11 8C10.606 8 10.2159 8.0776 9.85195 8.22836C9.48797 8.37913 9.15726 8.6001 8.87868 8.87868C8.6001 9.15726 8.37913 9.48797 8.22836 9.85195C8.0776 10.2159 8 10.606 8 11"
-                stroke="#222222" stroke-linecap="round"/>
-            <path d="M20 20L17 17" stroke="#222222" stroke-linecap="round"/>
+                stroke="#222222" strokeLinecap="round"/>
+            <path d="M20 20L17 17" stroke="#222222" strokeLinecap="round"/>
         </svg>
     )
 }
@@ -92,7 +92,7 @@ export const AddIcon = ({color = "black", size = "40px"}) => {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path fillRule="evenodd" clipRule="evenodd"
                   d="M13 6C13 5.44771 12.5523 5 12 5C11.4477 5 11 5.44771 11 6V11H6C5.44771 11 5 11.4477 5 12C5 12.5523 5.44771 13 6 13H11V18C11 18.5523 11.4477 19 12 19C12.5523 19 13 18.5523 13 18V13H18C18.5523 13 19 12.5523 19 12C19 11.4477 18.5523 11 18 11H13V6Z"
                   fill={color}
             />
@@ -106,7 +106,7 @@ export const AddIcon2 = ({color = "black"}) => {
             <path
                 d="M11 8C11 7.44772 11.4477 7 12 7C12.5523 7 13 7.44772 13 8V11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H13V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V13H8C7.44771 13 7 12.5523 7 12C7 11.4477 7.44772 11 8 11H11V8Z"
                 fill="#0F0F0F"/>
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path fillRule="evenodd" clipRule="evenodd"
                   d="M23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12ZM3.00683 12C3.00683 16.9668 7.03321 20.9932 12 20.9932C16.9668 20.9932 20.9932 16.9668 20.9932 12C20.9932 7.03321 16.9668 3.00683 12 3.00683C7.03321 3.00683 3.00683 7.03321 3.00683 12Z"
                   fill="#0F0F0F"/>
         </svg>
@@ -116,7 +116,7 @@ export const AddIcon2 = ({color = "black"}) => {
 export const MoreIcon = () => {
     return (
         <svg width="22px" height="22px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none">
-            <path fill="#000000" fill-rule="evenodd"
+            <path fill="#000000" fillRule="evenodd"
                   d="M3 8a2 2 0 100 4 2 2 0 000-4zm5 2a2 2 0 114 0 2 2 0 01-4 0zm7 0a2 2 0 114 0 2 2 0 01-4 0z"/>
         </svg>
     )
@@ -154,7 +154,7 @@ export const PublishIcon = () => {
     return (
         <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20 13V17.5C20 20.5577 16 20.5 12 20.5C8 20.5 4 20.5577 4 17.5V13M12 3L12 15M12 3L16 7M12 3L8 7"
-                  stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
     )
 }
@@ -177,10 +177,10 @@ export const FolderIcon = () => {
 export const CloseIcon = () => {
     return (
         <svg width="22px" height="22px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 21.32L21 3.32001" stroke="#000000" stroke-width="1.5" stroke-linecap="round"
-                  stroke-linejoin="round"/>
-            <path d="M3 3.32001L21 21.32" stroke="#000000" stroke-width="1.5" stroke-linecap="round"
-                  stroke-linejoin="round"/>
+            <path d="M3 21.32L21 3.32001" stroke="#000000" strokeWidth="1.5" strokeLinecap="round"
+                  strokeLinejoin="round"/>
+            <path d="M3 3.32001L21 21.32" stroke="#000000" strokeWidth="1.5" strokeLinecap="round"
+                  strokeLinejoin="round"/>
         </svg>
     )
 }
@@ -246,19 +246,19 @@ export const SettingsIcon = () => {
 export const ReverseIcon = () => {
     return (
         <svg width="22px" height="22px" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
+            <rect width="48" height="48" fill="white" fillOpacity="0.01"/>
             <path
                 d="M34 6.67564C39.978 10.1337 44 16.5972 44 24M34 6.67564V14M34 6.67564H41.3244M41.3244 34C37.8663 39.978 31.4028 44 24 44M41.3244 34H34M41.3244 34V41.3244M14 41.3244C8.02199 37.8663 4 31.4028 4 24M14 41.3244V34M14 41.3244H6.67564M6.67564 14C10.1337 8.02199 16.5972 4 24 4M6.67564 14H14M6.67564 14V6.67564"
-                stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                stroke="#000000" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M41.3244 34C37.8663 39.978 31.4028 44 24 44M41.3244 34H34M41.3244 34V41.3244" stroke="#000000"
-                  stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                  strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M14 41.3244C8.02199 37.8663 4 31.4028 4 24M14 41.3244V34M14 41.3244H6.67564" stroke="#000000"
-                  stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                  strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M6.67566 14C10.1338 8.02199 16.5972 4 24 4M6.67566 14H14M6.67566 14V6.67564" stroke="#000000"
-                  stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                  strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M34 6.67578C39.978 10.1339 44 16.5973 44 24.0001M34 6.67578V14.0001M34 6.67578H41.3244"
                   stroke="#000000"
-                  stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                  strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
     )
 }
@@ -284,7 +284,7 @@ export const DownArrowIcon = ({color = "black", size = "22px"}) => {
 export const SaveIcon = ({color = "black", size = "22px"}) => {
     return (
         <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path fillRule="evenodd" clipRule="evenodd"
                   d="M6.75 6L7.5 5.25H16.5L17.25 6V19.3162L12 16.2051L6.75 19.3162V6ZM8.25 6.75V16.6838L12 14.4615L15.75 16.6838V6.75H8.25Z"
                   fill={color}/>
         </svg>
@@ -294,7 +294,7 @@ export const SaveIcon = ({color = "black", size = "22px"}) => {
 export const EditIcon = ({color = "black", size = "22px"}) => {
     return (
         <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path fillRule="evenodd" clipRule="evenodd"
                   d="M8.56078 20.2501L20.5608 8.25011L15.7501 3.43945L3.75012 15.4395V20.2501H8.56078ZM15.7501 5.56077L18.4395 8.25011L16.5001 10.1895L13.8108 7.50013L15.7501 5.56077ZM12.7501 8.56079L15.4395 11.2501L7.93946 18.7501H5.25012L5.25012 16.0608L12.7501 8.56079Z"
                   fill={color}/>
         </svg>
@@ -342,31 +342,31 @@ export const CycleIcon = ({color = "black", size = "22px"}) => {
 export const ExamIcon = ({color = "black", size = "22px"}) => {
     return (
         <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path fillRule="evenodd" clipRule="evenodd"
                   d="M8 42H32C33.1046 42 34 41.1046 34 40V8C34 6.89543 33.1046 6 32 6H8C6.89543 6 6 6.89543 6 8V40C6 41.1046 6.89543 42 8 42ZM32 44H8C5.79086 44 4 42.2091 4 40V8C4 5.79086 5.79086 4 8 4H32C34.2091 4 36 5.79086 36 8V40C36 42.2091 34.2091 44 32 44Z"
                   fill={color}/>
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path fillRule="evenodd" clipRule="evenodd"
                   d="M18 13C18 12.4477 18.4477 12 19 12H31C31.5523 12 32 12.4477 32 13C32 13.5523 31.5523 14 31 14H19C18.4477 14 18 13.5523 18 13Z"
                   fill={color}/>
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path fillRule="evenodd" clipRule="evenodd"
                   d="M18 17C18 16.4477 18.4477 16 19 16H31C31.5523 16 32 16.4477 32 17C32 17.5523 31.5523 18 31 18H19C18.4477 18 18 17.5523 18 17Z"
                   fill={color}/>
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path fillRule="evenodd" clipRule="evenodd"
                   d="M18 25C18 24.4477 18.4477 24 19 24H31C31.5523 24 32 24.4477 32 25C32 25.5523 31.5523 26 31 26H19C18.4477 26 18 25.5523 18 25Z"
                   fill={color}/>
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path fillRule="evenodd" clipRule="evenodd"
                   d="M18 29C18 28.4477 18.4477 28 19 28H31C31.5523 28 32 28.4477 32 29C32 29.5523 31.5523 30 31 30H19C18.4477 30 18 29.5523 18 29Z"
                   fill={color}/>
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path fillRule="evenodd" clipRule="evenodd"
                   d="M10 26V29H13V26H10ZM9 24H14C14.5523 24 15 24.4477 15 25V30C15 30.5523 14.5523 31 14 31H9C8.44772 31 8 30.5523 8 30V25C8 24.4477 8.44772 24 9 24Z"
                   fill={color}/>
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path fillRule="evenodd" clipRule="evenodd"
                   d="M15.7071 12.2929C16.0976 12.6834 16.0976 13.3166 15.7071 13.7071L11 18.4142L8.29289 15.7071C7.90237 15.3166 7.90237 14.6834 8.29289 14.2929C8.68342 13.9024 9.31658 13.9024 9.70711 14.2929L11 15.5858L14.2929 12.2929C14.6834 11.9024 15.3166 11.9024 15.7071 12.2929Z"
                   fill={color}/>
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path fillRule="evenodd" clipRule="evenodd"
                   d="M42 24H40V39.3333L41 40.6667L42 39.3333V24ZM44 40L41 44L38 40V22H44V40Z"
                   fill={color}/>
-            <path fill-rule="evenodd" clip-rule="evenodd"
+            <path fillRule="evenodd" clipRule="evenodd"
                   d="M42 17H40V19H42V17ZM40 15H42C43.1046 15 44 15.8954 44 17V21H38V17C38 15.8954 38.8954 15 40 15Z"
                   fill={color}/>
         </svg>
@@ -435,8 +435,8 @@ export const SelectionIcon = ({color = "black", size = "22px"}) => {
 export const LeftArrowIcon = ({color = "black", size = "22px"}) => {
     return (
         <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke={color} stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round"/>
+            <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke={color} strokeWidth="2" strokeLinecap="round"
+                  strokeLinejoin="round"/>
         </svg>
     )
 }
@@ -444,8 +444,8 @@ export const LeftArrowIcon = ({color = "black", size = "22px"}) => {
 export const RightArrowIcon = ({color = "black", size = "22px"}) => {
     return (
         <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke={color} stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round"/>
+            <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke={color} strokeWidth="2" strokeLinecap="round"
+                  strokeLinejoin="round"/>
         </svg>
     )
 }
@@ -481,5 +481,17 @@ export const ShuffleIcon = ({color = "black", size = "22px"}) => {
         </svg>
     )
 }
+
+export const SaveDiscIcon = ({color = "black", size = "22px"}) => {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fillRule="evenodd" clipRule="evenodd"
+                  d="M18.1716 1C18.702 1 19.2107 1.21071 19.5858 1.58579L22.4142 4.41421C22.7893 4.78929 23 5.29799 23 5.82843V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H18.1716ZM4 3C3.44772 3 3 3.44772 3 4V20C3 20.5523 3.44772 21 4 21L5 21L5 15C5 13.3431 6.34315 12 8 12L16 12C17.6569 12 19 13.3431 19 15V21H20C20.5523 21 21 20.5523 21 20V6.82843C21 6.29799 20.7893 5.78929 20.4142 5.41421L18.5858 3.58579C18.2107 3.21071 17.702 3 17.1716 3H17V5C17 6.65685 15.6569 8 14 8H10C8.34315 8 7 6.65685 7 5V3H4ZM17 21V15C17 14.4477 16.5523 14 16 14L8 14C7.44772 14 7 14.4477 7 15L7 21L17 21ZM9 3H15V5C15 5.55228 14.5523 6 14 6H10C9.44772 6 9 5.55228 9 5V3Z"
+                  fill={color}/>
+        </svg>
+    )
+}
+
+
 
 

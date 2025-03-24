@@ -2,7 +2,13 @@ import {useParams} from "react-router";
 import DashboardPageLayout from "../../../components/layout/page";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
 import {FlexCol, FlexRow} from "../../../components/layout/wrapper/position/style";
-import {BaseButtonBar, RoutingLink, SquareSecondaryButton, StyledLink} from "../../../components/button/style";
+import {
+    BaseButtonBar,
+    CircleStyledButton,
+    RoutingLink,
+    SquareSecondaryButton,
+    StyledLink
+} from "../../../components/button/style";
 import {
     AddIcon,
     CardsIcon,
@@ -19,35 +25,27 @@ import {
     SelectionIcon,
     TetrisIcon
 } from "../../../components/icon";
-import React, {useState} from "react";
+import React from "react";
 import ContextMenu, {ContextMenuItem} from "../../../components/menu";
 import useCSSVariables from "../../../hook/useCSSVariables";
 import {BottomBorderWrapper} from "../../../components/layout/wrapper/hover/style";
-import {StudyModeItem, StudyModesWrapper} from "../../studying/style";
-import FlashCardSlider from "../../studying/flashcards/flashCardSlider";
+import {StudyModeItem, StudyModesWrapper} from "../../studying/components/style";
+import FlashCardSlider from "../../studying/components/flashcards/flashCardSlider";
+import styled from "styled-components";
+import {paths} from "../../../app/routes";
 
 const ModuleItemPage = () => {
 
     const {id} = useParams();
-    const [errorColor, textColor] = useCSSVariables(["--error-color", "--colored-text-main"])
-    const [termFlipped, setTermFlipped] = useState(false);
-    const [definitionFlipped, setDefinitionFlipped] = useState(true);
-    const zIndex = 101;
+    const [errorColor, successColor, coloredText] = useCSSVariables(["--error-color", "--colored-text-main", '--success-color'])
 
-    const termZindex = termFlipped ? zIndex - 1 : zIndex;
-    const definitionZIndex = termFlipped ? zIndex : zIndex - 1;
-
-    const switchTurns = () => {
-        setTermFlipped(!termFlipped)
-        setDefinitionFlipped(!definitionFlipped)
-    }
     return (
         <DashboardPageLayout
             header={
                 <FlexRow justify="space-between" align="flex-start">
                     <FlexCol gap="20px">
 
-                        <RoutingLink to="/">
+                        <RoutingLink to={paths.index.getHref()}>
                             <StyledLink>
                                 <FolderIcon/>
                                 <StyledText
@@ -150,7 +148,7 @@ const ModuleItemPage = () => {
                     <StudyModesWrapper>
                         <BottomBorderWrapper>
                             <StudyModeItem>
-                                <CardsIcon color={textColor}/>
+                                <CardsIcon color={coloredText}/>
                                 <StyledText
                                     as="span"
                                     size={FONT_SIZES.SIMPLE_MEDIUM}
@@ -162,7 +160,7 @@ const ModuleItemPage = () => {
                         </BottomBorderWrapper>
                         <BottomBorderWrapper>
                             <StudyModeItem>
-                                <CycleIcon color={textColor}/>
+                                <CycleIcon color={coloredText}/>
                                 <StyledText
                                     as="span"
                                     size={FONT_SIZES.SIMPLE_MEDIUM}
@@ -174,7 +172,7 @@ const ModuleItemPage = () => {
                         </BottomBorderWrapper>
                         <BottomBorderWrapper>
                             <StudyModeItem>
-                                <ExamIcon color={textColor}/>
+                                <ExamIcon color={coloredText}/>
                                 <StyledText
                                     as="span"
                                     size={FONT_SIZES.SIMPLE_MEDIUM}
@@ -186,7 +184,7 @@ const ModuleItemPage = () => {
                         </BottomBorderWrapper>
                         <BottomBorderWrapper>
                             <StudyModeItem>
-                                <TetrisIcon color={textColor}/>
+                                <TetrisIcon color={coloredText}/>
                                 <StyledText
                                     as="span"
                                     size={FONT_SIZES.SIMPLE_MEDIUM}
@@ -198,7 +196,7 @@ const ModuleItemPage = () => {
                         </BottomBorderWrapper>
                         <BottomBorderWrapper>
                             <StudyModeItem>
-                                <RocketIcon color={textColor}/>
+                                <RocketIcon color={coloredText}/>
                                 <StyledText
                                     as="span"
                                     size={FONT_SIZES.SIMPLE_MEDIUM}
@@ -210,7 +208,7 @@ const ModuleItemPage = () => {
                         </BottomBorderWrapper>
                         <BottomBorderWrapper>
                             <StudyModeItem>
-                                <SelectionIcon color={textColor}/>
+                                <SelectionIcon color={coloredText}/>
                                 <StyledText
                                     as="span"
                                     size={FONT_SIZES.SIMPLE_MEDIUM}
@@ -222,6 +220,141 @@ const ModuleItemPage = () => {
                         </BottomBorderWrapper>
                     </StudyModesWrapper>
                     <FlashCardSlider/>
+                    <FlexCol gap="35px">
+                        <StyledText
+                            as="span"
+                            size={FONT_SIZES.SIMPLE_MEDIUM}
+                            weight={FONT_WEIGHTS.SEMI_BOLD}
+                        >
+                            Terms in module (10)
+                        </StyledText>
+                        <AllTermsWrapper>
+                            <StyledText
+                                as="span"
+                                size={FONT_SIZES.TITLE_SMALL}
+                                weight={FONT_WEIGHTS.SEMI_BOLD}
+                                color={errorColor}
+                            >
+                                Studied (9)
+                            </StyledText>
+                            <StyledText
+                                as="span"
+                                size={FONT_SIZES.SIMPLE_MEDIUM}
+                                weight={FONT_WEIGHTS.REGULAR}
+                            >
+                                You've started learning these terms. Keep going!
+                            </StyledText>
+                            <FlexCol gap="10px">
+                                <TermItemWrapper>
+                                    <StyledText
+                                        as="span"
+                                        size={FONT_SIZES.SIMPLE_MEDIUM}
+                                        weight={FONT_WEIGHTS.REGULAR}
+                                    >
+                                        Original
+                                    </StyledText>
+                                    <StyledText
+                                        as="span"
+                                        size={FONT_SIZES.SIMPLE_MEDIUM}
+                                        weight={FONT_WEIGHTS.REGULAR}
+                                    >
+                                        Translation
+                                    </StyledText>
+                                    <BaseButtonBar>
+                                        <CircleStyledButton>
+                                            <EditIcon/>
+                                        </CircleStyledButton>
+                                    </BaseButtonBar>
+                                </TermItemWrapper>
+                                <TermItemWrapper>
+                                    <StyledText
+                                        as="span"
+                                        size={FONT_SIZES.SIMPLE_MEDIUM}
+                                        weight={FONT_WEIGHTS.REGULAR}
+                                    >
+                                        Original
+                                    </StyledText>
+                                    <StyledText
+                                        as="span"
+                                        size={FONT_SIZES.SIMPLE_MEDIUM}
+                                        weight={FONT_WEIGHTS.REGULAR}
+                                    >
+                                        Translation
+                                    </StyledText>
+                                    <BaseButtonBar>
+                                        <CircleStyledButton>
+                                            <EditIcon/>
+                                        </CircleStyledButton>
+                                    </BaseButtonBar>
+                                </TermItemWrapper>
+                                <TermItemWrapper>
+                                    <StyledText
+                                        as="span"
+                                        size={FONT_SIZES.SIMPLE_MEDIUM}
+                                        weight={FONT_WEIGHTS.REGULAR}
+                                    >
+                                        Original
+                                    </StyledText>
+                                    <StyledText
+                                        as="span"
+                                        size={FONT_SIZES.SIMPLE_MEDIUM}
+                                        weight={FONT_WEIGHTS.REGULAR}
+                                    >
+                                        Translation
+                                    </StyledText>
+                                    <BaseButtonBar>
+                                        <CircleStyledButton>
+                                            <EditIcon/>
+                                        </CircleStyledButton>
+                                    </BaseButtonBar>
+                                </TermItemWrapper>
+
+
+                            </FlexCol>
+
+                            <StyledText
+                                as="span"
+                                size={FONT_SIZES.TITLE_SMALL}
+                                weight={FONT_WEIGHTS.SEMI_BOLD}
+                                color={successColor}
+                            >
+                                Learned (9)
+                            </StyledText>
+                            <StyledText
+                                as="span"
+                                size={FONT_SIZES.SIMPLE_MEDIUM}
+                                weight={FONT_WEIGHTS.REGULAR}
+                            >
+                                You have mastered these terms well!
+                            </StyledText>
+                            <FlexCol gap="10px">
+                                <TermItemWrapper>
+                                    <StyledText
+                                        as="span"
+                                        size={FONT_SIZES.SIMPLE_MEDIUM}
+                                        weight={FONT_WEIGHTS.REGULAR}
+                                    >
+                                        Original
+                                    </StyledText>
+                                    <StyledText
+                                        as="span"
+                                        size={FONT_SIZES.SIMPLE_MEDIUM}
+                                        weight={FONT_WEIGHTS.REGULAR}
+                                    >
+                                        Translation
+                                    </StyledText>
+                                    <BaseButtonBar>
+                                        <CircleStyledButton>
+                                            <EditIcon/>
+                                        </CircleStyledButton>
+                                    </BaseButtonBar>
+                                </TermItemWrapper>
+                            </FlexCol>
+
+
+                        </AllTermsWrapper>
+
+                    </FlexCol>
 
 
                 </FlexCol>
@@ -229,5 +362,22 @@ const ModuleItemPage = () => {
         />
     )
 }
+
+const AllTermsWrapper = styled(FlexCol)`
+    gap: 25px;
+    padding: 10px;
+    border-radius: var(--base-item-border-radius);
+    background-color: var(--second-background-color);
+    width: 100%;
+`
+
+const TermItemWrapper = styled(FlexRow)`
+    padding: 15px;
+    border-radius: var(--base-item-border-radius);
+    background-color: var(--main-background-color);
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+`
 
 export default ModuleItemPage

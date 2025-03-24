@@ -1,10 +1,10 @@
-import Modal, {ModalFooter} from "../../../components/modal";
-import {PrimaryButton} from "../../../components/button/style";
-import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
+import Modal, {ModalFooter} from "../../../../components/modal";
+import {PrimaryButton} from "../../../../components/button/style";
+import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../../components/text";
 import React, {useEffect, useState} from "react";
-import {FlexCol} from "../../../components/layout/wrapper/position/style";
+import {FlexCol} from "../../../../components/layout/wrapper/position/style";
 import styled from "styled-components";
-import Dropdown, {DropDownItem} from "../../../components/dropdown";
+import Dropdown, {DropDownItem} from "../../../../components/dropdown";
 
 const ONLY_ME_ACCESS_MODE = 'ONLY_ME_ACCESS_MODE';
 const EVERYONE_ACCESS_MODE = 'EVERYONE_ACCESS_MODE';

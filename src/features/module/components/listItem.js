@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import {FlexCol, FlexColCenter, FlexRow} from "../../components/layout/wrapper/position/style";
-import {ModuleIcon} from "../../components/icon";
-import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../components/text";
+import {FlexCol, FlexColCenter, FlexRow} from "../../../components/layout/wrapper/position/style";
+import {ModuleIcon} from "../../../components/icon";
+import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
 import React from "react";
 
-const ModuleListItem = ({name, termsCount, author, action}) => {
+const ListItem = ({name, termsCount, author, action}) => {
     return (
         <ModuleItemWrapper>
             <ModuleIconWrapper>
@@ -55,4 +55,4 @@ const ModuleIconWrapper = styled(FlexColCenter)`
     background-color: var(--lavanda-lighter);
 `
 
-export default ModuleListItem;
+export default ListItem;

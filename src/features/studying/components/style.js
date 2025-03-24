@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {FlexCenter} from "../../components/layout/wrapper/position/style";
+import {FlexCenter} from "../../../components/layout/wrapper/position/style";
 
 export const StudyModesWrapper = styled.div`
     display: grid;
