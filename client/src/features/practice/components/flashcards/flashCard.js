@@ -12,12 +12,13 @@ import {
     RotateableFlashCard
 } from "./style";
 import Tooltip from "../../../../components/tooltip";
+import useCSSVariables from "../../../../hook/useCSSVariables";
 
 export default function FlashCard({id, term, definition, moduleId}) {
     const navigate = useNavigate()
     const [termFlipped, setTermFlipped] = useState(false);
     const [definitionFlipped, setDefinitionFlipped] = useState(true);
-    const zIndex = 101;
+    const [zIndex] = useCSSVariables(["--z-index-flash-card"]);
 
     const termZindex = termFlipped ? zIndex - 1 : zIndex;
     const definitionZIndex = termFlipped ? zIndex : zIndex - 1;

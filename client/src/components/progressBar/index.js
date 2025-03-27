@@ -14,7 +14,7 @@ const BarContainer = styled.div`
     background-color: var(--gray);
     border-radius: 9999px;
     overflow: hidden;
-    z-index: 200;
+    z-index: var(--z-index-progress-bar);
 `;
 
 const Progress = styled.div`

@@ -35,7 +35,7 @@ const TooltipText = styled.div`
   left: 50%;
   transform: translateX(-50%);
   margin-bottom: 8px;
-  z-index: 201;
+  z-index: var(--z-index-tooltip);
 `;
 
 export default Tooltip;

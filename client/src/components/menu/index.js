@@ -71,7 +71,7 @@ const Container = styled.div`
     box-shadow: 0 .25rem 1rem 0 var(--gray-light);
     border: .0625rem solid var(--gray-light);
     background: var(--main-background-color);
-    z-index: 9999;
+    z-index: var(--z-index-context-menu);
 `;
 
 export const ContextMenuItem = styled(StyledButton)`

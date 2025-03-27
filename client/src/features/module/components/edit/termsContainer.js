@@ -75,7 +75,7 @@ const TermRowDivider = styled(FlexCenter)`
 
 const ImpliedAddNewCardButton = styled(CirclePrimaryButton)`
     position: absolute;
-    z-index: 100;
+    z-index: var(--z-index-implied-button);
     transform: scale(0);
 `
 

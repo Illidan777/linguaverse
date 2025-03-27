@@ -57,7 +57,7 @@ export const FlashCardButtonBar = styled.div`
     grid-row: 1;
     grid-column: 3;
     justify-self: end;
-    z-index: 201;
+    z-index: var(--z-index-flash-card-button-bar);
 `
 
 export const FlashCardDefinition = styled(FlexColCenter)`

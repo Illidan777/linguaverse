@@ -56,7 +56,7 @@ const ModalOverlay = styled.div`
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, .5);
-    z-index: 10;
+    z-index: var(--z-index-modal-overlay);
 `
 
 const ModalDialog = styled(FlexCol)`
@@ -77,7 +77,7 @@ const ModalClose = styled(FlexCenter)`
     position: absolute;
     right: 16px;
     top: 16px;
-    z-index: 101;
+    z-index: var(--z-index-modal-close);
     cursor: pointer;
 `
 
