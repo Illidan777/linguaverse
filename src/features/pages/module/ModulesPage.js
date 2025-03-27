@@ -17,6 +17,7 @@ import LibraryEntity from "../../library/LibraryEntity";
 
 import {classifyDate} from "../../../utils/dateUtils";
 import {MODULE_DRAFT_STATUS} from "../../../constants/module";
+import {paths} from "../../../app/routes";
 
 const ModulesPage = () => {
 
@@ -37,6 +38,10 @@ const ModulesPage = () => {
             acc[groupBy].push(item);
             return acc;
         }, {});
+    }
+
+    const getItemHref = (id) => {
+        return paths.module.index.getHref(id)
     }
 
     const items = data ? data.map((item) => {
@@ -66,6 +71,7 @@ const ModulesPage = () => {
                 entityItems={items}
                 onSearch={onSearch}
                 groupBy={groupBy}
+                getItemHref={getItemHref}
             />
         </ControllableErrorBoundary>
     )
@@ -92,7 +98,7 @@ const ModuleItemHeader = ({termsCount, username, userAvatarSrc}) => {
                 size={FONT_SIZES.SIMPLE_SMALL}
                 weight={FONT_WEIGHTS.SEMI_BOLD}
             >
-                {termsCount}
+                {termsCount} terms
             </StyledText>
             <Divider/>
             <ModuleOwnerWrapper>

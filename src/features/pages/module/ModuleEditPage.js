@@ -5,22 +5,26 @@ import DashboardPageLayout from "../../../components/layout/page";
 import {FlexCol, FlexRow} from "../../../components/layout/wrapper/position/style";
 
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
-import {PrimaryButton,} from "../../../components/button/style";
+import {BaseButtonBar, PrimaryButton, SecondaryButton,} from "../../../components/button/style";
 import {SecondaryInput} from "../../../components/input/style";
 
 import useApiQueryResponse from "../../../hook/api/useApiQueryResponse";
 import useApiMutationResponse from "../../../hook/api/useApiMutationResponse";
 import useFormData from "../../../hook/form/useFormData";
-import {useGetModuleByIdQuery, useUpdateModuleMutation} from "../../module/api";
+import {useActivateModuleMutation, useGetModuleByIdQuery, useUpdateModuleMutation} from "../../module/api";
 
 import TermsContainer from "../../module/components/edit/termsContainer";
 import Toolbar from "../../module/components/edit/moduleToolBar";
+import {MODULE_DRAFT_STATUS} from "../../../constants/module";
 
 const ModuleEditPage = () => {
     const {id} = useParams();
 
     const [updateModule] = useApiMutationResponse(useUpdateModuleMutation(), {
-        successMessage: "The module was saved successfully and can be accessed for use!",
+        successMessage: "The module was saved successfully!",
+    });
+    const [activateModule] = useApiMutationResponse(useActivateModuleMutation(), {
+        successMessage: "The module was activated successfully and can be accessed for use!",
     });
     const queryResult = useGetModuleByIdQuery(id);
     const {data, isError, isFetching} = useApiQueryResponse(queryResult);
@@ -37,7 +41,15 @@ const ModuleEditPage = () => {
                 request: formData
             });
         } catch (error) {
-            console.error("Error deleting term:", error);
+            console.error("Error saving module:", error);
+        }
+    }
+
+    const onActivateModule = async () => {
+        try {
+            await activateModule(id);
+        } catch (error) {
+            console.error("Error activating module:", error);
         }
     }
 
@@ -46,13 +58,13 @@ const ModuleEditPage = () => {
             isLoading={isFetching}
             isError={isError}
             grayBackground
-            header={<Header onSave={onSaveModule}/>}
+            header={<Header status={formData.status} onSave={onSaveModule} onActivate={onActivateModule}/>}
             content={<Content formData={formData} handleChangeFormData={handleChangeFormData}/>}
         />
     )
 }
 
-const Header = ({onSave}) => {
+const Header = ({status, onSave, onActivate}) => {
     return (
         <FlexRow justify="space-between" align="flex-start">
             <StyledText
@@ -62,7 +74,7 @@ const Header = ({onSave}) => {
             >
                 Edit module
             </StyledText>
-            <FlexRow gap="10px">
+            <BaseButtonBar>
                 <PrimaryButton onClick={onSave}>
                     <StyledText
                         as="span"
@@ -72,7 +84,18 @@ const Header = ({onSave}) => {
                         Save
                     </StyledText>
                 </PrimaryButton>
-            </FlexRow>
+                {status === MODULE_DRAFT_STATUS ?
+                    <SecondaryButton onClick={onActivate}>
+                        <StyledText
+                            as="span"
+                            size={FONT_SIZES.SIMPLE_SMALL}
+                            weight={FONT_WEIGHTS.SEMI_BOLD}
+                        >
+                            Activate
+                        </StyledText>
+                    </SecondaryButton>
+                    : null}
+            </BaseButtonBar>
         </FlexRow>
     );
 };

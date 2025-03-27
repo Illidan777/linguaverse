@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {FlexCenter, FlexCol, FlexRow} from "../layout/wrapper/position/style";
-import {CloseIcon} from "../icon";
+import {CrossIcon} from "../icon";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../text";
 import React from "react";
 import {createPortal} from "react-dom";
@@ -34,7 +34,7 @@ const Modal = ({ title, opened, onClose, children }) => {
                                 {title}
                             </StyledText>
                             <ModalClose onClick={onClose}>
-                                <CloseIcon />
+                                <CrossIcon />
                             </ModalClose>
                         </ModalHeader>
                         <ModalContent>{children}</ModalContent>

@@ -11,6 +11,7 @@ import {BaseFallbackComponent} from "../../../components/layout/wrapper/boundary
 import ControllableErrorBoundary from "../../../components/layout/wrapper/boundary/controllableErrorBoundary";
 
 import useApiQueryResponse from "../../../hook/api/useApiQueryResponse";
+import {paths} from "../../../app/routes";
 
 const FoldersPage = () => {
     const [searchText, setSearchText] = useState("");
@@ -19,6 +20,10 @@ const FoldersPage = () => {
     const {data, isError, isFetching} = useApiQueryResponse(queryResult);
 
     const onSearch = useCallback((name) => setSearchText(name), [searchText]);
+
+    const getItemHref = (id) => {
+        return paths.folder.getHref(id)
+    }
 
     const items = data
         ? data.map((item) => {
@@ -33,7 +38,12 @@ const FoldersPage = () => {
 
     return (
         <ControllableErrorBoundary hasError={isError} fallback={<BaseFallbackComponent/>}>
-            <LibraryEntity isLoadingItems={isFetching} entityItems={items} onSearch={onSearch}/>
+            <LibraryEntity
+                isLoadingItems={isFetching}
+                entityItems={items}
+                onSearch={onSearch}
+                getItemHref={getItemHref}
+            />
         </ControllableErrorBoundary>
     );
 };

@@ -1,55 +1,56 @@
-import styled from "styled-components";
-import {
-    OutlinedButton,
-    PaddingStyledButton,
-    PrimaryButton,
-    SecondaryButton,
-    StyledButton,
-    TransparentPrimaryButton
-} from "../../components/button/style";
-import {PrimaryInput} from "../../components/input/style";
-import ContextMenu from "../../components/menu";
-import {useGetAllFoldersQuery} from "../folder/api";
+import DashboardPageLayout from "../../components/layout/page";
+import React from "react";
+import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../components/text";
+import {FlexCenter, FlexCol} from "../../components/layout/wrapper/position/style";
+import {PrimaryButton} from "../../components/button/style";
+import {useNavigate} from "react-router";
+import {paths} from "../../app/routes";
 
-const HomePage = () => {
+export default function HomePage() {
 
+    const navigate = useNavigate();
 
-    const {
-        data,
-        isLoading,
-        isError
-    } = useGetAllFoldersQuery();
-
-
-    console.log('home render')
     return (
-        <HomePageWrapper>
-            <StyledButton>
-                Just Styled
-            </StyledButton>
-            <OutlinedButton>
-                Outlined
-            </OutlinedButton>
-            <PrimaryButton>
-                Primary
-            </PrimaryButton>
-            <SecondaryButton>
-                Secondary
-            </SecondaryButton>
-            <PaddingStyledButton>Styled</PaddingStyledButton>
-            <TransparentPrimaryButton disabled>Trans[parent</TransparentPrimaryButton>
-            <PrimaryInput placeholder="Enter what you want to search"/>
-            <ContextMenu/>
+        <DashboardPageLayout
+            header={
+                <StyledText as="h2" size={FONT_SIZES.TITLE_MEDIUM} weight={FONT_WEIGHTS.SUPER_BOLD}>
+                    Welcome to Lingμverse
+                </StyledText>
+            }
+            content={
+                <FlexCol gap="30px">
+                    <StyledText as="p" size={FONT_SIZES.SIMPLE_MEDIUM} weight={FONT_WEIGHTS.REGULAR}>
+                        Dear visitor, welcome to My Language Learning App!
+                    </StyledText>
 
-        </HomePageWrapper>
-    )
-}
-const HomePageWrapper = styled.div`
-    padding: 50px;
-    background-color: var(--second-background-color);
-    width: 700px;
-    height: 100%;
-`
+                    <StyledText as="p" size={FONT_SIZES.SIMPLE_MEDIUM} weight={FONT_WEIGHTS.REGULAR}>
+                        This project is a simplified version of Quizlet, designed to help users learn and practice new
+                        words through interactive flashcards. In this app, you can create folders, organize modules with
+                        words, and reinforce your knowledge using different learning modes—currently, only the flashcard
+                        mode is implemented.
+                    </StyledText>
 
+                    <StyledText as="p" size={FONT_SIZES.SIMPLE_MEDIUM} weight={FONT_WEIGHTS.REGULAR}>
+                        This is an educational project aimed at strengthening my skills in React and front-end
+                        development. It is a full-stack application built using the following technologies:
+                    </StyledText>
 
-export default HomePage;
+                    <StyledText as="p" size={FONT_SIZES.SIMPLE_MEDIUM} weight={FONT_WEIGHTS.REGULAR}>
+                        🔹 <strong>Front-end:</strong> HTML, CSS, SCSS, JavaScript, React, Redux, RTK, Styled Components.<br/>
+                        🔹 <strong>Back-end:</strong> Java, Spring Boot, PostgreSQL, JPA, Hibernate.
+                    </StyledText>
+
+                    <StyledText as="p" size={FONT_SIZES.SIMPLE_MEDIUM} weight={FONT_WEIGHTS.REGULAR}>
+                        The goal of this project is to explore best practices in front-end and back-end development
+                        while building a functional and engaging language-learning tool. 🚀
+                    </StyledText>
+
+                    <FlexCenter>
+                        <PrimaryButton onClick={() => navigate(paths.library.index.getHref())}>Let`s start our
+                            journey</PrimaryButton>
+                    </FlexCenter>
+                </FlexCol>
+            }
+        />
+    );
+};

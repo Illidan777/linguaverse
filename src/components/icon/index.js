@@ -174,16 +174,30 @@ export const FolderIcon = () => {
     )
 }
 
-export const CloseIcon = () => {
+export const CrossIcon = ({ size = "22px", color = "black" }) => {
     return (
-        <svg width="22px" height="22px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 21.32L21 3.32001" stroke="#000000" strokeWidth="1.5" strokeLinecap="round"
+        <svg width={size} height={size} viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 21.32L21 3.32001" stroke={color} strokeWidth="1.5" strokeLinecap="round"
                   strokeLinejoin="round"/>
-            <path d="M3 3.32001L21 21.32" stroke="#000000" strokeWidth="1.5" strokeLinecap="round"
+            <path d="M3 3.32001L21 21.32" stroke={color} strokeWidth="1.5" strokeLinecap="round"
                   strokeLinejoin="round"/>
         </svg>
     )
 }
+
+export const CheckmarkIcon = ({ size = "22px", color = "black" }) => {
+    return (
+        <svg
+            width={size}
+            height={size}
+            viewBox="0 0 24 24"
+            fill={color}
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path d="M19.3,5.3L9,15.6l-4.3-4.3l-1.4,1.4l5,5L9,18.4l0.7-0.7l11-11L19.3,5.3z" />
+        </svg>
+    );
+};
 
 export const CompletedIcon = () => {
     return (
@@ -284,9 +298,19 @@ export const DownArrowIcon = ({color = "black", size = "22px"}) => {
 export const SaveIcon = ({color = "black", size = "22px"}) => {
     return (
         <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fillRule="evenodd" clipRule="evenodd"
-                  d="M6.75 6L7.5 5.25H16.5L17.25 6V19.3162L12 16.2051L6.75 19.3162V6ZM8.25 6.75V16.6838L12 14.4615L15.75 16.6838V6.75H8.25Z"
-                  fill={color}/>
+            <path
+                d="M19 19.2674V7.84496C19 5.64147 17.4253 3.74489 15.2391 3.31522C13.1006 2.89493 10.8994 2.89493 8.76089 3.31522C6.57467 3.74489 5 5.64147 5 7.84496V19.2674C5 20.6038 6.46752 21.4355 7.63416 20.7604L10.8211 18.9159C11.5492 18.4945 12.4508 18.4945 13.1789 18.9159L16.3658 20.7604C17.5325 21.4355 19 20.6038 19 19.2674Z"
+                stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    )
+}
+
+export const SavedIcon = ({color = "black", size = "22px"}) => {
+    return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M15.0309 3.30271C13.0299 2.8991 10.9701 2.8991 8.96913 3.30271C6.66186 3.76809 5 5.82231 5 8.20894V18.6292C5 20.4579 6.9567 21.596 8.51221 20.6721L11.3451 18.9895C11.7496 18.7492 12.2504 18.7492 12.6549 18.9895L15.4878 20.6721C17.0433 21.596 19 20.4579 19 18.6292V8.20894C19 5.82231 17.3381 3.76809 15.0309 3.30271Z"
+                fill={color}/>
         </svg>
     )
 }

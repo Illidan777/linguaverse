@@ -4,10 +4,11 @@ import {Spinner} from "react-bootstrap";
 
 const HomePage = lazy(() => import("../features/pages/HomePage"));
 const LibraryPage = lazy(() => import("../features/pages/LibraryPage"));
+const NotificationsPage = lazy(() => import("../features/pages/NotificationPage"));
 const ModulesPage = lazy(() => import("../features/pages/module/ModulesPage"));
-const ModuleItemPage = lazy(() => import("../features/pages/module/ModuleItemPage"));
+const ModuleItemPage = lazy(() => import("../features/pages/module/ModuleProfilePage"));
 const FoldersPage = lazy(() => import("../features/pages/folder/FoldersPage"));
-const FolderItemPage = lazy(() => import("../features/pages/folder/FolderItemPage"));
+const FolderItemPage = lazy(() => import("../features/pages/folder/FolderProfilePage"));
 const ModuleEditPage = lazy(() => import("../features/pages/module/ModuleEditPage"));
 const NotFoundPage = lazy(() => import("../features/pages/NotFoundPage"));
 
@@ -93,6 +94,10 @@ export const routes = [
     {
         path: paths.folder.path,
         element: Loadable(FolderItemPage),
+    },
+    {
+        path: paths.notifications.index.path,
+        element: Loadable(NotificationsPage),
     },
     {
         path: "*",

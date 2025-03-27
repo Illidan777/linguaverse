@@ -15,6 +15,7 @@ export const API_CONFIG = {
             list: 'Modules',
             profile: 'ModuleProfile',
             terms: 'ModuleTerms',
+            practice: 'Practice'
         },
     },
 }

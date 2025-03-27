@@ -45,7 +45,8 @@ export const folderApi = coreApi.injectEndpoints({
             invalidatesTags: [
                 API_CONFIG.folder.tags.list,
                 API_CONFIG.folder.tags.profile,
-                API_CONFIG.module.tags.list
+                API_CONFIG.module.tags.list,
+                API_CONFIG.module.tags.profile
             ],
         }),
         deleteModuleFromFolder: builder.mutation({
@@ -56,7 +57,8 @@ export const folderApi = coreApi.injectEndpoints({
             invalidatesTags: [
                 API_CONFIG.folder.tags.list,
                 API_CONFIG.folder.tags.profile,
-                API_CONFIG.module.tags.list
+                API_CONFIG.module.tags.list,
+                API_CONFIG.module.tags.profile
             ],
         }),
     }),

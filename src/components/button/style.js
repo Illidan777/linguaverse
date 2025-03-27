@@ -51,7 +51,8 @@ export const StyledButton = styled.button`
     font: inherit;
     justify-content: center;
     align-items: center;
-    width: fit-content;
+    width: ${(props) => props.width || "fit-content"};
+    height: ${(props) => props.height || "fit-content"};
     cursor: pointer;
     border: .125rem solid #0000;
     border-radius: var(--base-item-border-radius);

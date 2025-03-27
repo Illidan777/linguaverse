@@ -1,8 +1,13 @@
 import React from "react";
-import {useNavigate, useParams} from "react-router";
+import {useNavigate} from "react-router";
 
 import Modal, {ModalFooter} from "../../../../components/modal";
-import {PrimaryButton, SquareStyledButton, TransparentPrimaryButton} from "../../../../components/button/style";
+import {
+    PrimaryButton,
+    RoutingLink,
+    SquareStyledButton,
+    TransparentPrimaryButton
+} from "../../../../components/button/style";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../../components/text";
 import {AddIcon, AddIcon2, CompletedIcon} from "../../../../components/icon";
 
@@ -20,6 +25,7 @@ import {useCreateModuleMutation, useGetAllModulesQuery} from "../../../module/ap
 import {useAddModuleToFolderMutation, useDeleteModuleFromFolderMutation} from "../../api";
 
 import {paths} from "../../../../app/routes";
+import Tooltip from "../../../../components/tooltip";
 
 export default function AddModuleToFolderModal(props) {
     const {onClose, folderId} = props;
@@ -40,7 +46,7 @@ export default function AddModuleToFolderModal(props) {
     const {data, isError, isFetching} = useApiQueryResponse(queryResult);
 
     const onListItemAction = async (moduleId, isAlreadyAdded) => {
-        if( isAlreadyAdded ) {
+        if (isAlreadyAdded) {
             await onDeleteModuleToFolder(moduleId)
         } else {
             await onAddModuleToFolder(moduleId)
@@ -87,20 +93,24 @@ export default function AddModuleToFolderModal(props) {
         const alreadyAddedToFolder = folders.some((folder) => +folder.id === +folderId);
 
         return (
-            <ListItem
-                key={index}
-                name={name}
-                termsCount={termsCount}
-                author="you" // not implemented yet
-                action={
-                    <SquareStyledButton
-                        onClick={() => onListItemAction(id, alreadyAddedToFolder)}
-                    >
-                        {alreadyAddedToFolder ? <CompletedIcon/> : <AddIcon2/>}
-                    </SquareStyledButton>
-                }
-            >
-            </ListItem>
+            <RoutingLink to={paths.module.index.getHref(id)}>
+                <ListItem
+                    key={index}
+                    name={name}
+                    termsCount={termsCount}
+                    author="you" // not implemented yet
+                    action={
+                        <Tooltip text={alreadyAddedToFolder ? "Remove" : "Add"}>
+                            <SquareStyledButton
+                                onClick={() => onListItemAction(id, alreadyAddedToFolder)}
+                            >
+                                {alreadyAddedToFolder ? <CompletedIcon/> : <AddIcon2/>}
+                            </SquareStyledButton>
+                        </Tooltip>
+                    }
+                >
+                </ListItem>
+            </RoutingLink>
         )
     })
 

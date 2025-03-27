@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const Toggler = ({ onSwitch }) => {
-    const [switched, setSwitched] = useState(false);
+const Toggler = ({ onSwitch, initialPosition = false }) => {
+    const [switched, setSwitched] = useState(initialPosition);
 
     const handleToggle = () => {
         const newState = !switched;

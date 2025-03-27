@@ -1,13 +1,16 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 
+import {coreApi} from "../api";
+
+import modalSlice from "../components/modal/modalSlice";
 import navbarSlice from "../components/layout/page/navbar/state/navbarSlice";
 
-import {coreApi} from "../api";
-import modalSlice from "../components/modal/modalSlice";
+import practiceSlice from "../features/practice/state/practiceSlice";
 
 const rootReducer = combineReducers({
     navbar: navbarSlice,
     modal: modalSlice,
+    practice: practiceSlice,
     [coreApi.reducerPath]: coreApi.reducer,
 });
 

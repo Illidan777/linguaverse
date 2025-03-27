@@ -1,5 +1,4 @@
 import React from "react";
-import {useLocation} from "react-router";
 import styled from "styled-components";
 
 import {FlexCol, FlexRow} from "../../components/layout/wrapper/position/style";
@@ -19,14 +18,18 @@ import {
     LibraryItemHeader
 } from "./style";
 
-const LibraryEntity = ({isLoadingItems, entityItems, onSearch, groupBy}) => {
-
-    const {pathname} = useLocation();
+const LibraryEntity = ({
+                           isLoadingItems,
+                           entityItems,
+                           onSearch,
+                           groupBy,
+                           getItemHref
+                       }) => {
 
     const mapEntityItem = (entityItem) => {
         const {id, header, content} = entityItem;
         return (
-            <RoutingLink to={`${pathname}/${id}`} key={id}>
+            <RoutingLink to={getItemHref(id)} key={id}>
                 <LibraryEntityItem key={id} header={header} content={content}/>
             </RoutingLink>
         )

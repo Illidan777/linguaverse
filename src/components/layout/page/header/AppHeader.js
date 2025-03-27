@@ -70,7 +70,7 @@ const HeaderContextMenu = () => {
         successMessage: "Module draft has been successfully created. Fill and activate it to use!",
     });
 
-    const handleOpenAddModuleModal = () => {
+    const handleOpenCreateFolderModal = () => {
         dispatch(openModal({
             modalName: MODALS.createFolder.tag,
         }));
@@ -97,7 +97,7 @@ const HeaderContextMenu = () => {
                     </SquarePrimaryButton>
                 }
             >
-                <ContextMenuItem onClick={handleOpenAddModuleModal}>
+                <ContextMenuItem onClick={handleOpenCreateFolderModal}>
                     <FolderIcon/>
                     <StyledText
                         as="span"
