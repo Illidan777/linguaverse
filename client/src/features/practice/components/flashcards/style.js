@@ -7,7 +7,9 @@ export const FlashCardWrapper = styled(FlexRow)`
     width: 100%;
 `
 
-export const RotateableFlashCard = styled(FlexCol)`
+export const RotateableFlashCard = styled(FlexCol).withConfig({
+    shouldForwardProp: (prop) => !["zIndex", "flipped"].includes(prop)
+})`
     cursor: pointer;
     z-index: ${({zIndex}) => zIndex};
     backface-visibility: hidden;

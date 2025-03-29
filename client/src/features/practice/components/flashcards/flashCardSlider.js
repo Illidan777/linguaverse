@@ -15,6 +15,27 @@ import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../../components/text"
 import React from "react";
 import {FlashCardPracticeWrapper} from "./style";
 import Tooltip from "../../../../components/tooltip";
+import toast from "react-hot-toast";
+
+const progressPhrases = {
+    success: [
+        'Excellent!', 'Brilliant!', 'Good job!', 'Well done!', 'Awesome!',
+        'You nailed it!', 'Superb!', 'Keep up the great work!', 'Fantastic!',
+        'You are on fire!', 'Way to go!', 'Impressive!', 'You did it!',
+    ],
+    failure: [
+        'No worries, just keep going!', 'Next time will be better!', 'You are the best!',
+        'Stay positive, you’re learning!', 'It’s all part of the journey!', 'Every step counts!',
+        'Mistakes help you grow!', 'Keep trying, you’ll get it!', 'Learning is a process!',
+        'Progress, not perfection!', 'Believe in yourself!', 'You got this!',
+    ],
+};
+
+const getRandomPhrase = (category) => {
+    const phrases = progressPhrases[category];
+    return phrases[Math.floor(Math.random() * phrases.length)];
+};
+
 
 const FlashCardSlider = ({
                              followProgress,
@@ -30,6 +51,19 @@ const FlashCardSlider = ({
     const [updateTermStatus] = useApiMutationResponse(useUpdateTermStatusMutation(), {
         showSuccessToast: false,
     });
+    const updateStatus = async (termId, learned, currentIndex) => {
+        try {
+            await updateTermStatus({ id: moduleId, termId, learned, currentIndex });
+
+            if (followProgress) {
+                const toastText = getRandomPhrase(learned ? 'success' : 'failure');
+                toast.success(toastText);
+            }
+        } catch (error) {
+            console.error("Error updating term status:", error);
+            toast.error("Failed to update term status. Please try again.");
+        }
+    };
 
     const flashCards = data?.map((item, index) => {
         const {id, term, definition} = item;
@@ -51,7 +85,7 @@ const FlashCardSlider = ({
                                     followProgress={followProgress}
                                     approveButtonColor={successColor}
                                     declineButtonColor={errorColor}
-                                    updateTermStatus={updateTermStatus}
+                                    updateTermStatus={updateStatus}
                                     onFinishSlider={onFinishSlider}
                                 />
                             )}
@@ -77,15 +111,7 @@ const FlashCardsSliderControls = ({
                                       updateTermStatus,
                                       onFinishSlider
                                   }) => {
-    const {id, moduleId} = activeSlide?.props || {};
-
-    const updateStatus = async (learned, index) => {
-        try {
-            await updateTermStatus({id: moduleId, termId: id, learned, currentIndex: index});
-        } catch (error) {
-            console.error("Error updating term status:", error);
-        }
-    };
+    const {id} = activeSlide?.props || {};
 
     const changeSlide = (direction, learned = false) => {
         let newIndex = followProgress ? activeSlideIndex + 1 : activeSlideIndex + (direction === "next" ? 1 : -1);
@@ -97,10 +123,10 @@ const FlashCardsSliderControls = ({
         }
 
         if (activeSlideIndex >= totalSlides - 1) {
-            updateStatus(followProgress ? learned : false, newIndex);
+            updateTermStatus(id, followProgress ? learned : false, newIndex);
             onFinishSlider();
         } else {
-            updateStatus(followProgress ? learned : false, newIndex);
+            updateTermStatus(id, followProgress ? learned : false, newIndex);
         }
     };
 

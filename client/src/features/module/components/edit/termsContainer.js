@@ -15,6 +15,7 @@ import LoadingBoundary from "../../../../components/layout/wrapper/boundary/load
 import {BaseFallbackComponent} from "../../../../components/layout/wrapper/boundary/fallback/base";
 import ControllableErrorBoundary from "../../../../components/layout/wrapper/boundary/controllableErrorBoundary";
 import EmptyContentBoundary from "../../../../components/layout/wrapper/boundary/emptyContentBoundary";
+import Spinner from "../../../../components/spinner/Spinner";
 
 const TermsContainer = ({ moduleId }) => {
     const [createTerm] = useApiMutationResponse(useCreateTermMutation(), {

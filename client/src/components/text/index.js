@@ -27,28 +27,46 @@ const LINE_HEIGHTS = {
     SMALL: { default: 0.7, mobile: 0.7 },
 };
 
-const createStyledComponent = (tag, weight, size, color, lineHeight) => styled(tag)`
-    color: ${color};
-    font-weight: ${weight.basic};
-    font-size: ${size.basic};
-    line-height: ${lineHeight};
+const StyledComponent = styled.span.withConfig({
+    shouldForwardProp: (prop) => !["color", "weight", "size", "lineHeight"].includes(prop)
+})`
+    color: ${({ color }) => color};
+    font-weight: ${({ weight }) => weight.basic};
+    font-size: ${({ size }) => size.basic};
+    line-height: ${({ lineHeight }) => lineHeight};
 
     @media (max-width: 768px) {
-        font-size: ${size.mobile};
-        font-weight: ${weight.mobile};
+        font-size: ${({ size }) => size.mobile};
+        font-weight: ${({ weight }) => weight.mobile};
     }
 `;
 
-export const StyledText = ({
-                               as = "span",
-                               weight = FONT_WEIGHTS.REGULAR,
-                               size = FONT_SIZES.SIMPLE_SMALL,
-                               color = 'black',
-                               lineHeight = LINE_HEIGHTS.REGULAR,
-                               children
-                           }) => {
-    const Component = createStyledComponent(as, weight, size, color, lineHeight);
-    return <Component key={Math.floor(Math.random() * 100)}>{children}</Component>;
+StyledComponent.defaultProps = {
+    color: "black",
+    weight: FONT_WEIGHTS.REGULAR,
+    size: FONT_SIZES.SIMPLE_SMALL,
+    lineHeight: LINE_HEIGHTS.REGULAR
 };
 
-export {FONT_WEIGHTS, FONT_SIZES, LINE_HEIGHTS};
+export const StyledText = ({
+                               as = 'span',
+                               weight,
+                               size,
+                               color,
+                               lineHeight,
+                               children
+                           }) => {
+    return (
+        <StyledComponent
+            as={as}
+            weight={weight}
+            size={size}
+            color={color}
+            lineHeight={lineHeight}
+        >
+            {children}
+        </StyledComponent>
+    );
+};
+
+export { FONT_WEIGHTS, FONT_SIZES, LINE_HEIGHTS };

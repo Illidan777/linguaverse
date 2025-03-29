@@ -69,7 +69,7 @@ public class PracticeService implements IPracticeService {
             userTermProgress = optionalTerm.get();
         } else {
             userTermProgress = new UserTermProgress();
-            userTermProgress.setTerm(termService.getById(termId));
+            userTermProgress.setOriginTerm(termService.getById(termId));
             userTermProgress.setUserPractice(practice);
         }
         userTermProgress.setStatus(learned ? TermStatus.LEARNED : TermStatus.IN_PROGRESS);

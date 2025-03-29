@@ -1,5 +1,5 @@
-import Modal, {ModalFooter} from "../../../../components/modal";
-import {PrimaryButton} from "../../../../components/button/style";
+import Modal from "../../../../components/modal";
+import {BaseButtonBar, PrimaryButton} from "../../../../components/button/style";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../../components/text";
 import React, {useEffect, useState} from "react";
 import {FlexCol} from "../../../../components/layout/wrapper/position/style";
@@ -28,20 +28,24 @@ const ModuleSettingsModal = (props) => {
 
     const onSave = () => props.onClose();
 
-    // selected mode can be taken from API
+    const footer = (
+        <BaseButtonBar>
+            <PrimaryButton onClick={onSave}>
+                <StyledText as="span" size={FONT_SIZES.SIMPLE_SMALL} weight={FONT_WEIGHTS.SEMI_BOLD}>
+                    Save
+                </StyledText>
+            </PrimaryButton>
+        </BaseButtonBar>
+    )
     return (
-        <Modal {...props} title="Settings (temporarily not supported)">
+        <Modal
+            title="Settings (temporarily not supported)"
+            footer={footer}
+            {...props} >
             <Wrapper>
                 <AccessControlSection type="READ" label="Read" selectedMode={EVERYONE_ACCESS_MODE}/>
                 <AccessControlSection type="WRITE" label="Write" selectedMode={ONLY_ME_ACCESS_MODE}/>
             </Wrapper>
-            <ModalFooter>
-                <PrimaryButton onClick={onSave}>
-                    <StyledText as="span" size={FONT_SIZES.SIMPLE_SMALL} weight={FONT_WEIGHTS.SEMI_BOLD}>
-                        Save
-                    </StyledText>
-                </PrimaryButton>
-            </ModalFooter>
         </Modal>
     );
 };

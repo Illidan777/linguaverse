@@ -27,7 +27,7 @@ public class UserTermProgress extends AuditableEntity {
             referencedColumnName = "id",
             foreignKey = @ForeignKey(name = "fk_practice_to_origin_term")
     )
-    private Term term;
+    private Term originTerm;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

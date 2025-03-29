@@ -122,8 +122,12 @@ const Content = ({
                 value={description}
                 onChange={(e) => handleChangeFormData('description')(e.target.value)}
             />
-            <Toolbar moduleId={id}/>
-            <TermsContainer moduleId={id} terms={terms}/>
+            {id && (
+                <>
+                    <Toolbar moduleId={id}/>
+                    <TermsContainer moduleId={id} terms={terms}/>
+                </>
+            )}
         </FlexCol>
     );
 };

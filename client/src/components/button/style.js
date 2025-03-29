@@ -42,6 +42,7 @@ export const StyledLink = styled.a`
 
 export const RoutingLink = styled(Link)`
     text-decoration: none;
+    color: black;
 `
 
 export const StyledButton = styled.button`

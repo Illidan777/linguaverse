@@ -1,7 +1,7 @@
 import useCSSVariables from "../../../hook/useCSSVariables";
 import useApiMutationResponse from "../../../hook/api/useApiMutationResponse";
 import {useDeleteModuleFromFolderMutation} from "../api";
-import React, {useCallback} from "react";
+import React, {useCallback, useRef} from "react";
 import ListItem from "../../module/components/listItem";
 import ContextMenu, {ContextMenuItem} from "../../../components/menu";
 import {RoutingLink, SquareStyledButton} from "../../../components/button/style";
@@ -9,11 +9,14 @@ import {DeleteIcon, MoreIcon} from "../../../components/icon";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../components/text";
 import Tooltip from "../../../components/tooltip";
 import {paths} from "../../../app/routes";
+import {useNavigate} from "react-router";
 
 export default function FolderItem({folderId, module}) {
 
     const {id, name, termsCount} = module;
     const [errorColor] = useCSSVariables(["--error-color"])
+    const navigate = useNavigate();
+    const contextMenuRef = useRef(null);
     const [deleteModuleFromFolder] = useApiMutationResponse(useDeleteModuleFromFolderMutation(), {
         successMessage: "Module has been successfully deleted from current folder!",
     });
@@ -26,8 +29,14 @@ export default function FolderItem({folderId, module}) {
         }
     }, [])
 
+    const onItemNavigate = (e) => {
+        e.preventDefault();
+        if(contextMenuRef.current && !contextMenuRef.current.contains(e.target)) {
+            navigate(paths.module.index.getHref(id));
+        }
+    }
     return (
-        <RoutingLink to={paths.module.index.getHref(id)}>
+        <div onClick={onItemNavigate}>
             <ListItem
                 key={id}
                 name={name}
@@ -37,7 +46,7 @@ export default function FolderItem({folderId, module}) {
                     <ContextMenu
                         trigger={
                             <Tooltip text="More">
-                                <SquareStyledButton>
+                                <SquareStyledButton ref={contextMenuRef}>
                                     <MoreIcon/>
                                 </SquareStyledButton>
                             </Tooltip>
@@ -58,6 +67,6 @@ export default function FolderItem({folderId, module}) {
                 }
             >
             </ListItem>
-        </RoutingLink>
+        </div>
     )
 }

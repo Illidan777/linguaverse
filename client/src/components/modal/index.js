@@ -6,7 +6,7 @@ import React from "react";
 import {createPortal} from "react-dom";
 import {AnimatePresence, motion} from "framer-motion";
 
-const Modal = ({ title, opened, onClose, children }) => {
+const Modal = ({ title, opened, onClose, footer, children }) => {
     return createPortal(
         <AnimatePresence>
             {opened && (
@@ -38,6 +38,9 @@ const Modal = ({ title, opened, onClose, children }) => {
                             </ModalClose>
                         </ModalHeader>
                         <ModalContent>{children}</ModalContent>
+                        <ModalFooter>
+                            {footer}
+                        </ModalFooter>
                     </ModalDialog>
                 </ModalOverlay>
             )}
@@ -54,7 +57,7 @@ const ModalOverlay = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    //overflow: auto;
     background-color: rgba(0, 0, 0, .5);
     z-index: var(--z-index-modal-overlay);
 `
@@ -64,7 +67,8 @@ const ModalDialog = styled(FlexCol)`
     padding: 20px;
     position: relative;
     width: 50%;
-    //height: fit-content;
+    height: fit-content;
+    max-height: 80%;
     overflow: auto;
     border-radius: var(--base-item-border-radius);
     background-color: var(--main-background-color);
@@ -87,10 +91,12 @@ const ModalContent = styled(FlexCol)`
     overflow-y: auto;
 `
 
-export const ModalFooter = styled(FlexRow)`
+const ModalFooter = styled(FlexRow)`
     margin-top: 20px;
+    padding-top: 20px;
     justify-content: flex-end;
     align-items: center;
+    border-top: 1px solid var(--gray-light);
     gap: 10px;
 `
 

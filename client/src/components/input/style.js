@@ -41,17 +41,19 @@ export const SecondaryInput = styled(StyledInput)`
     }
 `
 
-export const InputWithIconContainer = styled.div`
+export const InputWithIconContainer = styled.div.withConfig({
+        shouldForwardProp: (prop) => prop !== "right"
+})`
     width: 100%;
     position: relative;
 
     input {
-        padding: ${({iconRightPosition}) => iconRightPosition ? '10px' : '10px 37px'};
+        padding: ${({right}) => right ? '10px' : '10px 37px'};
     }
 
     svg {
         position: absolute;
-        ${({iconRightPosition}) => iconRightPosition ?
+        ${({right}) => right ?
                 css`
                     right: 10px;
                 `

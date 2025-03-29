@@ -8,7 +8,9 @@ export const SlidesWrapper = styled(FlexRow)`
     height: 500px;
     perspective: 1000px;
 `
-export const SlideItem = styled.div`
+export const SlideItem = styled.div.withConfig({
+    shouldForwardProp: (prop) => !["active", "direction"].includes(prop)
+})`
     position: absolute;
     flex-shrink: 0;
     top: 0;

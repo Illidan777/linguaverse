@@ -2,6 +2,8 @@ package com.gorbasenko245.linguaverse_backend.domain.entity.module;
 
 import com.gorbasenko245.linguaverse_backend.domain.entity.AuditableEntity;
 import com.gorbasenko245.linguaverse_backend.domain.entity.folder.Folder;
+import com.gorbasenko245.linguaverse_backend.domain.entity.practice.UserPractice;
+import com.gorbasenko245.linguaverse_backend.domain.entity.practice.UserTermProgress;
 import com.gorbasenko245.linguaverse_backend.domain.entity.term.Term;
 import com.gorbasenko245.linguaverse_backend.domain.enums.ModuleStatus;
 import jakarta.persistence.*;
@@ -34,11 +36,16 @@ public class Module extends AuditableEntity {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OrderBy("orderNumber ASC")
-    @OneToMany(mappedBy = "module", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Term.class)
+    @OneToMany(mappedBy = "module", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Term.class, orphanRemoval = true)
     private List<Term> terms = new ArrayList<>();
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "modules", cascade = CascadeType.DETACH, fetch = FetchType.LAZY, targetEntity = Folder.class)
     private List<Folder> folders = new ArrayList<>();
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "module", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = UserPractice.class, orphanRemoval = true)
+    private List<UserPractice> practices = new ArrayList<>();
 }

@@ -13,6 +13,7 @@ import com.gorbasenko245.linguaverse_backend.repository.FolderRepository;
 import com.gorbasenko245.linguaverse_backend.service.IFolderService;
 import com.gorbasenko245.linguaverse_backend.service.IModuleService;
 import com.gorbasenko245.linguaverse_backend.utils.ValidationUtils;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,6 @@ public class FolderService implements IFolderService {
     @SneakyThrows
     @Override
     public List<BaseFolderDto> getAllFolders(final String name) {
-        Thread.sleep(2000);
         return folderRepository.findAll(name).stream()
                 .map(folderMapper::toBaseFolderDto)
                 .collect(Collectors.toList());
@@ -52,14 +52,13 @@ public class FolderService implements IFolderService {
         return folderMapper.toFolderDto(this.getById(id));
     }
 
+    @Transactional
     @Override
     public void deleteById(final Long id) {
         if (Objects.isNull(id)) {
             throw new ValidationException("Id cannot be null");
         }
-        if (!folderRepository.existsById(id)) {
-            throw new ResourceNotFoundException(String.format("Folder does not exist by id: %d", id), "This folder does not exist!");
-        }
+        folderRepository.deleteModuleLinks(id);
         folderRepository.deleteById(id);
     }
 

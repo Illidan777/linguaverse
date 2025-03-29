@@ -20,7 +20,9 @@ const TooltipWrapper = styled.div`
   display: inline-block;
 `;
 
-const TooltipText = styled.div`
+const TooltipText = styled.div.withConfig({
+    shouldForwardProp: (prop) => prop !== "visible"
+})`
   position: absolute;
   background-color: rgba(0, 0, 0, 0.75);
   color: #fff;

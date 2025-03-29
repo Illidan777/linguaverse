@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useRef} from "react";
 import {useNavigate} from "react-router";
 
 import Modal, {ModalFooter} from "../../../../components/modal";
 import {
+    BaseButtonBar,
     PrimaryButton,
     RoutingLink,
     SquareStyledButton,
@@ -92,8 +93,15 @@ export default function AddModuleToFolderModal(props) {
 
         const alreadyAddedToFolder = folders.some((folder) => +folder.id === +folderId);
 
+        const onItemNavigate = (e) => {
+            e.preventDefault();
+            if(!e.target.closest("button")) {
+                navigate(paths.module.index.getHref(id));
+                props.onClose()
+            }
+        }
         return (
-            <RoutingLink to={paths.module.index.getHref(id)}>
+            <div onClick={onItemNavigate}>
                 <ListItem
                     key={index}
                     name={name}
@@ -110,12 +118,30 @@ export default function AddModuleToFolderModal(props) {
                     }
                 >
                 </ListItem>
-            </RoutingLink>
+            </div>
         )
     })
 
+    const footer = (
+        <BaseButtonBar>
+            <PrimaryButton
+                onClick={onClose}
+            >
+                <StyledText
+                    as="span"
+                    size={FONT_SIZES.SIMPLE_SMALL}
+                    weight={FONT_WEIGHTS.SEMI_BOLD}
+                >
+                    Ready
+                </StyledText>
+            </PrimaryButton>
+        </BaseButtonBar>
+    )
     return (
-        <Modal {...props} title="Add to folder">
+        <Modal
+            title="Add to folder"
+            footer={footer}
+            {...props}>
             <FlexCol gap="20px">
                 <FlexRow justify="flex-end">
                     <TransparentPrimaryButton onClick={onCreateModule}>
@@ -138,19 +164,6 @@ export default function AddModuleToFolderModal(props) {
                     </ControllableErrorBoundary>
                 </LoadingBoundary>
             </FlexCol>
-            <ModalFooter>
-                <PrimaryButton
-                    onClick={onClose}
-                >
-                    <StyledText
-                        as="span"
-                        size={FONT_SIZES.SIMPLE_SMALL}
-                        weight={FONT_WEIGHTS.SEMI_BOLD}
-                    >
-                        Ready
-                    </StyledText>
-                </PrimaryButton>
-            </ModalFooter>
         </Modal>
     )
 };

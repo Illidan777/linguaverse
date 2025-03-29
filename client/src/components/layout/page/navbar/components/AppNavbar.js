@@ -8,22 +8,24 @@ const AppNavbar = () => {
 
     return (
         <aside>
-            <Navbar openedNavbar={openedNavbar}>
+            <Navbar opened={openedNavbar}>
                 <NavMenu openedNavbar={openedNavbar}/>
             </Navbar>
         </aside>
     )
 }
 
-const Navbar = styled.nav`
+const Navbar = styled.nav.withConfig({
+    shouldForwardProp: (prop) => prop !== "opened"
+})`
     padding: 10px;
     min-height: 100%;
-    width: ${({openedNavbar}) => openedNavbar ? 25 : 7}vh;
+    width: ${({ opened }) => (opened ? 25 : 7)}vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     transition: all 0.2s;
-`
+`;
 
 export default AppNavbar

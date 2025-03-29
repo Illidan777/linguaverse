@@ -1,15 +1,27 @@
 import styled from "styled-components";
 
-const Flex = styled.div`
+const Flex = styled.div.withConfig({
+    shouldForwardProp: (prop) => !["direction", "justify", "align", "wrap", "gap", "width", "height"].includes(prop)
+})`
     display: flex;
-    flex-direction: ${(props) => props.direction || "row"};
-    justify-content: ${(props) => props.justify || "flex-start"};
-    align-items: ${(props) => props.align || "stretch"};
-    flex-wrap: ${(props) => props.wrap || "nowrap"};
-    gap: ${(props) => props.gap || "0"};
-    width: ${(props) => props.width || "auto"};
-    height: ${(props) => props.height || "auto"};
+    flex-direction: ${(props) => props.direction};
+    justify-content: ${(props) => props.justify};
+    align-items: ${(props) => props.align};
+    flex-wrap: ${(props) => props.wrap};
+    gap: ${(props) => props.gap};
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
 `;
+
+Flex.defaultProps = {
+    direction: "row",
+    justify: "flex-start",
+    align: "stretch",
+    wrap: "nowrap",
+    gap: "0",
+    width: "auto",
+    height: "auto"
+};
 
 export const FlexRow = styled(Flex).attrs({ direction: "row" })``;
 export const FlexCenter = styled(Flex).attrs({ justify: "center", align: "center" })``;

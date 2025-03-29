@@ -29,6 +29,7 @@ export default function ModuleProfileHeader({moduleData: {id, name, folders}}) {
     const handleDeleteModule = async () => {
         try {
             await deleteModule(id);
+            navigate(paths.library.modules.getHref())
         } catch (error) {
             console.error("Error deleting module:", error);
         }

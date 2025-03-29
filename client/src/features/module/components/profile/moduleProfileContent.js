@@ -57,7 +57,7 @@ const Practice = ({moduleId}) => {
                     finished={finished}
                     onFinishPractice={onResetPractice}
                 />
-                <TermsProgressTable termsCount={termsCount} inProgressTerms={inProgressTerms} learnedTerms={learnedTerms}/>
+                <TermsProgressTable moduleId={moduleId} termsCount={termsCount} inProgressTerms={inProgressTerms} learnedTerms={learnedTerms}/>
             </ControllableErrorBoundary>
         </LoadingBoundary>
     );

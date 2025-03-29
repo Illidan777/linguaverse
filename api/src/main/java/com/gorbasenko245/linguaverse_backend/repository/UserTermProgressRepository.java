@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface UserTermProgressRepository extends JpaRepository<UserTermProgress, Long> {
 
-    @Query("select utp from UserTermProgress utp where utp.term.id = :termId and utp.userPractice.id = :userPracticeId")
+    @Query("select utp from UserTermProgress utp where utp.originTerm.id = :termId and utp.userPractice.id = :userPracticeId")
     Optional<UserTermProgress> findByTerm_IdAndUserPractice_Id(@Param("termId") Long termId, @Param("userPracticeId") Long userPracticeId);
 }

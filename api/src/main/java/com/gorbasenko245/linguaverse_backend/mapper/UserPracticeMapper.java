@@ -1,7 +1,6 @@
 package com.gorbasenko245.linguaverse_backend.mapper;
 
 import com.gorbasenko245.linguaverse_backend.domain.dto.practice.UserPracticeDto;
-import com.gorbasenko245.linguaverse_backend.domain.entity.module.Module;
 import com.gorbasenko245.linguaverse_backend.domain.entity.practice.UserPractice;
 import com.gorbasenko245.linguaverse_backend.domain.entity.practice.UserTermProgress;
 import com.gorbasenko245.linguaverse_backend.domain.entity.term.Term;
@@ -39,12 +38,12 @@ public class UserPracticeMapper {
 
         Set<Long> learnedTermIds = userTermProgressList.stream()
                 .filter(term -> term.getStatus() == TermStatus.LEARNED)
-                .map(progress -> progress.getTerm().getId())
+                .map(progress -> progress.getOriginTerm().getId())
                 .collect(Collectors.toSet());
 
         Set<Long> inProgressTermIds = userTermProgressList.stream()
                 .filter(term -> term.getStatus() == TermStatus.IN_PROGRESS || term.getStatus() == TermStatus.NOT_STARTED)
-                .map(progress -> progress.getTerm().getId())
+                .map(progress -> progress.getOriginTerm().getId())
                 .collect(Collectors.toSet());
 
         List<Term> learnedTerms = fullTermList.stream()

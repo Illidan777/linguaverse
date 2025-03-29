@@ -80,8 +80,7 @@ const NavMenuItem = ({
         <li>
             <RoutingLink to={path}>
                 <MenuItem
-                    showFull={showFull}
-                    bgColor={background}
+                    bg={background}
                 >
                     {icon({color: text})}
                     {showFull && (
@@ -107,19 +106,18 @@ const Menu = styled.ul`
     flex-direction: column;
 `
 
-const MenuItem = styled(TransparentPrimaryButton)`
+const MenuItem = styled(TransparentPrimaryButton).withConfig({
+    shouldForwardProp: (prop) => prop !== "bg"
+})`
     min-width: 100%;
     gap: 20px;
     justify-content: flex-start;
-    
-    // if color props received - use it for bg and hover (selected item),
-    // otherwise inherit bg-color and hover from parent component
-    background-color: ${({ bgColor }) => bgColor || "inherit"};
+
+    background-color: ${({ bg }) => bg || "inherit"};
 
     &:hover {
-        background-color: ${({ bgColor }) => bgColor || "inherit"};
+        background-color: ${({ bg }) => bg || "inherit"};
     }
-
 `;
 
 export default NavMenu;

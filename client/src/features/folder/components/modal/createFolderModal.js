@@ -1,6 +1,6 @@
-import Modal, {ModalFooter} from "../../../../components/modal";
+import Modal from "../../../../components/modal";
 import {PrimaryInput} from "../../../../components/input/style";
-import {PrimaryButton} from "../../../../components/button/style";
+import {BaseButtonBar, PrimaryButton} from "../../../../components/button/style";
 import React, {useState} from "react";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../../../components/text";
 import useApiMutationResponse from "../../../../hook/api/useApiMutationResponse";
@@ -24,8 +24,27 @@ export default function CreateFolderModal(props) {
         }
     }
 
+    const footer = (
+        <BaseButtonBar>
+            <PrimaryButton
+                disabled={folderName.length === 0}
+                onClick={onCreateFolder}
+            >
+                <StyledText
+                    as="span"
+                    size={FONT_SIZES.SIMPLE_SMALL}
+                    weight={FONT_WEIGHTS.SEMI_BOLD}
+                >
+                    Create folder
+                </StyledText>
+            </PrimaryButton>
+        </BaseButtonBar>
+    )
     return (
-        <Modal {...props} title="Create new folder">
+        <Modal
+            title="Create new folder"
+            footer={footer}
+            {...props} >
             <PrimaryInput
                 placeholder="Name"
                 onChange={(e) => {
@@ -33,20 +52,6 @@ export default function CreateFolderModal(props) {
                 }}
                 value={folderName}
             />
-            <ModalFooter>
-                <PrimaryButton
-                    disabled={folderName.length === 0}
-                    onClick={onCreateFolder}
-                >
-                    <StyledText
-                        as="span"
-                        size={FONT_SIZES.SIMPLE_SMALL}
-                        weight={FONT_WEIGHTS.SEMI_BOLD}
-                    >
-                        Create folder
-                    </StyledText>
-                </PrimaryButton>
-            </ModalFooter>
         </Modal>
     )
 };

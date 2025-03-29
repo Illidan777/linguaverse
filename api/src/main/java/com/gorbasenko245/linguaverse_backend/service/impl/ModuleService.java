@@ -17,6 +17,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -64,9 +65,9 @@ public class ModuleService implements IModuleService {
         if (Objects.isNull(id)) {
             throw new ValidationException("Id cannot be null");
         }
-        if (!moduleRepository.existsById(id)) {
-            throw new ResourceNotFoundException(String.format("Module does not exist by id: %d", id), "This folder does not exist!");
-        }
+        final Module module = this.getById(id);
+        moduleRepository.deleteFolderLinks(id);
+
         moduleRepository.deleteById(id);
     }
 

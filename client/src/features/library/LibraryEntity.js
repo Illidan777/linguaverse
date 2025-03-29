@@ -40,12 +40,12 @@ const LibraryEntity = ({
     if (groupBy) {
         itemsGap = "50px"
         const groups = groupBy(entityItems);
-        for (const group in groups) {
-            const groupItems = groups[group].map(mapEntityItem)
+        Object.entries(groups).forEach(([group, items], index) => {
+            const groupItems = items.map(mapEntityItem);
             renderItems.push(
-                <LibraryEntityItemGroup name={group} items={groupItems}/>
-            )
-        }
+                <LibraryEntityItemGroup key={index} name={group} items={groupItems} />
+            );
+        });
     } else {
         renderItems = entityItems.map(mapEntityItem)
     }
@@ -53,7 +53,7 @@ const LibraryEntity = ({
     return (
         <FlexCol>
             <SearchPanel>
-                <InputWithIconContainer iconRightPosition>
+                <InputWithIconContainer right>
                     <SecondaryInput placeholder="Find items" onChange={(e) => onSearch(e.target.value)}/>
                     <SearchIcon/>
                 </InputWithIconContainer>
