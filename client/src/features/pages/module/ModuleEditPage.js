@@ -53,8 +53,23 @@ const ModuleEditPage = () => {
         }
     }
 
+    const meta = (
+        <>
+            <meta
+                name="description"
+                content={`Edit the ${formData.name} module.`}
+            />
+            <meta
+                name="keywords"
+                content="learning module, terms, educational"
+            />
+            <meta name="robots" content="index, follow"/>
+            <title>{`Edit - ${formData.name}`}</title>
+        </>
+    );
     return (
         <DashboardPageLayout
+            meta={meta}
             isLoading={isFetching}
             isError={isError}
             grayBackground

@@ -23,7 +23,7 @@ const LibraryEntity = ({
                            entityItems,
                            onSearch,
                            groupBy,
-                           getItemHref
+                           getItemHref,
                        }) => {
 
     const mapEntityItem = (entityItem) => {

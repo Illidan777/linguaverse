@@ -17,7 +17,6 @@ import {toggleFinishedPractice} from "../state/practiceSlice";
 
 const PracticeResult = ({inProgressCount = 0, learnedCount = 0}) => {
     const [grayColor, successColor] = useCSSVariables(["--gray", "--success-color"]);
-    console.log(inProgressCount, learnedCount)
 
     const data = useMemo(() => [
         ["Status", "Count"],

@@ -21,8 +21,23 @@ export default function ModuleProfilePage() {
     const {data, isError, isFetching} = useApiQueryResponse(queryResult);
     const moduleData = data ? data : {};
 
+    const meta = (
+        <>
+            <meta
+                name="description"
+                content={`Explore the ${moduleData.name} module and learn core terms.`}
+            />
+            <meta
+                name="keywords"
+                content="learning module, terms, educational"
+            />
+            <meta name="robots" content="index, follow" />
+            <title>{moduleData.name}</title>
+        </>
+    );
     return (
         <DashboardPageLayout
+            meta={meta}
             isError={isError}
             isLoading={isFetching}
             header={<ModuleProfileHeader moduleData={moduleData}/>}

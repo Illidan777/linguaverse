@@ -56,8 +56,6 @@ const AccessControlSection = ({type, label, selectedMode}) => {
         write: ""
     });
 
-    console.log('render')
-
     //todo  this hook produces one more extra render
     useEffect(() => {
         if(selectedMode) {

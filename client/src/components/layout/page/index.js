@@ -14,7 +14,8 @@ const DashboardPageLayout = ({
                                  header,
                                  content,
                                  redirectCondition,
-                                 redirectTo
+                                 redirectTo,
+                                 meta
                              }) => {
     const navigate = useNavigate();
     const [isChecking, setIsChecking] = useState(true);
@@ -28,12 +29,13 @@ const DashboardPageLayout = ({
     }, [redirectCondition, redirectTo, navigate]);
 
     if (isChecking) {
-        return <Spinner />;
+        return <Spinner/>;
     }
 
     return (
         <LoadingBoundary isLoading={isLoading}>
             <ControllableErrorBoundary hasError={isError} fallback={<BaseFallbackComponent/>}>
+                {meta}
                 <DashboardPageContainer bg={grayBackground}>
                     <DashboardPage>
                         <DashboardPageHeader>{header}</DashboardPageHeader>
@@ -52,7 +54,7 @@ export const DashboardPageContainer = styled.div.withConfig({
 })`
     margin: 0 auto;
     padding: 50px 300px;
-    background-color: ${({ bg }) => (bg ? `var(--second-background-color)` : `var(--main-background-color)`)};
+    background-color: ${({bg}) => (bg ? `var(--second-background-color)` : `var(--main-background-color)`)};
 `;
 
 export const DashboardPage = styled(FlexCol)`

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {FlexCol} from "../../components/layout/wrapper/position/style";
 import {FONT_SIZES, FONT_WEIGHTS, StyledText} from "../../components/text";
 import {Outlet} from "react-router";
 import {RoutingLink} from "../../components/button/style";
@@ -21,26 +20,38 @@ const LIBRARY_TAB_ITEMS = [
 
 const LibraryPage = () => {
     const tabItems = LIBRARY_TAB_ITEMS.map((item, index) =>
-        <LibraryNavigationTab item={item} key={index} />
+        <LibraryNavigationTab item={item} key={index}/>
+    )
+
+    const meta = (
+        <>
+            <meta name="description"
+                  content="Explore and learn terms with our library of modules and folders. Create lists and enhance your knowledge with an intuitive interface for working with terms."/>
+            <meta name="keywords"
+                  content="library, modules, terms, folders, educational materials, learning app, term list"/>
+            <meta name="robots" content="index, follow"/>
+            <title>Library - Learning Modules and Terms</title>
+        </>
     )
     return (
         <DashboardPageLayout
+            meta={meta}
             grayBackground
             header={
-            <>
-                <StyledText
-                    as="h2"
-                    size={FONT_SIZES.TITLE_MEDIUM}
-                    weight={FONT_WEIGHTS.SUPER_BOLD}
-                >
-                    Your library
-                </StyledText>
-                <LibraryNavigationBar>
-                    <AssemblyTabs>
-                        {tabItems}
-                    </AssemblyTabs>
-                </LibraryNavigationBar>
-            </>
+                <>
+                    <StyledText
+                        as="h2"
+                        size={FONT_SIZES.TITLE_MEDIUM}
+                        weight={FONT_WEIGHTS.SUPER_BOLD}
+                    >
+                        Your library
+                    </StyledText>
+                    <LibraryNavigationBar>
+                        <AssemblyTabs>
+                            {tabItems}
+                        </AssemblyTabs>
+                    </LibraryNavigationBar>
+                </>
             }
             content={
                 <Outlet/>

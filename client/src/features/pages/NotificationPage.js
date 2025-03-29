@@ -10,8 +10,22 @@ export default function NotificationPage() {
 
     const navigate = useNavigate();
 
+    const meta = (
+        <>
+            <meta
+                name="description"
+                content="Manage your internal push notifications. View received notifications and set preferences to tailor your experience."
+            />
+            <meta
+                name="keywords"
+                content="internal push notifications, notification settings, alert preferences, user notifications"
+            />
+            <meta name="robots" content="index, follow" />
+            <title>Notifications</title>
+        </>
+    );
     return (
-        <DashboardPageLayout
+        <DashboardPageLayout meta={meta}
             header={
                 <StyledText as="h2" size={FONT_SIZES.TITLE_MEDIUM} weight={FONT_WEIGHTS.SUPER_BOLD}>
                     Notifications

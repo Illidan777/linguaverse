@@ -20,20 +20,21 @@ function AppRoutes() {
 
 function App() {
     return (
-        <ErrorBoundary fallback={<BaseFallbackComponent/>}>
-            <BrowserRouter>
-                <AppHeader/>
-                <Site>
-                    <AppNavbar/>
-                    <Main>
-                        <AppRoutes/>
-                    </Main>
-                </Site>
-                <AppFooter/>
-                <Toaster/>
-                <ModalManager/>
-            </BrowserRouter>
-        </ErrorBoundary>
+            <ErrorBoundary fallback={<BaseFallbackComponent/>}>
+                <BrowserRouter>
+                    <AppHeader/>
+                    <Site>
+                        <AppNavbar/>
+                        <Main>
+                            <AppRoutes/>
+                        </Main>
+                    </Site>
+                    <AppFooter/>
+                    <Toaster/>
+                    <ModalManager/>
+                </BrowserRouter>
+            </ErrorBoundary>
+
     );
 }
 

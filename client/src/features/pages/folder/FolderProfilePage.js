@@ -27,8 +27,23 @@ export default function FolderProfilePage() {
         <FolderItem key={index} folderId={id} module={module}/>
     )
 
+    const meta = (
+        <>
+            <meta
+                name="description"
+                content={`Edit the ${name} folder.`}
+            />
+            <meta
+                name="keywords"
+                content="learning module, terms, educational, folder"
+            />
+            <meta name="robots" content="index, follow" />
+            <title>{name}</title>
+        </>
+    );
     return (
         <DashboardPageLayout
+            meta={meta}
             isLoading={isFetching}
             isError={isError}
             header={

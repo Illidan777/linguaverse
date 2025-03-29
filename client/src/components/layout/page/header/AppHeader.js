@@ -79,7 +79,6 @@ const HeaderContextMenu = () => {
     const onCreateModule = async () => {
         try {
             const data = await createModule();
-            console.log(data)
             const {id} = !data ? {} : data;
 
             navigate(paths.module.edit.getHref(id));

@@ -10,8 +10,22 @@ export default function HomePage() {
 
     const navigate = useNavigate();
 
+    const meta = (
+        <>
+            <meta
+                name="description"
+                content="Welcome to the ultimate learning platform. Explore modules, manage terms, and enhance your knowledge with our interactive library and notifications."
+            />
+            <meta
+                name="keywords"
+                content="learning platform, interactive library, study modules, educational app, terms, push notifications"
+            />
+            <meta name="robots" content="index, follow" />
+            <title>Home - Learning Platform</title>
+        </>
+    );
     return (
-        <DashboardPageLayout
+        <DashboardPageLayout meta={meta}
             header={
                 <StyledText as="h2" size={FONT_SIZES.TITLE_MEDIUM} weight={FONT_WEIGHTS.SUPER_BOLD}>
                     Welcome to Lingμverse
