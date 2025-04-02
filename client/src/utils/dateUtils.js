@@ -1,11 +1,24 @@
+/**
+ * Utility functions for classifying dates based on relative time periods (Today, Yesterday, This Week, etc.)
+ *
+ * @file dateUtils.js
+ */
+
 const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
 
+/**
+ * Classifies the given date string into a relative time period (Today, Yesterday, This week, etc.)
+ *
+ * @param {string} stringDate - A string representing the date to classify
+ * @returns {string} A string representing the relative time period
+ */
 export const classifyDate = (stringDate) => {
-    const today = new Date();
-    const date = new Date(stringDate);
+    const today = new Date(); // Get today's date
+    const date = new Date(stringDate); // Convert the string date to a Date object
 
+    // Compare the provided date with today's date
     if (date.setHours(0,0,0,0) === today.setHours(0,0,0,0)) {
         return 'Today';
     } else if (date.setHours(0,0,0,0) === new Date(new Date().setDate(new Date().getDate()-1)).setHours(0,0,0,0)) {
@@ -16,11 +29,17 @@ export const classifyDate = (stringDate) => {
         return 'Last week';
     } else if (date.getMonth() === today.getMonth()) {
         return 'This month';
-    } else if (date.getMonth() < today.getMonth()) {
+    } else if (date.getMonth() < today.getMonth()) {  // If input date in previous month, return the month name with year
         return monthNames[date.getMonth()] + ' ' + date.getFullYear();
     }
 }
 
+/**
+ * Determines whether a given date is within the current week.
+ *
+ * @param {Date} date - The date to check
+ * @returns {boolean} True if the date is in the current week, otherwise false
+ */
 const isDateInThisWeek = (date) => {
     const todayObj = new Date();
     const todayDate = todayObj.getDate();
@@ -37,6 +56,12 @@ const isDateInThisWeek = (date) => {
     return date >= firstDayOfWeek && date <= lastDayOfWeek;
 }
 
+/**
+ * Determines whether a given date is within the previous week.
+ *
+ * @param {Date} date - The date to check
+ * @returns {boolean} True if the date is in the previous week, otherwise false
+ */
 const isDateInPreviousWeek = (date) => {
     const todayObj = new Date();
     const todayDate = todayObj.getDate();

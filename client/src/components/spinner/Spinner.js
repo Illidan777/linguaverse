@@ -1,12 +1,24 @@
-import styled from "styled-components";
-import {FlexCenter} from "../layout/wrapper/position/style";
+/**
+ * Spinner Component
+ * A simple animated SVG spinner wrapped in a flex container.
+ */
 
+import styled from "styled-components";
+import { FlexCenter } from "../layout/wrapper/position/style";
+
+/**
+ * Styled SVG for the spinner.
+ * Adjusts width, height, and rotation animation.
+ */
 const StyledSpinner = styled.svg`
-    width: ${({size}) => size};
-    height: ${({size}) => size};
+    width: ${({ size }) => size};
+    height: ${({ size }) => size};
     animation: rotate 2s linear infinite;
     transform-origin: center;
 
+    /**
+     * Defines the rotation animation for the spinner.
+     */
     @keyframes rotate {
         from {
             transform: rotate(0deg);
@@ -17,6 +29,10 @@ const StyledSpinner = styled.svg`
     }
 `;
 
+/**
+ * Spinner component.
+ * @param {string} size - Size of the spinner (default: "200px").
+ */
 const Spinner = ({ size = "200px" }) => {
     return (
         <FlexCenter>

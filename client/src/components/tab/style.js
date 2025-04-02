@@ -1,9 +1,18 @@
 import styled, {css} from "styled-components";
 
+/**
+ * Assembly Tabs Component
+ * A styled unordered list for tab navigation.
+ */
 export const AssemblyTabs = styled.ul`
     display: flex;
-`
+`;
 
+/**
+ * Assembly Tab Component
+ * Represents a single tab with a hover and selection effect.
+ * @param {boolean} selected - Indicates if the tab is currently selected.
+ */
 export const AssemblyTab = styled.li`
     display: flex;
     padding: 10px;
@@ -30,4 +39,4 @@ export const AssemblyTab = styled.li`
     &:hover:after {
         background: var(--lavanda);
     }
-`
+`;

@@ -1,23 +1,41 @@
-import React, {lazy, Suspense} from "react";
-import {Navigate} from "react-router";
-import {Spinner} from "react-bootstrap";
+/**
+ * Application Routing Configuration
+ *
+ * This file defines the application's route structure, lazy-loaded components,
+ * and dynamic path management.
+ */
 
-const HomePage = lazy(() => import("../features/pages/HomePage"));
-const LibraryPage = lazy(() => import("../features/pages/LibraryPage"));
-const NotificationsPage = lazy(() => import("../features/pages/NotificationPage"));
-const ModulesPage = lazy(() => import("../features/pages/module/ModulesPage"));
-const ModuleItemPage = lazy(() => import("../features/pages/module/ModuleProfilePage"));
-const FoldersPage = lazy(() => import("../features/pages/folder/FoldersPage"));
-const FolderItemPage = lazy(() => import("../features/pages/folder/FolderProfilePage"));
-const ModuleEditPage = lazy(() => import("../features/pages/module/ModuleEditPage"));
-const NotFoundPage = lazy(() => import("../features/pages/NotFoundPage"));
+// React imports for lazy loading and suspense handling
+import React, { lazy, Suspense } from "react";
+import { Navigate } from "react-router";
+import { Spinner } from "react-bootstrap";
 
+// Lazy-loaded page components for optimized performance
+const HomePage = lazy(() => import("../features/page/home/HomePage"));
+const LibraryPage = lazy(() => import("../features/page/library/LibraryPage"));
+const NotificationsPage = lazy(() => import("../features/page/notification/NotificationPage"));
+const ModulesPage = lazy(() => import("../features/page/module/ModulesPage"));
+const ModuleItemPage = lazy(() => import("../features/page/module/ModuleProfilePage"));
+const FoldersPage = lazy(() => import("../features/page/folder/FoldersPage"));
+const FolderItemPage = lazy(() => import("../features/page/folder/FolderProfilePage"));
+const ModuleEditPage = lazy(() => import("../features/page/module/ModuleEditPage"));
+const NotFoundPage = lazy(() => import("../features/page/NotFoundPage"));
+
+/**
+ * Higher-order component to wrap lazy-loaded components with a fallback spinner.
+ *
+ * @param {React.ComponentType} Component - The component to wrap.
+ * @returns {JSX.Element} Suspense-wrapped component with a loading indicator.
+ */
 const Loadable = (Component) => (
-    <Suspense fallback={<Spinner/>}>
-        <Component/>
+    <Suspense fallback={<Spinner />}>
+        <Component />
     </Suspense>
 );
 
+/**
+ * Object defining application paths and helper functions to generate URLs dynamically.
+ */
 export const paths = {
     index: {
         path: '/',
@@ -35,7 +53,7 @@ export const paths = {
         folders: {
             path: 'folders',
             getHref: () => '/library/folders',
-        }
+        },
     },
     notifications: {
         index: {
@@ -59,6 +77,9 @@ export const paths = {
     },
 };
 
+/**
+ * Array defining application routes, their corresponding components, and behaviors.
+ */
 export const routes = [
     {
         path: paths.index.path,
@@ -71,7 +92,7 @@ export const routes = [
         children: [
             {
                 index: true,
-                element: <Navigate to={paths.library.modules.path} replace/>,
+                element: <Navigate to={paths.library.modules.path} replace />,
             },
             {
                 path: paths.library.modules.path,

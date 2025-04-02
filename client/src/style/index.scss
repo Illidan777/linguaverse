@@ -1,5 +1,16 @@
+/**
+ * Global Styles and Theme Configuration
+ *
+ * This file sets up the global styles, font family, root CSS variables for colors, spacing,
+ * z-index layers, and various utility classes for consistent design across the application.
+ *
+ * @file global.scss
+ */
+
+// Importing the Inconsolata font from Google Fonts
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
 
+/* Global reset and styling */
 * {
   font-family: "Inconsolata", serif;
   font-optical-sizing: auto;
@@ -9,22 +20,30 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; // Enable smooth scrolling across the page
 }
 
+/* Removing margins for all heading elements */
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
 body {
+  /* Add body-specific styles if necessary, currently empty */
 }
 
-a:visited {color:#0000;}
+/* Links */
+a:visited {
+  color:#0000;  // Prevent visited link color (transparent)
+}
 
+/* Root CSS variables for theme and color management */
 :root {
+  /* Simple colors */
   --white: #ffffff;
   --black: #000000;
 
+  /* Shades of gray for various backgrounds and text */
   --gray-darkest: #000000;
   --gray-dark: #939bb4;
   --gray: #d9dde8;
@@ -32,6 +51,7 @@ a:visited {color:#0000;}
   --gray-lighter: #f6f7fb;
   --gray-lightest: #fff;
 
+  /* Sky-themed colors */
   --sky-darkest: #3366cc;
   --sky-darker: #5a8ae6;
   --sky-dark: #7aa7f2;
@@ -40,6 +60,7 @@ a:visited {color:#0000;}
   --sky-lighter: #d9eaff;
   --sky-lightest: #edf5ff;
 
+  /* Lavanda-themed colors */
   --lavanda-darkest: #7327b8;
   --lavanda-darker: #9643d4;
   --lavanda-dark: #b16bef;
@@ -48,36 +69,46 @@ a:visited {color:#0000;}
   --lavanda-lighter: #f0d8fe;
   --lavanda-lightest: #faedff;
 
+  /* Gradient variations for Sky-Lavanda theme */
   --sky-lavanda-gradient-transparent-lightest: linear-gradient(90deg, rgba(157,194,251,0.1) 37%, rgba(205,148,249,0.1) 76%);
   --sky-lavanda-gradient-transparent-light: linear-gradient(90deg, rgba(157,194,251,0.2) 37%, rgba(205,148,249,0.2) 76%);
   --sky-lavanda-gradient-transparent-halflight: linear-gradient(90deg, rgba(157,194,251,0.5) 37%, rgba(205,148,249,0.5) 76%);
   --sky-lavanda-gradient-transparent-quarter: linear-gradient(90deg, rgba(157,194,251,0.8) 37%, rgba(205,148,249,0.8) 76%);
   --sky-lavanda-gradient-transparent-full: linear-gradient(90deg, rgba(157,194,251,1) 37%, rgba(205,148,249,1) 76%);
 
+  /* Main and secondary colors */
   --main-color: #9dc2fb;
   --second-color: #cd94f9;
 
+  /* Error and success colors */
   --error-color: #b00020;
   --success-color: #59E8B5;
 
+  /* Border radius settings for UI elements */
   --ref-radius-small: 5px;
   --ref-radius-medium: 8px;
   --ref-radius-large: 12px;
   --ref-radius-xLarge: 17px;
   --ref-radius-full: 100%;
 
+  /* Border radius variables for consistent UI element styling */
   --base-item-border-radius: var(--ref-radius-medium);
+  --bottom-context-menu-radius: var(--ref-radius-xLarge);
 
+  /* Background colors */
   --second-background-color: var(--gray-lighter);
   --main-background-color: var(--white);
 
+  /* Text color for headings and important text */
   --colored-text-main: var(--lavanda-darkest);
 
-  --z-index-modal-overlay: 10;
-  --z-index-modal-close: 101;
+  /* Z-index layers for managing stacking order */
+  --z-index-overlay: 301;
+  --z-index-modal-dialog: 302;
+  --z-index-modal-close: 303;
   --z-index-progress-bar: 210;
-  --z-index-tooltip: 201;
-  --z-index-context-menu: 300;
+  --z-index-tooltip: 305;
+  --z-index-context-menu: 304;
   --z-index-implied-button: 100;
   --z-index-flash-card: 201;
   --z-index-flash-card-button-bar: 201;

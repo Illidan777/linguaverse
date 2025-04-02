@@ -1,9 +1,24 @@
+/**
+ * Toggler Component
+ *
+ * A simple switch toggle component that allows users to enable or disable a state.
+ *
+ * Props:
+ * @param {function} onSwitch - Callback function triggered when the switch state changes
+ * @param {boolean} initialPosition - Initial toggle state (default: false)
+ */
+
 import { useState } from "react";
 import styled from "styled-components";
 
 const Toggler = ({ onSwitch, initialPosition = false }) => {
+    // State to manage toggle switch
     const [switched, setSwitched] = useState(initialPosition);
 
+    /**
+     * Handles toggle state changes.
+     * Updates local state and triggers the onSwitch callback with the new state.
+     */
     const handleToggle = () => {
         const newState = !switched;
         setSwitched(newState);
@@ -15,13 +30,14 @@ const Toggler = ({ onSwitch, initialPosition = false }) => {
             <AssemblyToggleSwitchInput
                 type="checkbox"
                 checked={switched}
-                onChange={() => {}} // Чтоб React не ругался
+                onChange={() => {}} // Prevents React warning about uncontrolled input
             />
             <AssemblyToggleSwitchSpan $switched={switched} />
         </AssemblyToggleSwitch>
     );
 };
 
+// Styled component for the toggle container
 const AssemblyToggleSwitch = styled.div`
     display: flex;
     align-items: center;
@@ -31,12 +47,14 @@ const AssemblyToggleSwitch = styled.div`
     cursor: pointer;
 `;
 
+// Hidden input for accessibility
 const AssemblyToggleSwitchInput = styled.input`
     height: 0;
     visibility: hidden;
     width: 0;
 `;
 
+// Styled span representing the switch
 const AssemblyToggleSwitchSpan = styled.span`
     width: 34px;
     height: 14px;
