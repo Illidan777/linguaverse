@@ -12,7 +12,7 @@ import Spinner from "../../../spinner/Spinner";
  *
  * @returns {JSX.Element} A loading spinner when `isLoading` is true, or the child components when loading is complete.
  */
-export default function LoadingBoundary({ isLoading, spinnerSize = 'medium', children }) {
+export default function LoadingBoundary({ isLoading, spinnerSize, children }) {
     // Return the Spinner component if content is loading.
     if (isLoading) {
         return <Spinner size={spinnerSize} />;

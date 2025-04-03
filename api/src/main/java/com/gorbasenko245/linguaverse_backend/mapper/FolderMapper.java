@@ -9,12 +9,24 @@ import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Service class responsible for mapping Folder entities to DTOs.
+ */
 @Service
 @RequiredArgsConstructor
 public class FolderMapper {
 
+    /**
+     * Mapper for converting Module entities to DTOs.
+     */
     private final ModuleMapper moduleMapper;
 
+    /**
+     * Converts a {@link Folder} entity to a {@link FolderDto}.
+     *
+     * @param entity The Folder entity to convert.
+     * @return The corresponding {@link FolderDto}, or {@code null} if the entity is {@code null}.
+     */
     public FolderDto toFolderDto(final Folder entity) {
         if(entity == null) return null;
 
@@ -28,6 +40,12 @@ public class FolderMapper {
         return dto;
     }
 
+    /**
+     * Converts a {@link Folder} entity to a {@link BaseFolderDto}.
+     *
+     * @param entity The Folder entity to convert.
+     * @return The corresponding {@link BaseFolderDto}, or {@code null} if the entity is {@code null}.
+     */
     public BaseFolderDto toBaseFolderDto(final Folder entity) {
         if(entity == null) return null;
 

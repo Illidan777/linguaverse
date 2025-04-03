@@ -13,12 +13,24 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Service class responsible for mapping Module entities to DTOs.
+ */
 @Service
 @RequiredArgsConstructor
 public class ModuleMapper {
 
+    /**
+     * Mapper for converting Term entities to DTOs.
+     */
     private final TermMapper termMapper;
 
+    /**
+     * Converts a {@link Module} entity to a {@link ModuleDto}.
+     *
+     * @param entity The Module entity to convert.
+     * @return The corresponding {@link ModuleDto}, or {@code null} if the entity is {@code null}.
+     */
     public ModuleDto toModuleDto(final Module entity) {
         if(entity == null) return null;
 
@@ -37,6 +49,12 @@ public class ModuleMapper {
         return dto;
     }
 
+    /**
+     * Converts a {@link Module} entity to a {@link BaseModuleDto}.
+     *
+     * @param entity The Module entity to convert.
+     * @return The corresponding {@link BaseModuleDto}, or {@code null} if the entity is {@code null}.
+     */
     public BaseModuleDto toBaseModuleDto(final Module entity) {
         if(entity == null) return null;
 
@@ -53,6 +71,12 @@ public class ModuleMapper {
         return dto;
     }
 
+    /**
+     * Converts a list of {@link Module} entities to a list of {@link BaseModuleDto}.
+     *
+     * @param entityList The list of Module entities to convert.
+     * @return A list of corresponding {@link BaseModuleDto} objects, or an empty list if {@code entityList} is null.
+     */
     public List<BaseModuleDto> toBaseModuleDtoList(final List<Module> entityList) {
         if(entityList == null) return Collections.emptyList();
 

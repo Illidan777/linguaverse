@@ -12,14 +12,28 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST controller that manages folders.
+ * <p>
+ * This class provides endpoints to perform CRUD operations on folders, including creating, retrieving,
+ * updating, and deleting folders. Additionally, it allows adding and removing modules from folders.
+ * </p>
+ */
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/folder")
 @RestController
 public class FolderController {
 
+    // Main service
     private final IFolderService folderService;
 
+    /**
+     * Creates a new folder.
+     *
+     * @param request The request containing the details to create a folder.
+     * @return A response containing the created folder's information.
+     */
     @PostMapping
     public ApiResponse<BaseFolderDto> createFolder(@RequestBody CreateFolderRequest request) {
         log.info("[FolderController] Creating folder.");
@@ -31,6 +45,12 @@ public class FolderController {
                 .message("OK");
     }
 
+    /**
+     * Retrieves all folders, optionally filtering by name.
+     *
+     * @param name Optional name parameter to filter folders by name.
+     * @return A response containing a list of all folders.
+     */
     @GetMapping
     public ApiResponse<List<BaseFolderDto>> getAllFolders(@RequestParam(required = false) String name) {
         log.info("[FolderController] Getting all folders. {}", name);
@@ -42,6 +62,12 @@ public class FolderController {
                 .message("OK");
     }
 
+    /**
+     * Retrieves a folder by its ID.
+     *
+     * @param id The ID of the folder to retrieve.
+     * @return A response containing the folder's details.
+     */
     @GetMapping("/{id}")
     public ApiResponse<FolderDto> getFolderById(@PathVariable("id") Long id) {
         log.info("[FolderController] Getting folder by id. {}", id);
@@ -53,6 +79,12 @@ public class FolderController {
                 .message("OK");
     }
 
+    /**
+     * Deletes a folder by its ID.
+     *
+     * @param id The ID of the folder to delete.
+     * @return A response confirming the deletion.
+     */
     @DeleteMapping("/{id}")
     public ApiResponse<Void> deleteFolderById(@PathVariable("id") Long id) {
         log.info("[FolderController] Deleting folder by id. {}", id);
@@ -63,6 +95,13 @@ public class FolderController {
                 .message("Ok");
     }
 
+    /**
+     * Updates an existing folder by its ID.
+     *
+     * @param id The ID of the folder to update.
+     * @param request The request containing the updated folder details.
+     * @return A response containing the updated folder's information.
+     */
     @PutMapping("/{id}")
     public ApiResponse<BaseFolderDto> updateFolderById(@PathVariable("id") Long id, @RequestBody UpdateFolderRequest request) {
         log.info("[FolderController] Updating folder by id. {}", id);
@@ -74,6 +113,13 @@ public class FolderController {
                 .message("OK");
     }
 
+    /**
+     * Adds a module to a folder.
+     *
+     * @param id The ID of the folder to add the module to.
+     * @param moduleId The ID of the module to add.
+     * @return A response confirming the addition of the module.
+     */
     @PatchMapping("/{id}/add-module/{moduleId}")
     public ApiResponse<Void> addModuleToFolder(@PathVariable("id") Long id, @PathVariable("moduleId") Long moduleId) {
         log.info("[FolderController] Adding module to folder by id. Folder id: {}. Module id: {}", id, moduleId);
@@ -84,6 +130,13 @@ public class FolderController {
                 .message("OK");
     }
 
+    /**
+     * Deletes a module from a folder.
+     *
+     * @param id The ID of the folder to remove the module from.
+     * @param moduleId The ID of the module to remove.
+     * @return A response confirming the removal of the module.
+     */
     @DeleteMapping("/{id}/delete-module/{moduleId}")
     public ApiResponse<Void> deleteModuleFromFolder(@PathVariable("id") Long id, @PathVariable("moduleId") Long moduleId) {
         log.info("[FolderController] Deleting module from folder by id. Folder id: {}. Module id: {}", id, moduleId);

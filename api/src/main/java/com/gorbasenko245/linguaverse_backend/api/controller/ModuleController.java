@@ -15,15 +15,29 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST controller that manages modules, terms, and practices.
+ * <p>
+ * This class provides endpoints to perform CRUD operations on modules, including creating, retrieving,
+ * updating, and deleting modules etc. Additionally, it allows manage terms and practice.
+ * </p>
+ */
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/module")
 @RestController
 public class ModuleController {
 
+    // Main service
     private final IModuleService moduleService;
+
+    // Secondary service
     private final IPracticeService practiceService;
 
+    /**
+     * Creates a new module.
+     * @return ApiResponse with created module details
+     */
     @PostMapping
     public ApiResponse<BaseModuleDto> createModule() {
         log.info("[ModuleController] Creating module.");
@@ -35,6 +49,11 @@ public class ModuleController {
                 .message("OK");
     }
 
+    /**
+     * Retrieves all modules, optionally filtered by name.
+     * @param name Optional name filter
+     * @return ApiResponse with a list of modules
+     */
     @GetMapping
     public ApiResponse<List<BaseModuleDto>> getAllModules(@RequestParam(required = false) String name) {
         log.info("[ModuleController] Getting all modules. {}", name);
@@ -46,6 +65,11 @@ public class ModuleController {
                 .message("OK");
     }
 
+    /**
+     * Retrieves a module by its ID.
+     * @param id Module ID
+     * @return ApiResponse with module details
+     */
     @GetMapping("/{id}")
     public ApiResponse<ModuleDto> getModuleById(@PathVariable("id") Long id) {
         log.info("[ModuleController] Getting module by id. {}", id);
@@ -57,6 +81,11 @@ public class ModuleController {
                 .message("OK");
     }
 
+    /**
+     * Deletes a module by its ID.
+     * @param id Module ID
+     * @return ApiResponse with status
+     */
     @DeleteMapping("/{id}")
     public ApiResponse<Void> deleteModuleById(@PathVariable("id") Long id) {
         log.info("[ModuleController] Deleting module by id. {}", id);
@@ -67,6 +96,12 @@ public class ModuleController {
                 .message("Ok");
     }
 
+    /**
+     * Updates a module by its ID.
+     * @param id Module ID
+     * @param request Update module request details
+     * @return ApiResponse with updated module details
+     */
     @PutMapping("/{id}")
     public ApiResponse<ModuleDto> updateModuleById(@PathVariable("id") Long id,
                                                    @RequestBody UpdateModuleRequest request) {
@@ -79,6 +114,11 @@ public class ModuleController {
                 .message("OK");
     }
 
+    /**
+     * Activates a module by its ID.
+     * @param id Module ID
+     * @return ApiResponse with the activated module details
+     */
     @PatchMapping("/{id}/activate")
     public ApiResponse<BaseModuleDto> activateModule(@PathVariable("id") Long id) {
         log.info("[ModuleController] Activating module by id. {}", id);
@@ -90,6 +130,11 @@ public class ModuleController {
                 .message("OK");
     }
 
+    /**
+     * Retrieves terms associated with a module.
+     * @param id Module ID
+     * @return ApiResponse with list of terms
+     */
     @GetMapping("/{id}/term")
     public ApiResponse<List<TermDto>> getModuleTerms(@PathVariable("id") Long id) {
         log.info("[ModuleController] Getting terms in module. Id: {}", id);
@@ -101,6 +146,12 @@ public class ModuleController {
                 .message("OK");
     }
 
+    /**
+     * Creates a term in a module.
+     * @param id Module ID
+     * @param orderNumber Optional order number
+     * @return ApiResponse with created term details
+     */
     @PostMapping("/{id}/term")
     public ApiResponse<TermDto> createTerm(@PathVariable("id") Long id,
                                            @RequestParam(required = false) Long orderNumber) {
@@ -113,6 +164,13 @@ public class ModuleController {
                 .message("OK");
     }
 
+    /**
+     * Updates a term in a module.
+     * @param id Module ID
+     * @param termId Term ID
+     * @param request Term details to update
+     * @return ApiResponse with updated term details
+     */
     @PutMapping("/{id}/term/{termId}")
     public ApiResponse<TermDto> updatedTerm(@PathVariable("id") Long id,
                                             @PathVariable("termId") Long termId,
@@ -126,6 +184,12 @@ public class ModuleController {
                 .message("OK");
     }
 
+    /**
+     * Deletes a term from a module.
+     * @param id Module ID
+     * @param termId Term ID
+     * @return ApiResponse with status
+     */
     @DeleteMapping("/{id}/term/{termId}")
     public ApiResponse<Void> deleteTerm(@PathVariable("id") Long id,
                                         @PathVariable("termId") Long termId) {
@@ -137,6 +201,11 @@ public class ModuleController {
                 .message("OK");
     }
 
+    /**
+     * Shuffles the terms in a module.
+     * @param id Module ID
+     * @return ApiResponse with status
+     */
     @PatchMapping("/{id}/term/shuffle")
     public ApiResponse<Void> shuffleTerms(@PathVariable("id") Long id) {
         log.info("[ModuleController] Shuffling terms in module. Id: {}", id);
@@ -147,6 +216,12 @@ public class ModuleController {
                 .message("OK");
     }
 
+    /**
+     * Retrieves user practice details for a module.
+     * @param moduleId Module ID
+     * @param type Practice type
+     * @return ApiResponse with user practice details
+     */
     @GetMapping("/{id}/practice/{type}")
     public ApiResponse<UserPracticeDto> getModuleUserPractice(@PathVariable("id") Long moduleId,
                                                               @PathVariable("type") PracticeType type) {
@@ -159,6 +234,11 @@ public class ModuleController {
                 .message("OK");
     }
 
+    /**
+     * Toggles the follow progress state for a module.
+     * @param moduleId Module ID
+     * @return ApiResponse with status
+     */
     @PatchMapping("/{id}/practice/follow-progress")
     public ApiResponse<Void> toggleFollowProgress(@PathVariable("id") Long moduleId) {
         log.info("[PracticeController] Toggling follow progress by moduleId. {}", moduleId);
@@ -169,6 +249,14 @@ public class ModuleController {
                 .message("OK");
     }
 
+    /**
+     * Updates the term status in a module.
+     * @param id Module ID
+     * @param termId Term ID
+     * @param learned Boolean indicating whether the term is learned
+     * @param currentIndex Current index of the term
+     * @return ApiResponse with status
+     */
     @PatchMapping("/{id}/practice/term/{termId}")
     public ApiResponse<Void> updateTermStatus(@PathVariable("id") Long id,
                                               @PathVariable("termId") Long termId,
@@ -182,6 +270,11 @@ public class ModuleController {
                 .message("OK");
     }
 
+    /**
+     * Resets the practice for a module.
+     * @param id Module ID
+     * @return ApiResponse with status
+     */
     @PatchMapping("/{id}/practice/reset")
     public ApiResponse<Void> resetPractice(@PathVariable("id") Long id) {
         log.info("[PracticeController] Reseting practice in module. Id: {}.", id);

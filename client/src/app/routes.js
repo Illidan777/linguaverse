@@ -8,7 +8,7 @@
 // React imports for lazy loading and suspense handling
 import React, { lazy, Suspense } from "react";
 import { Navigate } from "react-router";
-import { Spinner } from "react-bootstrap";
+import Spinner from "../components/spinner/Spinner";
 
 // Lazy-loaded page components for optimized performance
 const HomePage = lazy(() => import("../features/page/home/HomePage"));
