@@ -2,6 +2,50 @@
 
 Lingμverse front-end is built using React, styled components, and several modern tools such as Redux, RTK Query, and React Router. This application serves as the user interface for the Lingμverse language-learning platform. It connects to the back-end API and provides the interface for users to engage in language learning exercises.
 
+## Table of Contents
+
+1. [Project Structure](#project-structure)
+    - [api](#1-api)
+    - [app](#2-app)
+    - [assets](#3-assets)
+    - [components](#4-components)
+    - [constants](#5-constants)
+    - [features](#6-features)
+    - [hooks](#7-hooks)
+    - [store](#8-store)
+    - [style](#9-style)
+    - [utils](#10-utils)
+    - [index.js](#11-indexjs)
+    - [public](#12-public)
+
+2. [Styling](#styling)
+
+3. [SEO Configuration](#seo-configuration)
+
+4. [API Communication](#api-communication)
+
+5. [Error Handling](#error-handling)
+
+6. [Layout](#layout)
+
+7. [Development Approach](#development-approach)
+    - [Code Reusability](#code-reusability)
+    - [Modularity](#modularity)
+    - [Error Handling](#error-handling-1)
+    - [Responsive Design](#responsive-design)
+
+8. [How to Set Up and Run](#how-to-set-up-and-run)
+    - [Prerequisites](#prerequisites)
+
+9. [Available Scripts](#available-scripts)
+    - [`npm start`](#npm-start)
+    - [`npm test`](#npm-test)
+    - [`npm run build`](#npm-run-build)
+    - [`npm run eject`](#npm-run-eject)
+
+10. [Configure API (if needed)](#configure-api-if-needed)
+
+
 ## Project Structure
 
 The structure of the React application is designed to be scalable, maintainable, and modular. Below is a breakdown of the project folders and their purpose:

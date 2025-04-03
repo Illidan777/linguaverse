@@ -2,6 +2,34 @@
 
 Lingμverse back-end API is a basic CRUD API designed to serve the needs of the front-end React application. The primary focus of this project was on learning and solidifying front-end skills, particularly with React. However, the back-end is implemented using Java, Spring Boot, and related technologies to support the full-stack application.
 
+## Table of Contents
+
+1. [Project Structure](#project-structure)
+    - [api](#1-api)
+    - [config](#2-config)
+    - [domain](#3-domain)
+    - [mapper](#4-mapper)
+    - [repository](#5-repository)
+    - [services](#6-services)
+    - [utils](#7-utils)
+    - [resources](#8-resources)
+
+2. [Key Features](#key-features)
+
+3. [How to Set Up and Run](#how-to-set-up-and-run)
+    - [Prerequisites](#prerequisites)
+    - [Manual Quick Start](#manual-quick-start)
+
+4. [Test the API](#test-the-api)
+
+5. [Development Approach](#development-approach)
+    - [Modular Architecture](#modular-architecture)
+    - [Separation of Concerns](#separation-of-concerns)
+    - [Basic CRUD Operations](#basic-crud-operations)
+    - [Database Integration](#database-integration)
+    - [Error Handling](#error-handling)
+
+
 ## Project Structure
 
 The project is organized in a modular way, where each folder and file serves a specific purpose in the overall application architecture:
